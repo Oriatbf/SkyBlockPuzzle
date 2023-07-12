@@ -2895,14 +2895,11 @@ MonoBehaviour:
   EndScreen: {fileID: 99462164}
   StarCount: 0
   stageTurn: 0
-  MoveCool: 0.2
   EndTurn: 0
   horse: {fileID: 1196063935}
   hitPoint: {fileID: 464187417}
   hitPointSize: {x: 0.5, y: 0.6, z: 0.5}
-  isGround: 0
   dontMove: 0
-  horseRiding: 0
 --- !u!54 &308036908
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2938,6 +2935,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a58b7317d20e770428455f91f64e4dbf, type: 3}
   m_PrefabInstance: {fileID: 1154644580}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &308036913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308036906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12aacc1ac41d22a428ff6356aa7df2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x1: 0
+  x2: 0
+  y1: 0
+  y2: 0
+  HorseOBJ: {fileID: 1196063932}
 --- !u!1 &312796307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d5c92f1b7f109464a97f8f992599ef41, type: 3}

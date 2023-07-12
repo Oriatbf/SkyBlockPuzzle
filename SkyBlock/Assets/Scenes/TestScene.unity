@@ -2664,18 +2664,14 @@ MonoBehaviour:
   TurnPNG: {fileID: 1211051620}
   TurnSprite: {fileID: 21300000, guid: ee8ac1033c2d28e43bd9b477424e0ff3, type: 3}
   WeaponOBJ: {fileID: 919132149494373324}
-  HorseOBJ: {fileID: 0}
   EndScreen: {fileID: 43373630}
   StarCount: 0
   stageTurn: 0
-  MoveCool: 0.2
   EndTurn: 0
   horse: {fileID: 0}
   hitPoint: {fileID: 464187417}
   hitPointSize: {x: 0.5, y: 0.6, z: 0.5}
-  isGround: 0
   dontMove: 0
-  horseRiding: 0
 --- !u!54 &308036908
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2711,6 +2707,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a58b7317d20e770428455f91f64e4dbf, type: 3}
   m_PrefabInstance: {fileID: 1154644580}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &308036912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308036906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12aacc1ac41d22a428ff6356aa7df2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x1: 0
+  x2: 0
+  y1: 0
+  y2: 0
 --- !u!1001 &309417156
 PrefabInstance:
   m_ObjectHideFlags: 0

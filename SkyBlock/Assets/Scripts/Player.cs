@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
 
     public float StarCount = 0;
     public float stageTurn;
-    private float MoveCoolTime;
-    public float MoveCool;
+    public static float MoveCoolTime;
+    public static  float MoveCool;
     public float EndTurn; // 턴 수 제약 조건
     
     public Horse horse;
@@ -45,9 +45,9 @@ public class Player : MonoBehaviour
     public Vector3 hitPointSize;
     private Vector3 myTrans;
 
-    public bool isGround;
+    public static bool isGround;
     public bool dontMove;
-    public bool horseRiding = false;
+    public static bool horseRiding = false;
     public static bool isPushBlock = false;
     public static bool isFrontEnemy = false;
     private bool isWin = false;
