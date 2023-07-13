@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     public Vector3 hitPointSize;
     private Vector3 myTrans;
 
+    public static bool WeaponOn = false;
     public static bool isGround;
     public bool dontMove;
     public static bool horseRiding = false;
@@ -69,6 +70,7 @@ public class Player : MonoBehaviour
         animator= GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         dontMove= false;
+        WeaponOn= false;
     }
     private void FixedUpdate()
     {
@@ -343,6 +345,7 @@ public class Player : MonoBehaviour
         {
 
             WeaponOBJ.GetComponent<Weapons>().Active();
+            WeaponOn = true;
 
         }
         if(col.tag == "horse")

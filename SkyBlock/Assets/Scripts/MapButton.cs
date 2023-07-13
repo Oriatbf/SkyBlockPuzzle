@@ -72,6 +72,7 @@ public class MapButton : MonoBehaviour
             }
             player.transform.rotation = Quaternion.LookRotation(direction);
             walkAinm.SetBool("Walk", true);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         }
     }
 
