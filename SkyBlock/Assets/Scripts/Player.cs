@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         dontMove= false;
         WeaponOn= false;
+        horseRiding= false;
+        horseNoGo= false;
     }
     private void FixedUpdate()
     {
@@ -380,7 +382,7 @@ public class Player : MonoBehaviour
     {
 
         Enemyhit.transform.GetComponent<Enemy>().Ondam();
-        TurnStac += 1;
+        //TurnStac += 1;
     }
 
     void MoveCooltime()

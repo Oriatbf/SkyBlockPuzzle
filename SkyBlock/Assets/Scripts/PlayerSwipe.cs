@@ -43,7 +43,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
                 {
                     Debug.Log("Left");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 && !Horse.leftHorseNoGO)
+                    if (Player.isGround && Player.MoveCoolTime <= 0 )
                     {
                         if (Player.horseRiding)
                         {
@@ -58,12 +58,12 @@ public class PlayerSwipe : MonoBehaviour
                             if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                             {
                                 animator.SetTrigger("Attack");
-                                StartCoroutine("AttackCorutine");                       
+                                                     
                             }
                             else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
                             {
                                 PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                                StartCoroutine("PushCorutine");
+                               
                             }
                             else
                             {
@@ -88,7 +88,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
                 {
                     Debug.Log("Right");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 && !Horse.rightHorseNoGO)
+                    if (Player.isGround && Player.MoveCoolTime <= 0)
                     {
                         if (Player.horseRiding)
                         {
@@ -104,13 +104,13 @@ public class PlayerSwipe : MonoBehaviour
                             {
 
                                 animator.SetTrigger("Attack");
-                                StartCoroutine("AttackCorutine");
+                               
 
                             }
                             else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
                             {
                                 PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                                StartCoroutine("PushCorutine");
+                                
                             }
                             else
                             {
@@ -131,7 +131,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
                 {
                     Debug.Log("back");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 && !Horse.backHorseNoGo)
+                    if (Player.isGround && Player.MoveCoolTime <= 0 )
                     {
 
                         if (Player.horseRiding)
@@ -148,13 +148,13 @@ public class PlayerSwipe : MonoBehaviour
                             {
 
                                 animator.SetTrigger("Attack");
-                                StartCoroutine("AttackCorutine");
+                                
 
                             }
                             else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
                             {
                                 PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                                StartCoroutine("PushCorutine");
+                                
                             }
                             else
                             {
@@ -173,7 +173,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
                 {
                     Debug.Log("front");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 && !Player.horseNoGo)
+                    if (Player.isGround && Player.MoveCoolTime <= 0 )
                     {
                         if (Player.horseRiding)
                         {
@@ -188,12 +188,12 @@ public class PlayerSwipe : MonoBehaviour
                             if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                             {
                                 animator.SetTrigger("Attack");
-                                StartCoroutine("AttackCorutine");
+                            
                             }
                             else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
                             {
                                 PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                                StartCoroutine("PushCorutine");
+                               
                             }
                             else
                             {
@@ -215,18 +215,8 @@ public class PlayerSwipe : MonoBehaviour
         Player.MoveCoolTime = Player.MoveCool;
     }
 
-    IEnumerator AttackCorutine()
-    {
+  
 
-        yield return new WaitForSeconds(0.6f);
-        transform.position += transform.forward * 2.006f;
-    }
-
-    IEnumerator PushCorutine()
-    {
-
-        yield return new WaitForSeconds(0.5f);
-        transform.position += transform.forward * 2.006f;
-    }
+   
 
 }

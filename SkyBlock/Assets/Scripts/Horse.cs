@@ -26,34 +26,7 @@ public class Horse : MonoBehaviour
         {
             Player.horseNoGo= true;
         }
-        else
-        {
-            Player.horseNoGo= false;
-        }
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.right *-1, 5, enemy))
-        {
-           leftHorseNoGO = true;
-        }
-        else
-        {
-            leftHorseNoGO = false;
-        }
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.right, 5, enemy))
-        {
-            rightHorseNoGO = true;
-        }
-        else
-        {
-            rightHorseNoGO = false;
-        }
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward*-1, 5, enemy))
-        {
-            backHorseNoGo = true;
-        }
-        else
-        {
-            backHorseNoGo = false;
-        }
+      
         if (!Physics.Raycast(transform.position + new Vector3(0, 0.3f, 0), Vector3.down, 3, platform))
         {
             Destroy(gameObject);
