@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 public class MapButton : MonoBehaviour
 {
     [SerializeField]
     public Transform[] buttonPrefab;
+    [SerializeField]
+    public Vector3[] CamareTransformMove;
+    [SerializeField]
+    public Vector3[] CamareTransformTrans;
     public GameObject StageGoButton;
     public GameObject player;
     private MapSelectPlayerMove Playermove;
@@ -17,6 +22,14 @@ public class MapButton : MonoBehaviour
     public int selNum;
     private Vector3 direction;
 
+    public Transform CamaraTran;
+    public CloudeCam Clcam;
+
+    Vector3 firstPos, gap;
+    bool SlideWait;
+    public int slideNum;
+
+    private Vector3 targetPosition;
 
     void Awake()
     {
@@ -30,7 +43,76 @@ public class MapButton : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(selNum == playerPosition)
+            walkAinm.SetBool("Walk", false);
+
+        if (selNum == playerPosition)
+        {
+            targetPosition = new Vector3(CamaraTran.transform.position.x, transform.position.y, CamaraTran.transform.position.z);
+            transform.LookAt(targetPosition);
+
+        }
+
+        // 문지름
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) && Clcam.Go == true)
+        {
+            SlideWait = true;
+            firstPos = Input.GetMouseButtonDown(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position;
+        }
+
+        if (Input.GetMouseButton(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved))
+        {
+            gap = (Input.GetMouseButton(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position) - firstPos;
+            if (gap.magnitude < 100) return;
+            gap.Normalize();
+
+            if (SlideWait)
+            {
+                SlideWait = false;
+                // 위 (안쓰이는거)
+                if (gap.y > 0 && gap.x > -0.5f && gap.x < 0.5f)
+                {
+                    slideNum = 1;
+                }
+                // 아래 (안쓰이는거)
+                else if (gap.y < 0 && gap.x > -0.5f && gap.x < 0.5f)
+                {
+                    slideNum = 2;
+                }
+                // 오른쪽
+                else if (gap.x > 0 && gap.y > -0.5f && gap.y < 0.5f)
+                {
+                    slideNum = 3;
+                }
+                // 왼쪽
+                else if (gap.x < 0 && gap.y > -0.5f && gap.y < 0.5f)
+                {
+                    slideNum = 4;
+                }
+                else return;
+            }
+        }
+        else
+        {
+            if (slideNum != 0)
+            {
+                slideNum = 0;
+            }
+        }
+
+        if(slideNum == 3 && selNum == playerPosition && Clcam.Go == true)
+        {
+            selNum = selNum + 1;
+            slideNum = 0;
+            CameraSet();
+        }
+        if (slideNum == 4 && selNum != 0 && selNum == playerPosition && Clcam.Go == true)
+        {
+            selNum = selNum - 1;
+            slideNum = 0;
+            CameraSet();
+        }
+        /*if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             Ray ray = mCamera.ScreenPointToRay(Input.mousePosition);
@@ -48,7 +130,7 @@ public class MapButton : MonoBehaviour
         else
         {
             walkAinm.SetBool("Walk", false);
-        }
+        }*/
         if (playerPosition != selNum)
         {
             StageGoButton.SetActive(true);
@@ -86,5 +168,11 @@ public class MapButton : MonoBehaviour
         {
             SceneManager.LoadScene("TestScene2");
         }
+    }
+
+    public void CameraSet()
+    {
+        CamaraTran.DOMove(new Vector3(CamareTransformMove[selNum].x, CamareTransformMove[selNum].y, CamareTransformMove[selNum].z), 2.5f);
+        CamaraTran.DORotate(new Vector3(CamareTransformTrans[selNum].x, CamareTransformTrans[selNum].y, CamareTransformTrans[selNum].z), 2.5f);
     }
 }
