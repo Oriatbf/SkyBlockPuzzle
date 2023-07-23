@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
         myTrans = transform.position;
         //isGround = false;
 
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, 2, stopMoveBlock))   //dontgo 레이어
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, 2, stopMoveBlock) || Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, 2, platform))   //dontgo 레이어
         {
             dontMove= true;
         }
@@ -156,13 +156,13 @@ public class Player : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.R))
                 {
-                    transform.Rotate(0f, 90f, 0f);
+                    transform.Rotate(0f, -90f, 0f);
                     MoveCooltime();
                     TurnStac += 1;
                 }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    transform.Rotate(0f, -90f, 0f);
+                    transform.Rotate(0f, 90f, 0f);
                     MoveCooltime();
                     TurnStac += 1;
                 }
