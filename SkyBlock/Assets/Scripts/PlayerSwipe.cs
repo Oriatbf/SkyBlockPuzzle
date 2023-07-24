@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.UIElements;
 
 public class PlayerSwipe : MonoBehaviour
 {
@@ -13,6 +16,11 @@ public class PlayerSwipe : MonoBehaviour
     [SerializeField]
     private float y2;
 
+    private bool leftMoving;
+    private bool rightMoving;
+    private bool fowardMoving;
+    private bool backMoving;
+
     public GameObject HorseOBJ;
     Animator animator;
 
@@ -20,6 +28,7 @@ public class PlayerSwipe : MonoBehaviour
     private RaycastHit Enemyhit;
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
+
 
     private void Start()
     {
@@ -32,6 +41,22 @@ public class PlayerSwipe : MonoBehaviour
         {
             x1 = Input.mousePosition.x;
             y1 = Input.mousePosition.y;
+        }
+        if (leftMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - 2.006f, transform.position.y, transform.position.z), 2f*Time.deltaTime);
+        }
+        if (rightMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + 2.006f, transform.position.y, transform.position.z), 2f * Time.deltaTime);
+        }
+        if (fowardMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x , transform.position.y, transform.position.z + 2.006f), 2f * Time.deltaTime);
+        }
+        if (backMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x , transform.position.y, transform.position.z - 2.006f), 2f * Time.deltaTime);
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -67,8 +92,8 @@ public class PlayerSwipe : MonoBehaviour
                             }
                             else
                             {
-                                transform.eulerAngles = new Vector3(0, -90, 0);
-                                transform.position += transform.forward * 2.006f;
+                                StartCoroutine(leftMove());
+                                leftMoving = true;
                             }
                         }
 
@@ -114,8 +139,8 @@ public class PlayerSwipe : MonoBehaviour
                             }
                             else
                             {
-                                transform.eulerAngles = new Vector3(0, 90, 0);
-                                transform.position += transform.forward * 2.006f;
+                                StartCoroutine(rightMove());
+                                rightMoving = true;
                             }
                         }
 
@@ -158,8 +183,8 @@ public class PlayerSwipe : MonoBehaviour
                             }
                             else
                             {
-                                transform.eulerAngles = new Vector3(0, 180, 0);
-                                transform.position += transform.forward * 2.006f;
+                                StartCoroutine(backMove());
+                                backMoving = true;
                             }
                         }
                         MoveCooltime();
@@ -197,8 +222,8 @@ public class PlayerSwipe : MonoBehaviour
                             }
                             else
                             {
-                                transform.eulerAngles = new Vector3(0, 0, 0);
-                                transform.position += transform.forward * 2.006f;
+                                StartCoroutine(fowardMove());
+                                fowardMoving = true;
                             }
                         }
                         MoveCooltime();
@@ -215,8 +240,37 @@ public class PlayerSwipe : MonoBehaviour
         Player.MoveCoolTime = Player.MoveCool;
     }
 
-  
+   IEnumerator leftMove()
+    {
+        animator.SetBool("Walk", true);
+        transform.eulerAngles = new Vector3(0, -90, 0);
+        yield return new WaitForSeconds(1f);
+        leftMoving = false;
+        animator.SetBool("Walk", false);
+    }
+    IEnumerator rightMove()
+    {
+        animator.SetBool("Walk", true);
+        transform.eulerAngles = new Vector3(0, 90, 0);
+        yield return new WaitForSeconds(1f);
+        rightMoving = false;
+        animator.SetBool("Walk", false);
+    }
+    IEnumerator fowardMove()
+    {
+        animator.SetBool("Walk", true);
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(1f);
+        fowardMoving = false;
+        animator.SetBool("Walk", false);
+    }
+    IEnumerator backMove()
+    {
+        animator.SetBool("Walk", true);
+        transform.eulerAngles = new Vector3(0, 180, 0);
+        yield return new WaitForSeconds(1f);
+        backMoving = false;
+        animator.SetBool("Walk", false);
 
-   
-
+    }
 }
