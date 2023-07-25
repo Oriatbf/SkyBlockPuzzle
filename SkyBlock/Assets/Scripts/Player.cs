@@ -94,6 +94,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         myTrans = transform.position;
         //isGround = false;
 
@@ -105,206 +106,17 @@ public class Player : MonoBehaviour
         {
             dontMove = false;
         }
-
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward,out PushBlockhit,  2, PushBlocks))
-        {
-            dontMove = true;
-            isPushBlock= true;
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                TurnStac += 1;
-            }
-        }
-        else
-        {
-            isPushBlock= false;
-        }
-
-        if(Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
-        {
-            dontMove= true;
-            isFrontEnemy= true;
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                animator.SetTrigger("Attack");
-            }
-        }
-        else
-        {
-            isFrontEnemy= false;
-        }
-
         if (MoveCoolTime > 0)
         {
             MoveCoolTime -= Time.deltaTime;
         }
-        if (isGround  && MoveCoolTime <= 0 )
-        {
-            if(!horseRiding)
-            {
-                if (!dontMove)
-                {
-                    if (Input.GetKeyDown(KeyCode.W))
-                    {
-                        transform.position += transform.forward * 2.006f;
-                        MoveCooltime();
-                        TurnStac += 1;
-
-                    }
-                }
-
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    transform.Rotate(0f, -90f, 0f);
-                    MoveCooltime();
-                    TurnStac += 1;
-                }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    transform.Rotate(0f, 90f, 0f);
-                    MoveCooltime();
-                    TurnStac += 1;
-                }
-
-            }
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                animator.SetTrigger("Attack");
-                MoveCooltime();
-                TurnStac += 1;
-            }
-        }
-  
-
-
         if (transform.position.y <= 1f)
         {
             //Destroy(gameObject);
         }
-        rigidbody.useGravity = !horseRiding;
-        if (horseRiding && isGround)
-        {
-            
-            transform.position = new Vector3(transform.position.x, 2.56f, transform.position.z);
-            if(!horseNoGo)
-            {
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    transform.position += transform.forward * 4.006f;
-                    HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
-                    MoveCooltime();
-                    TurnStac += 1;
-                }
-            }
-           
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                transform.Rotate(0f, 90f, 0f);
-                HorseOBJ.transform.Rotate(0f, 90f, 0f);
-                MoveCooltime();
-                TurnStac += 1;
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                transform.Rotate(0f, -90f, 0f);
-                HorseOBJ.transform.Rotate(0f, -90f, 0f);
-                MoveCooltime();
-                TurnStac += 1;
-            }
-        }
-       
-        
-        
+        rigidbody.useGravity = !horseRiding;      
     }
 
-    public void Go()
-    {
-        
-        if (isPushBlock)
-        {
-            PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-            TurnStac += 1;  
-        }
-        else if (isFrontEnemy)
-        {
-            animator.SetTrigger("Attack");
-        }
-        else
-        {
-            if (isGround && MoveCoolTime <= 0)
-            {
-                if (!horseRiding)
-                {
-                        
-                        
-                    transform.position += transform.forward * 2.006f;
-                    MoveCooltime();
-                    TurnStac += 1;
-                        
-                }
-                else
-                {
-                    transform.position += transform.forward * 2.006f*2f;
-                    HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
-                    MoveCooltime();
-                    TurnStac += 1;
-                }
-
-            }
-        }
-
-
-
-
-
-    }
-
-    public void LeftRotation()
-    {
-        if (isGround && MoveCoolTime <= 0)
-        {
-            
-            
-               
-                
-            transform.Rotate(0f, -90f, 0f);
-            if (horseRiding)
-            {
-                HorseOBJ.transform.Rotate(0f, -90f, 0f);
-            }
-            
-            MoveCooltime();
-            TurnStac += 1;
-
-
-                
-            
-        }
-    }
-
-    public void RightRotation()
-    {
-        if (isGround && MoveCoolTime <= 0)
-        {
-       
-            
-                
-
-            transform.Rotate(0f, 90f, 0f);
-            if (horseRiding)
-            {
-                HorseOBJ.transform.Rotate(0f, 90f, 0f);
-            }
-            MoveCooltime();
-            TurnStac += 1;
-
-
-                
-            
-        }
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -312,10 +124,6 @@ public class Player : MonoBehaviour
         {
             //Destroy(gameObject);
         }
-
-        
-
-        
     }
 
     private void Lose()
@@ -351,10 +159,8 @@ public class Player : MonoBehaviour
 
         }
         if(col.tag == "horse")
-        {
-            Debug.Log("hh");
-            horseRiding= true;
-            
+        { 
+            horseRiding= true;    
         }
         
     }
@@ -362,7 +168,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "horse")
         {
-            Debug.Log("hh");
+  
             horseRiding = false;
 
         }
@@ -374,16 +180,8 @@ public class Player : MonoBehaviour
         Gizmos.DrawCube(hitPoint.position, hitPointSize);
         Gizmos.DrawRay(transform.position + new Vector3(0, 0.5f, 0), transform.forward*2);
         Gizmos.DrawRay(transform.position + new Vector3(0, 0.3f, 0), Vector3.down * 3);
-
-
     }
 
-    public void Attack()
-    {
-
-        Enemyhit.transform.GetComponent<Enemy>().Ondam();
-        //TurnStac += 1;
-    }
 
     void MoveCooltime()
     {

@@ -53,7 +53,7 @@ public class MapButton : MonoBehaviour
 
         }
 
-        // ¹®Áö¸§
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) && Clcam.Go == true)
         {
             SlideWait = true;
@@ -69,22 +69,22 @@ public class MapButton : MonoBehaviour
             if (SlideWait)
             {
                 SlideWait = false;
-                // À§ (¾È¾²ÀÌ´Â°Å)
+                // ï¿½ï¿½ (ï¿½È¾ï¿½ï¿½Ì´Â°ï¿½)
                 if (gap.y > 0 && gap.x > -0.5f && gap.x < 0.5f)
                 {
                     slideNum = 1;
                 }
-                // ¾Æ·¡ (¾È¾²ÀÌ´Â°Å)
+                // ï¿½Æ·ï¿½ (ï¿½È¾ï¿½ï¿½Ì´Â°ï¿½)
                 else if (gap.y < 0 && gap.x > -0.5f && gap.x < 0.5f)
                 {
                     slideNum = 2;
                 }
-                // ¿À¸¥ÂÊ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 else if (gap.x > 0 && gap.y > -0.5f && gap.y < 0.5f)
                 {
                     slideNum = 3;
                 }
-                // ¿ŞÂÊ
+                // ï¿½ï¿½ï¿½ï¿½
                 else if (gap.x < 0 && gap.y > -0.5f && gap.y < 0.5f)
                 {
                     slideNum = 4;
