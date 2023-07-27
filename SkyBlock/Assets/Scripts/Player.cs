@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static UnityEditor.PlayerSettings;
 
 
 public class Player : MonoBehaviour
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     public LayerMask stopMoveBlock;
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
+
+    
 
     private RaycastHit PushBlockhit;
     private RaycastHit Enemyhit;
@@ -84,8 +87,8 @@ public class Player : MonoBehaviour
         else
         {
             isGround = false;
-            Destroy(gameObject);
-            Lose();
+            //Destroy(gameObject);
+            //Lose();
         }
 
        
@@ -186,5 +189,19 @@ public class Player : MonoBehaviour
     void MoveCooltime()
     {
         MoveCoolTime = MoveCool;
+    }
+
+    public void Attack()
+    {
+        Collider[] colliders = Physics.OverlapBox(hitPoint.position, hitPointSize);
+        foreach(Collider collider in colliders)
+        {
+           
+            if (collider.CompareTag("Enemy"))
+            {
+                Destroy(collider.gameObject);
+            }
+        }
+      
     }
 }

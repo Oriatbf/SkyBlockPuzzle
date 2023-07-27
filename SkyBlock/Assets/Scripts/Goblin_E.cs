@@ -11,6 +11,11 @@ public class Goblin_E : MonoBehaviour
     [SerializeField] private float AttackNum;
 
     private bool attackON = true;
+    public Transform hitPoint;
+    public Vector3 hitPointSize;
+    public LayerMask blockEnd;
+    private bool backTurn = false;
+   
 
     void Start()
     {
@@ -28,6 +33,14 @@ public class Goblin_E : MonoBehaviour
             attackON = true;
             Red.gameObject.SetActive(true);
         }
+      
+           
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position , transform.forward * 2);
     }
 
     private void Attack()
@@ -41,5 +54,31 @@ public class Goblin_E : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+    }
+
+    public void GoblinMove()
+    {
+        if (Physics.Raycast(transform.position , transform.forward, 2, blockEnd))
+        {
+            if (backTurn)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                backTurn= false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+                backTurn = true;
+            }
+           
+ 
+    
+        }
+        else
+        {
+            transform.position += transform.forward * 2.006f ;
+        }
+       
+        
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerSwipe : MonoBehaviour
 {
+    public GameObject[] Goblin;
     [SerializeField]
     private float x1;
     [SerializeField]
@@ -16,10 +17,16 @@ public class PlayerSwipe : MonoBehaviour
     [SerializeField]
     private float y2;
 
-    private bool leftMoving;
-    private bool rightMoving;
-    private bool fowardMoving;
-    private bool backMoving;
+    public static bool leftMoving;
+    public static bool rightMoving;
+    public static bool fowardMoving;
+    public static bool backMoving;
+    public static bool isActive;
+
+    public static bool yesLMove = false;
+    public static bool yesRMove = false;
+    public static bool yesFMove = false;
+    public static bool yesBMove = false;
 
     public GameObject HorseOBJ;
     Animator animator;
@@ -33,6 +40,7 @@ public class PlayerSwipe : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        Goblin = GameObject.FindGameObjectsWithTag("Goblin");
     }
 
     private void Update()
@@ -45,18 +53,22 @@ public class PlayerSwipe : MonoBehaviour
         if (leftMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - 2.006f, transform.position.y, transform.position.z), 2f*Time.deltaTime);
+      
         }
         if (rightMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + 2.006f, transform.position.y, transform.position.z), 2f * Time.deltaTime);
+        
         }
         if (fowardMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x , transform.position.y, transform.position.z + 2.006f), 2f * Time.deltaTime);
+           
         }
         if (backMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x , transform.position.y, transform.position.z - 2.006f), 2f * Time.deltaTime);
+          
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -68,7 +80,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
                 {
                     Debug.Log("Left");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 )
+                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesLMove)
                     {
                         if (Player.horseRiding)
                         {
@@ -112,8 +124,9 @@ public class PlayerSwipe : MonoBehaviour
             {
                 if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
                 {
+                   
                     Debug.Log("Right");
-                    if (Player.isGround && Player.MoveCoolTime <= 0)
+                    if (Player.isGround && Player.MoveCoolTime <= 0&&yesRMove)
                     {
                         if (Player.horseRiding)
                         {
@@ -146,6 +159,7 @@ public class PlayerSwipe : MonoBehaviour
 
                         MoveCooltime();
                         Player.TurnStac += 1;
+                       
                     }
                 }
 
@@ -156,7 +170,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
                 {
                     Debug.Log("back");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 )
+                    if (Player.isGround && Player.MoveCoolTime <= 0 &&yesBMove)
                     {
 
                         if (Player.horseRiding)
@@ -198,7 +212,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
                 {
                     Debug.Log("front");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 )
+                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesFMove)
                     {
                         if (Player.horseRiding)
                         {
@@ -242,6 +256,7 @@ public class PlayerSwipe : MonoBehaviour
 
    IEnumerator leftMove()
     {
+        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, -90, 0);
         yield return new WaitForSeconds(1f);
@@ -250,6 +265,7 @@ public class PlayerSwipe : MonoBehaviour
     }
     IEnumerator rightMove()
     {
+        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, 90, 0);
         yield return new WaitForSeconds(1f);
@@ -258,6 +274,7 @@ public class PlayerSwipe : MonoBehaviour
     }
     IEnumerator fowardMove()
     {
+        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(1f);
@@ -266,6 +283,7 @@ public class PlayerSwipe : MonoBehaviour
     }
     IEnumerator backMove()
     {
+        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, 180, 0);
         yield return new WaitForSeconds(1f);
