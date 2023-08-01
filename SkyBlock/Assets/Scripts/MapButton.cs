@@ -162,11 +162,11 @@ public class MapButton : MonoBehaviour
     {
         if(selNum == 0)
         {
-            SceneManager.LoadScene("TestScene");
+            LoadingScene.LoadScene("TestScene");
         }
         if (selNum == 1)
         {
-            SceneManager.LoadScene("TestScene2");
+            LoadingScene.LoadScene("TestScene2");
         }
     }
 
