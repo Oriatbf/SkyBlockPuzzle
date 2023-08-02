@@ -14,6 +14,7 @@ public class Goblin_E : MonoBehaviour
     public Transform hitPoint;
     public Vector3 hitPointSize;
     public LayerMask blockEnd;
+    public Player PlayerSpt;
     private bool backTurn = false;
    
 
@@ -53,6 +54,7 @@ public class Goblin_E : MonoBehaviour
         if (other.tag == "Player" && Player.TurnStac % AttackNum == 0 && Player.TurnStac != 0)
         {
             Destroy(other.gameObject);
+            PlayerSpt.Lose();
         }
     }
 

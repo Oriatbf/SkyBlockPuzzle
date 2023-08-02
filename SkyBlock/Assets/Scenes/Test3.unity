@@ -239,6 +239,7 @@ MonoBehaviour:
   blockEnd:
     serializedVersion: 2
     m_Bits: 0
+  PlayerSpt: {fileID: 1701509587}
 --- !u!23 &27740705
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5365,7 +5366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1551417462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5643,6 +5644,8 @@ MonoBehaviour:
   WeaponOBJ: {fileID: 1032197576}
   HorseOBJ: {fileID: 0}
   EndScreen: {fileID: 1551417461}
+  EndText: {fileID: 1400553580}
+  NextStageUI: {fileID: 1483870024}
   StarCount: 0
   stageTurn: 0
   EndTurn: 0
@@ -5751,6 +5754,7 @@ MonoBehaviour:
   blockEnd:
     serializedVersion: 2
     m_Bits: 4096
+  PlayerSpt: {fileID: 1701509587}
 --- !u!23 &1756934578
 MeshRenderer:
   m_ObjectHideFlags: 0

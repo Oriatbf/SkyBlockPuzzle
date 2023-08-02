@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     public GameObject WeaponOBJ;
     public GameObject HorseOBJ;
     public GameObject EndScreen;
+    public GameObject EndText; //게임오버 혹은 클리어시 텍스트 변경
+    public GameObject NextStageUI; //게임오버시 버튼 인터렉터블 OnOFF
 
     public float StarCount = 0;
     public float stageTurn;
@@ -129,9 +131,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Lose()
+    public void Lose()
     {
         isWin = false;
+        EndText.GetComponent<Text>().text = "GameOver";
+        NextStageUI.GetComponent<Button>().interactable = false;
         EndScreen.SetActive(true);
     }
 
