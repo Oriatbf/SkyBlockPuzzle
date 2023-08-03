@@ -22,6 +22,7 @@ public class PlayerSwipe : MonoBehaviour
     public static bool fowardMoving;
     public static bool backMoving;
     public static bool isActive;
+    public static bool isChangeButton;
 
     public static bool yesLMove = false;
     public static bool yesRMove = false;
@@ -70,7 +71,7 @@ public class PlayerSwipe : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x , transform.position.y, transform.position.z - 2.006f), 2f * Time.deltaTime);
           
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)&&!isChangeButton)
         {
             x2 = Input.mousePosition.x;
             y2 = Input.mousePosition.y;

@@ -16,7 +16,7 @@ public class PlayerDirection : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1f, player.transform.position.z) ;
-        if (Physics.Raycast(transform.position, transform.forward, 1, blockEnd))
+        if (Physics.Raycast(transform.position, transform.forward, 1.2f, blockEnd))
         {
             PlayerSwipe.yesFMove = false;
         }
@@ -24,7 +24,7 @@ public class PlayerDirection : MonoBehaviour
         {
             PlayerSwipe.yesFMove = true;
         }
-        if (Physics.Raycast(transform.position, -transform.forward, 1, blockEnd))
+        if (Physics.Raycast(transform.position, -transform.forward, 1.2f, blockEnd))
         {
             PlayerSwipe.yesBMove = false;
         }
@@ -32,7 +32,7 @@ public class PlayerDirection : MonoBehaviour
         {
             PlayerSwipe.yesBMove = true;
         }
-        if (Physics.Raycast(transform.position, transform.right, 1, blockEnd))
+        if (Physics.Raycast(transform.position, transform.right, 1.2f, blockEnd))
         {
             PlayerSwipe.yesRMove = false;
        
@@ -42,7 +42,7 @@ public class PlayerDirection : MonoBehaviour
             PlayerSwipe.yesRMove = true;
           
         }
-        if (Physics.Raycast(transform.position, -transform.right, 1, blockEnd))
+        if (Physics.Raycast(transform.position, -transform.right, 1.2f, blockEnd))
         {
             PlayerSwipe.yesLMove = false;
         }
