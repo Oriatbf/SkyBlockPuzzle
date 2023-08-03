@@ -261,7 +261,7 @@ public class PlayerSwipe : MonoBehaviour
 
    IEnumerator leftMove()
     {
-        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
+       // Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, -90, 0);
         yield return new WaitForSeconds(1f);
@@ -270,7 +270,7 @@ public class PlayerSwipe : MonoBehaviour
     }
     IEnumerator rightMove()
     {
-        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
+        //Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, 90, 0);
         yield return new WaitForSeconds(1f);
@@ -279,7 +279,7 @@ public class PlayerSwipe : MonoBehaviour
     }
     IEnumerator fowardMove()
     {
-        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
+       // Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(1f);
@@ -288,7 +288,7 @@ public class PlayerSwipe : MonoBehaviour
     }
     IEnumerator backMove()
     {
-        Goblin[0].GetComponent<Goblin_E>().GoblinMove();
+        //Goblin[0].GetComponent<Goblin_E>().GoblinMove();
         animator.SetBool("Walk", true);
         transform.eulerAngles = new Vector3(0, 180, 0);
         yield return new WaitForSeconds(1f);

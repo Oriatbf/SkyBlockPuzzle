@@ -162,7 +162,7 @@ public class MapButton : MonoBehaviour
     {
         if(selNum == 0)
         {
-            LoadingScene.LoadScene("TestScene");
+            LoadingScene.LoadScene("Stage1");
         }
         if (selNum == 1)
         {

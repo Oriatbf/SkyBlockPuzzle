@@ -11,7 +11,7 @@ public class ChangeBlock : MonoBehaviour
 
     public GameObject Aobj;
     public GameObject Bobj;
-    public float time = 1.5f;
+    public float time = 0.2f;
     public bool start = false;
     public bool isChange = false;
     // Start is called before the first frame update
@@ -69,7 +69,7 @@ public class ChangeBlock : MonoBehaviour
             Aobj.transform.position = pos2;
             Bobj.transform.position = pos1;
             i = 1;
-            time = 1.5f;
+            time = 0.2f;
             isChange = false;
             PlayerSwipe.isChangeButton = false;
         }
