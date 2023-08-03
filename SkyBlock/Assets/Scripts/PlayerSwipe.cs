@@ -42,6 +42,10 @@ public class PlayerSwipe : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+        leftMoving = false;
+        rightMoving = false;
+        fowardMoving = false;
+        backMoving = false;
     }
 
     private void Update()
