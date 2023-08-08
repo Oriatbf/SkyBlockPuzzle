@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
     public static bool isPushBlock = false;
     public static bool isFrontEnemy = false;
     private bool isWin = false;
+    [SerializeField]
+    private bool isStair = false;
 
     public static bool horseNoGo = false;
     public static float TurnStac = 0;
@@ -118,7 +120,11 @@ public class Player : MonoBehaviour
         {
             //Destroy(gameObject);
         }
-        rigidbody.useGravity = !horseRiding;      
+        //rigidbody.useGravity = !horseRiding;
+        if (isStair)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(5,1,4), Time.deltaTime * 2f);
+        }
     }
 
 
@@ -167,6 +173,11 @@ public class Player : MonoBehaviour
         if(col.tag == "horse")
         { 
             horseRiding= true;    
+        }
+
+        if (col.CompareTag("stairDown"))
+        {
+            isStair= true;
         }
         
     }
