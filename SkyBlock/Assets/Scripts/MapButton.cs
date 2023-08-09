@@ -15,6 +15,9 @@ public class MapButton : MonoBehaviour
     public Vector3[] CamareTransformTrans;
     public GameObject StageGoButton;
     public GameObject player;
+    public GameObject MAPButton;
+    public GameObject StageStarCount;
+    public GameObject MapChapterCount;
     private MapSelectPlayerMove Playermove;
     private Camera mCamera;
     public int playerPosition;
@@ -31,6 +34,10 @@ public class MapButton : MonoBehaviour
 
     private Vector3 targetPosition;
 
+    public int MAPNum = 1;
+    public Text MapChapterCountNum;
+    public int UILeftRightNum = 0;
+
     void Awake()
     {
         walkAinm = GetComponent<Animator>();
@@ -40,6 +47,9 @@ public class MapButton : MonoBehaviour
         playerPosition = 0;
         mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Playermove = GameObject.FindGameObjectWithTag("Player").GetComponent<MapSelectPlayerMove>();
+
+        MAPNum = 2; //TEST
+        MapChapterCountNum.text = MAPNum + " Chapter";
     }
     void Update()
     {
@@ -53,8 +63,8 @@ public class MapButton : MonoBehaviour
 
         }
 
-        // ������
-        if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) && Clcam.Go == true)
+        // 슬라이드
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             SlideWait = true;
             firstPos = Input.GetMouseButtonDown(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position;
@@ -79,12 +89,12 @@ public class MapButton : MonoBehaviour
                 {
                     slideNum = 2;
                 }
-                // ������
+                // 왼
                 else if (gap.x > 0 && gap.y > -0.5f && gap.y < 0.5f)
                 {
                     slideNum = 3;
                 }
-                // ����
+                // 오
                 else if (gap.x < 0 && gap.y > -0.5f && gap.y < 0.5f)
                 {
                     slideNum = 4;
@@ -100,17 +110,42 @@ public class MapButton : MonoBehaviour
             }
         }
 
-        if(slideNum == 3 && selNum == playerPosition && Clcam.Go == true)
+        //스테이지 변경
+        if(slideNum == 3 && selNum == playerPosition && Clcam.Go == true
+            || UILeftRightNum == 2 && selNum == playerPosition && Clcam.Go == true)
         {
-            selNum = selNum + 1;
+            UILeftRightNum = 0;
+            selNum += 1;
             slideNum = 0;
             CameraSet();
         }
-        if (slideNum == 4 && selNum != 0 && selNum == playerPosition && Clcam.Go == true)
+        if (slideNum == 4 && selNum != 0 && selNum == playerPosition && Clcam.Go == true
+            || UILeftRightNum == 1 && selNum != 0 && selNum == playerPosition && Clcam.Go == true)
         {
-            selNum = selNum - 1;
+            UILeftRightNum = 0;
+            selNum -= 1;
             slideNum = 0;
             CameraSet();
+        }
+
+        //맵 변경
+        if (slideNum == 3 && MAPNum != 3 && Clcam.Go == false
+            || UILeftRightNum == 2 && MAPNum != 3 && Clcam.Go == false)
+        {
+            UILeftRightNum = 0;
+            MAPNum += 1;
+            slideNum = 0;
+            Clcam.BackButtonClick();
+            MapChapterCountNum.text = MAPNum + " Chapter";
+        }
+        if (slideNum == 4 && MAPNum != 0 && Clcam.Go == false
+            || UILeftRightNum == 1 && MAPNum != 0 && Clcam.Go == false)
+        {
+            UILeftRightNum = 0;
+            MAPNum -= 1;
+            slideNum = 0;
+            Clcam.BackButtonClick();
+            MapChapterCountNum.text = MAPNum + " Chapter";
         }
         /*if (Input.GetMouseButtonDown(0))
         {
@@ -156,6 +191,9 @@ public class MapButton : MonoBehaviour
             walkAinm.SetBool("Walk", true);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         }
+
+        if(UILeftRightNum != 0)
+            UILeftRightNum = 0;
     }
 
     public void EnterInGame()
@@ -175,4 +213,17 @@ public class MapButton : MonoBehaviour
         CamaraTran.DOMove(new Vector3(CamareTransformMove[selNum].x, CamareTransformMove[selNum].y, CamareTransformMove[selNum].z), 2.5f);
         CamaraTran.DORotate(new Vector3(CamareTransformTrans[selNum].x, CamareTransformTrans[selNum].y, CamareTransformTrans[selNum].z), 2.5f);
     }
+
+    public void UILeft()
+    {
+        if(UILeftRightNum == 0)
+            UILeftRightNum = 1;
+    }
+    public void UIRight()
+    {
+        if (UILeftRightNum == 0)
+            UILeftRightNum = 2;
+    }
 }
+
+//1.543608 1.440643 1.097633
