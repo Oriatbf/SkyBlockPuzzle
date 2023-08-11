@@ -210,8 +210,11 @@ public class Player : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(hitPoint.position, hitPointSize);
         foreach(Collider collider in colliders)
         {
-           
-           Destroy(collider.gameObject);
+            if (collider.CompareTag("Goblin") || collider.CompareTag("Destroy"))
+            {
+               collider.gameObject.SetActive(false);
+            }
+              
         }
       
     }

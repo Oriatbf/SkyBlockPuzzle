@@ -38,11 +38,14 @@ public class PlayerSwipe : MonoBehaviour
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
 
+    private Vector3 nPosition;
+
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+        
         leftMoving = false;
         rightMoving = false;
         fowardMoving = false;
@@ -56,26 +59,7 @@ public class PlayerSwipe : MonoBehaviour
             x1 = Input.mousePosition.x;
             y1 = Input.mousePosition.y;
         }
-        if (leftMoving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - 2f, transform.position.y, transform.position.z), 2f*Time.deltaTime);
       
-        }
-        if (rightMoving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x +2f, transform.position.y, transform.position.z), 2f * Time.deltaTime);
-        
-        }
-        if (fowardMoving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x , transform.position.y, transform.position.z +2), 2f * Time.deltaTime);
-           
-        }
-        if (backMoving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x , transform.position.y, transform.position.z - 2f), 2f * Time.deltaTime);
-          
-        }
         if (Input.GetMouseButtonUp(0)&&!isChangeButton)
         {
             x2 = Input.mousePosition.x;
@@ -253,6 +237,10 @@ public class PlayerSwipe : MonoBehaviour
 
             }
         }
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
+        }
     }
 
     void MoveCooltime()
@@ -262,47 +250,62 @@ public class PlayerSwipe : MonoBehaviour
 
    IEnumerator leftMove()
     {
-        // Goblin[0].GetComponent<Goblin_E>().GoblinMove();
+        MoveGoblin();
+        transform.eulerAngles = new Vector3(0, -90, 0);
+        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
         isMoving = true;
         animator.SetBool("Walk", true);
-        transform.eulerAngles = new Vector3(0, -90, 0);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.7f);
         leftMoving = false;
         isMoving = false;
         animator.SetBool("Walk", false);
     }
     IEnumerator rightMove()
     {
-        //Goblin[0].GetComponent<Goblin_E>().GoblinMove();
+        MoveGoblin();
+        transform.eulerAngles = new Vector3(0, 90, 0);
+        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
         isMoving = true;
         animator.SetBool("Walk", true);
-        transform.eulerAngles = new Vector3(0, 90, 0);
-        yield return new WaitForSeconds(1f);
-        rightMoving = false;
+        yield return new WaitForSeconds(.7f);
+        leftMoving = false;
         isMoving = false;
         animator.SetBool("Walk", false);
+     
     }
     IEnumerator fowardMove()
     {
-        // Goblin[0].GetComponent<Goblin_E>().GoblinMove();
-        isMoving = true;
-        animator.SetBool("Walk", true);
+        MoveGoblin();
         transform.eulerAngles = new Vector3(0, 0, 0);
-        yield return new WaitForSeconds(1f);
-        fowardMoving = false;
-        isMoving = false;
-        animator.SetBool("Walk", false);
-    }
-    IEnumerator backMove()
-    {
-        //Goblin[0].GetComponent<Goblin_E>().GoblinMove();
+        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
         isMoving = true;
         animator.SetBool("Walk", true);
-        transform.eulerAngles = new Vector3(0, 180, 0);
-        yield return new WaitForSeconds(1f);
-        backMoving = false;
+        yield return new WaitForSeconds(.7f);
+        leftMoving = false;
         isMoving = false;
         animator.SetBool("Walk", false);
 
+    }
+    IEnumerator backMove()
+    {
+        MoveGoblin();
+        transform.eulerAngles = new Vector3(0, 180, 0);
+        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+        isMoving = true;
+        animator.SetBool("Walk", true);
+        yield return new WaitForSeconds(.7f);
+        leftMoving = false;
+        isMoving = false;
+        animator.SetBool("Walk", false);
+
+    }
+
+    private void MoveGoblin()
+    {
+        int i = 0;
+        for(i = 0; i < Goblin.Length; i++)
+        {
+            Goblin[i].GetComponent<Goblin_E>().GoblinMove();
+        }
     }
 }

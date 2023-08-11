@@ -19,13 +19,13 @@ public class MainSceneChange : MonoBehaviour
 
     public void MainSceneClick()
     {
-        SceneManager.LoadScene("Kingdom Select");
+        SceneManager.LoadScene("mapSelectTest");
         Player.TurnStac = 0;
     }
 
     public void kingdomEnter()
     {
-        SceneManager.LoadScene("Kingdom Select");
+        SceneManager.LoadScene("mapSelectTest");
         Player.TurnStac = 0;
     }
     public void kingdomStage1()

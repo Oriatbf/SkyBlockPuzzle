@@ -43,18 +43,18 @@ public class CloudeCam : MonoBehaviour
         rightCloud.DOMove(new Vector3(-32, 178,142), 2.5f);
         if (MapBu.MAPNum == 1)
         {
-            transform.DOMove(new Vector3(1000, 136, 348), 2.5f);
-            transform.DORotate(new Vector3(15, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(532, 136, 348), 1f);
+            transform.DORotate(new Vector3(15, 180, 0), 1f);
         }
         else if (MapBu.MAPNum == 2)
         {
-            transform.DOMove(new Vector3(0, 136, 348), 2.5f);
-            transform.DORotate(new Vector3(15, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(0, 136, 348), 1f);
+            transform.DORotate(new Vector3(15, 180, 0), 1f);
         }
         else if (MapBu.MAPNum == 3)
         {
-            transform.DOMove(new Vector3(-1000, 136, 348), 2.5f);
-            transform.DORotate(new Vector3(15, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(-532, 136, 348), 1f);
+            transform.DORotate(new Vector3(15, 180, 0), 1f);
         }
         backButton.SetActive(false);
         goButton.SetActive(true);

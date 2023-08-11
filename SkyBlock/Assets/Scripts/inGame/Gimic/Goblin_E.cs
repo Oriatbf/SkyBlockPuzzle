@@ -15,12 +15,17 @@ public class Goblin_E : MonoBehaviour
     public Vector3 hitPointSize;
     public LayerMask blockEnd;
     public Player PlayerSpt;
-    private bool backTurn = false;
+    public bool backTurn;
+    private Vector3 nPosition;
+    private bool Move = false;
+
+    Animator animator;
    
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        animator= GetComponent<Animator>(); 
     }
     void Update()
     {
@@ -34,14 +39,19 @@ public class Goblin_E : MonoBehaviour
             attackON = true;
             Red.gameObject.SetActive(true);
         }
-      
+
+        if (Move)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
+            animator.SetBool("isWalk",true);
+        }
            
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position , transform.forward * 2);
+        Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward * 2);
     }
 
     private void Attack()
@@ -53,14 +63,14 @@ public class Goblin_E : MonoBehaviour
     {
         if (other.tag == "Player" && Player.TurnStac % AttackNum == 0 && Player.TurnStac != 0)
         {
-            Destroy(other.gameObject);
+            
             PlayerSpt.Lose();
         }
     }
 
     public void GoblinMove()
     {
-        if (Physics.Raycast(transform.position , transform.forward, 2, blockEnd))
+        if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd))
         {
             if (backTurn)
             {
@@ -78,7 +88,9 @@ public class Goblin_E : MonoBehaviour
         }
         else
         {
-            transform.position += transform.forward * 2.006f ;
+            nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+            Move = true;
+           
         }
        
         
