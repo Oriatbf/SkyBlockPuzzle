@@ -30,21 +30,29 @@ public class PlayerSwipe : MonoBehaviour
     public static bool yesFMove = false;
     public static bool yesBMove = false;
 
+    public float slopeForce = 5;
+    public float slopeRayLength = 1.5f;
+    public float slopeAngle;
+    private Vector3 slopeDirection;
+
     public GameObject HorseOBJ;
     Animator animator;
+    Rigidbody rig;
 
     private RaycastHit PushBlockhit;
     private RaycastHit Enemyhit;
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
 
-    private Vector3 nPosition;
-
+    public Vector3 nPosition;
+    
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        rig = GetComponent<Rigidbody>();
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+        rig.freezeRotation = true;
         
         leftMoving = false;
         rightMoving = false;
@@ -241,6 +249,7 @@ public class PlayerSwipe : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
         }
+        Debug.DrawRay(transform.position + new Vector3(0, 0.2f, 0), transform.forward * slopeRayLength, Color.blue);
     }
 
     void MoveCooltime()
@@ -255,7 +264,22 @@ public class PlayerSwipe : MonoBehaviour
         nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
         isMoving = true;
         animator.SetBool("Walk", true);
-        yield return new WaitForSeconds(.7f);
+
+        //경사로 감지
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        {
+            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            {
+                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
+                nPosition += new Vector3(0, 1.2f, 0);
+                Debug.Log("성공!");
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+        
+        yield return new WaitForSeconds(0.7f);
         leftMoving = false;
         isMoving = false;
         animator.SetBool("Walk", false);
@@ -267,6 +291,21 @@ public class PlayerSwipe : MonoBehaviour
         nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
         isMoving = true;
         animator.SetBool("Walk", true);
+
+        //경사로 감지
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        {
+            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            {
+                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
+                nPosition += new Vector3(0, 1.2f, 0);
+                Debug.Log("성공!");
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+
         yield return new WaitForSeconds(.7f);
         leftMoving = false;
         isMoving = false;
@@ -280,6 +319,21 @@ public class PlayerSwipe : MonoBehaviour
         nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
         isMoving = true;
         animator.SetBool("Walk", true);
+
+        //경사로 감지
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        {
+            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            {
+                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
+                nPosition += new Vector3(0, 1.2f, 0);
+                Debug.Log("성공!");
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+
         yield return new WaitForSeconds(.7f);
         leftMoving = false;
         isMoving = false;
@@ -293,6 +347,20 @@ public class PlayerSwipe : MonoBehaviour
         nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
         isMoving = true;
         animator.SetBool("Walk", true);
+
+        //경사로 감지
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        {
+            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            {
+                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
+                nPosition += new Vector3(0, 1.2f, 0);
+                Debug.Log("성공!");
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
         yield return new WaitForSeconds(.7f);
         leftMoving = false;
         isMoving = false;
