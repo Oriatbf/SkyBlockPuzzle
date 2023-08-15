@@ -31,9 +31,10 @@ public class PlayerSwipe : MonoBehaviour
     public static bool yesBMove = false;
 
     public float slopeForce = 5;
-    public float slopeRayLength = 1.5f;
-    public float slopeAngle;
-    private Vector3 slopeDirection;
+    public float slopeRayLength = 1.5f; //나중에 지울거
+    public float slopeYLen = 0.2f; //;
+    public float slopeMitLen; //;
+    public float slopeRotate;
 
     public GameObject HorseOBJ;
     Animator animator;
@@ -249,7 +250,8 @@ public class PlayerSwipe : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
         }
-        Debug.DrawRay(transform.position + new Vector3(0, 0.2f, 0), transform.forward * slopeRayLength, Color.blue);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.2f, 0), transform.forward * 1.5f, Color.blue);
+        Debug.DrawRay(transform.position + new Vector3(0, slopeYLen, 0) + transform.forward * slopeMitLen, transform.forward * slopeRayLength, Color.blue);
     }
 
     void MoveCooltime()
@@ -267,18 +269,31 @@ public class PlayerSwipe : MonoBehaviour
 
         //경사로 감지
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
         {
-            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            if (hit.transform.CompareTag("SlopePlatform"))
             {
-                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
                 nPosition += new Vector3(0, 1.2f, 0);
-                Debug.Log("성공!");
                 yield return new WaitForSeconds(0.2f);
             }
         }
-        
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
         yield return new WaitForSeconds(0.7f);
         leftMoving = false;
         isMoving = false;
@@ -294,15 +309,28 @@ public class PlayerSwipe : MonoBehaviour
 
         //경사로 감지
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
         {
-            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            if (hit.transform.CompareTag("SlopePlatform"))
             {
-                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
                 nPosition += new Vector3(0, 1.2f, 0);
-                Debug.Log("성공!");
                 yield return new WaitForSeconds(0.2f);
+            }
+        }
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
@@ -322,15 +350,28 @@ public class PlayerSwipe : MonoBehaviour
 
         //경사로 감지
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
         {
-            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            if (hit.transform.CompareTag("SlopePlatform"))
             {
-                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
                 nPosition += new Vector3(0, 1.2f, 0);
-                Debug.Log("성공!");
                 yield return new WaitForSeconds(0.2f);
+            }
+        }
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
@@ -350,15 +391,28 @@ public class PlayerSwipe : MonoBehaviour
 
         //경사로 감지
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, slopeRayLength))
+        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
         {
-            slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-            if (slopeAngle > 30f && slopeAngle <= 45f) // 30~45도 일시 발생
+            if (hit.transform.CompareTag("SlopePlatform"))
             {
-                slopeDirection = Vector3.Cross(Vector3.Cross(Vector3.up, hit.normal), hit.normal).normalized;
                 nPosition += new Vector3(0, 1.2f, 0);
-                Debug.Log("성공!");
                 yield return new WaitForSeconds(0.2f);
+            }
+        }
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+        {
+            if (hit.transform.CompareTag("SlopePlatform"))
+            {
+                nPosition += new Vector3(0, -1f, 0);
+                yield return new WaitForSeconds(0.1f);
             }
         }
         yield return new WaitForSeconds(.7f);
