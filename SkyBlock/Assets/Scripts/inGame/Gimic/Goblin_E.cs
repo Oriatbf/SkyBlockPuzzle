@@ -16,6 +16,9 @@ public class Goblin_E : MonoBehaviour
     public LayerMask blockEnd;
     public Player PlayerSpt;
     public bool backTurn;
+    [Space]
+    [Header("가로로 이동시 체크")]
+    public bool isWidth; //가로인가
     private Vector3 nPosition;
     private bool Move = false;
 
@@ -72,16 +75,35 @@ public class Goblin_E : MonoBehaviour
     {
         if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd))
         {
-            if (backTurn)
+            if (!isWidth)
             {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                backTurn= false;
+                if (backTurn)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    backTurn = false;
+                }
+                else
+                {
+                    transform.eulerAngles = new Vector3(0, 180, 0);
+                    backTurn = true;
+                }
             }
-            else
+
+            if (isWidth)
             {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-                backTurn = true;
+
+                if (backTurn)
+                {
+                    transform.eulerAngles = new Vector3(0, 90, 0);
+                    backTurn = false;
+                }
+                else
+                {
+                    transform.eulerAngles = new Vector3(0, -90, 0);
+                    backTurn = true;
+                }
             }
+          
            
  
     
