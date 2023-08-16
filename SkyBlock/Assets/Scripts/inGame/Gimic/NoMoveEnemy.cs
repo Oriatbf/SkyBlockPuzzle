@@ -19,7 +19,7 @@ public class NoMoveEnemy : MonoBehaviour
        
         if (PlayerSwipe.isMoving)
         {
-            if (Physics.Raycast(transform.position, -transform.forward, 2f, player) && count ==0)
+            if (Physics.Raycast(transform.position, transform.forward, 2f, player) && count ==0)
             {
                 count++;
                 playerObject.GetComponent<Player>().Lose();
@@ -30,6 +30,6 @@ public class NoMoveEnemy : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * -2f);
+        Gizmos.DrawRay(transform.position, transform.forward * 2f);
     }
 }

@@ -33,6 +33,11 @@ public class CloudeCam : MonoBehaviour
                 DogamCanvas.SetActive(true);
             }
         }
+        if(MapBu.MAPNum != 2)
+        {
+            goButton.SetActive(false);
+        }
+       
        
     }
 
@@ -47,9 +52,9 @@ public class CloudeCam : MonoBehaviour
         backButton.SetActive(true);
         goButton.SetActive(false);
 
-        MapBu.MAPButton.transform.DOLocalMove(new Vector3(0, -250, 0), 1f);
+        MapBu.MAPButton.transform.DOLocalMove(new Vector3(0, -440, 0), 1f);
         MapBu.StageStarCount.transform.DOLocalMove(new Vector3(0, 0, 0), 1f);
-        MapBu.MapChapterCount.transform.DOLocalMove(new Vector3(0, 280, 0), 1f);
+        MapBu.MapChapterCount.transform.DOLocalMove(new Vector3(0, 440, 0), 1f);
     }
     public void BackButtonClick()
     {
