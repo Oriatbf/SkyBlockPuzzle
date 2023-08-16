@@ -49,7 +49,11 @@ public class MapButton : MonoBehaviour
         Playermove = GameObject.FindGameObjectWithTag("Player").GetComponent<MapSelectPlayerMove>();
 
         MAPNum = 2; //TEST
-        MapChapterCountNum.text = MAPNum + " Chapter";
+        if (MAPNum > 1)
+            MapChapterCountNum.text = MAPNum - 1 + " Chapter"; 
+        else if (MAPNum == 1)
+            MapChapterCountNum.text = "Main";
+
     }
     void Update()
     {
@@ -92,12 +96,12 @@ public class MapButton : MonoBehaviour
                 // 왼
                 else if (gap.x > 0 && gap.y > -0.5f && gap.y < 0.5f)
                 {
-                    slideNum = 3;
+                    slideNum = 4;
                 }
                 // 오
                 else if (gap.x < 0 && gap.y > -0.5f && gap.y < 0.5f)
                 {
-                    slideNum = 4;
+                    slideNum = 3;
                 }
                 else return;
             }
@@ -136,7 +140,12 @@ public class MapButton : MonoBehaviour
             MAPNum += 1;
             slideNum = 0;
             Clcam.BackButtonClick();
-            MapChapterCountNum.text = MAPNum + " Chapter";
+
+            //타이틀 수정
+            if (MAPNum > 1)
+                MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+            else if (MAPNum == 1)
+                MapChapterCountNum.text = "Main";
         }
         if (slideNum == 4 && MAPNum != 0 && Clcam.Go == false
             || UILeftRightNum == 1 && MAPNum != 0 && Clcam.Go == false)
@@ -145,7 +154,12 @@ public class MapButton : MonoBehaviour
             MAPNum -= 1;
             slideNum = 0;
             Clcam.BackButtonClick();
-            MapChapterCountNum.text = MAPNum + " Chapter";
+
+            //타이틀 수정
+            if (MAPNum > 1)
+                MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+            else if (MAPNum == 1)
+                MapChapterCountNum.text = "Main";
         }
         /*if (Input.GetMouseButtonDown(0))
         {

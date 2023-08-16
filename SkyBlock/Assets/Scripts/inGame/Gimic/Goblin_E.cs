@@ -66,7 +66,7 @@ public class Goblin_E : MonoBehaviour
     {
         if (other.tag == "Player" && Player.TurnStac % AttackNum == 0 && Player.TurnStac != 0)
         {
-            
+            player.SetActive(false); // <<<- 스테이지2 테스트할려고 잠시 켜놓음
             PlayerSpt.Lose();
         }
     }
