@@ -116,10 +116,7 @@ public class Player : MonoBehaviour
         {
             MoveCoolTime -= Time.deltaTime;
         }
-        if (transform.position.y <= 1f)
-        {
-            //Destroy(gameObject);
-        }
+
         //rigidbody.useGravity = !horseRiding;
         if (isStair)
         {
@@ -128,13 +125,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.CompareTag("Enemy"))
-        {
-            //Destroy(gameObject);
-        }
-    }
+  
 
     public void Lose()
     {

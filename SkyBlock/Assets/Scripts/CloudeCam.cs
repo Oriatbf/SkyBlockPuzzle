@@ -49,7 +49,7 @@ public class CloudeCam : MonoBehaviour
 
         MapBu.MAPButton.transform.DOLocalMove(new Vector3(0, -250, 0), 1f);
         MapBu.StageStarCount.transform.DOLocalMove(new Vector3(0, 0, 0), 1f);
-        MapBu.MapChapterCount.transform.DOLocalMove(new Vector3(0, 130, 0), 1f);
+        MapBu.MapChapterCount.transform.DOLocalMove(new Vector3(0, 280, 0), 1f);
     }
     public void BackButtonClick()
     {

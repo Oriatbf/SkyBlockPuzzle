@@ -38,11 +38,14 @@ public class ChangeBlock : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, blockLayer))
             {
-                start = true;
-                pos1 = hit.collider.transform.position;
-                Aobj = hit.collider.gameObject;
-                hit.collider.transform.GetComponent<Block>().Click();
-                i += 1;
+                if (hit.transform.CompareTag("ChangePlatform"))
+                {
+                    start = true;
+                    pos1 = hit.collider.transform.position;
+                    Aobj = hit.collider.gameObject;
+                    hit.collider.transform.GetComponent<Block>().Click();
+                    i += 1;
+                }
             }
         }
         if (Input.GetMouseButton(0) && i == 2 && !start && isChange)
@@ -51,10 +54,13 @@ public class ChangeBlock : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, blockLayer))
             {
-                pos2 = hit.collider.transform.position;
-                Bobj = hit.collider.gameObject;
-                hit.collider.transform.GetComponent<Block>().Click();
-                i += 1;
+                if (hit.transform.CompareTag("ChangePlatform"))
+                {
+                    pos2 = hit.collider.transform.position;
+                    Bobj = hit.collider.gameObject;
+                    hit.collider.transform.GetComponent<Block>().Click();
+                    i += 1;
+                }
             }
         }
 
