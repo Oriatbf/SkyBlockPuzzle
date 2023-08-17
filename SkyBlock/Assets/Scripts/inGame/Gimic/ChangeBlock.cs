@@ -15,6 +15,10 @@ public class ChangeBlock : MonoBehaviour
     public float time = 0.2f;
     public bool start = false;
     public bool isChange = false;
+    [SerializeField]
+    private bool SelectA = false;
+    [SerializeField]
+    private bool SelectB = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +49,7 @@ public class ChangeBlock : MonoBehaviour
                     Aobj = hit.collider.gameObject;
                     hit.collider.transform.GetComponent<Block>().Click();
                     i += 1;
+                    SelectA = true;
                 }
             }
         }
@@ -56,10 +61,15 @@ public class ChangeBlock : MonoBehaviour
             {
                 if (hit.transform.CompareTag("ChangePlatform"))
                 {
-                    pos2 = hit.collider.transform.position;
-                    Bobj = hit.collider.gameObject;
-                    hit.collider.transform.GetComponent<Block>().Click();
-                    i += 1;
+                    if (hit.transform.position != Aobj.transform.position)
+                    {
+                        pos2 = hit.collider.transform.position;
+                        Bobj = hit.collider.gameObject;
+                        hit.collider.transform.GetComponent<Block>().Click();
+                        i += 1;
+                        SelectB = true;
+                    }
+                   
                 }
             }
         }
@@ -73,7 +83,7 @@ public class ChangeBlock : MonoBehaviour
             PlayerSwipe.isChangeButton = true;
             StartCoroutine(wait1sec());
         }
-        if (isChange)
+        if (isChange && SelectA && SelectB)
         {
             Aobj.GetComponent<Block>().DefaultMeterial();
             Bobj.GetComponent<Block>().DefaultMeterial();
@@ -84,6 +94,8 @@ public class ChangeBlock : MonoBehaviour
             time = 0.2f;
             isChange = false;
             PlayerSwipe.isChangeButton = false;
+            SelectA = false;
+            SelectB = false;
         }
 
     }
