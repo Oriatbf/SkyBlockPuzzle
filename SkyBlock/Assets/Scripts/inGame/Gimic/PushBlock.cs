@@ -12,7 +12,7 @@ public class PushBlock : MonoBehaviour
     public Ease ease;
 
     [SerializeField]
-    private float YRay; //»óÀÚ¶ó¸é 0.1, ÀÌµ¿ ÇÃ·§ÆûÀÌ¶ó¸é -0.8
+    private float YRay; //ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ 0.1, ï¿½Ìµï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ -0.8
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

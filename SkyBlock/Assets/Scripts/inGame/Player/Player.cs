@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
     public Sprite TurnSprite;
 
     public GameObject WeaponOBJ;
-    public GameObject HorseOBJ;
     public GameObject EndScreen;
     public GameObject EndText; //게임오버 혹은 클리어시 텍스트 변경
     public GameObject NextStageUI; //게임오버시 버튼 인터렉터블 OnOFF

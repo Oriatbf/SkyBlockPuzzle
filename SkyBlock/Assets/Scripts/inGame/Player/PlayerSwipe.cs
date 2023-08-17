@@ -47,7 +47,7 @@ public class PlayerSwipe : MonoBehaviour
     public LayerMask MoveTiles;
 
     public Vector3 nPosition;
-    
+
 
     private void Start()
     {
@@ -55,7 +55,7 @@ public class PlayerSwipe : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         rig.freezeRotation = true;
-        
+
         leftMoving = false;
         rightMoving = false;
         fowardMoving = false;
@@ -72,375 +72,410 @@ public class PlayerSwipe : MonoBehaviour
             {
                 if (hit.transform.CompareTag("frontGo"))
                 {
-                    StartCoroutine(fowardMove());
-                }
-            }
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            x1 = Input.mousePosition.x;
-            y1 = Input.mousePosition.y;
-        }
-      
-        if (Input.GetMouseButtonUp(0)&&!isChangeButton)
-        {
-            x2 = Input.mousePosition.x;
-            y2 = Input.mousePosition.y;
-
-            if (x1 > x2)
-            {
-                if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
-                {
-                    Debug.Log("Left");
                     if (Player.isGround && Player.MoveCoolTime <= 0 && yesLMove)
                     {
-                        if (Player.horseRiding)
+
+
+                        transform.eulerAngles = new Vector3(0, -90, 0);
+                        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                         {
-                            transform.eulerAngles = new Vector3(0, -90, 0);
-                            HorseOBJ.transform.eulerAngles = transform.eulerAngles;
-                            transform.position += transform.forward * 2.006f * 2;
-                            HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
+                            animator.SetTrigger("Attack");
+
+                        }
+                        else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                        {
+                            PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+
                         }
                         else
                         {
-                            transform.eulerAngles = new Vector3(0, -90, 0);
-                            if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
-                            {
-                                animator.SetTrigger("Attack");
-                                                     
-                            }
-                            else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
-                            {
-                                PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                               
-                            }
-                            else
-                            {
-                                StartCoroutine(leftMove());
-                                leftMoving = true;
-                            }
+                            StartCoroutine(leftMove());
+                            leftMoving = true;
                         }
 
-
-
-
-
-                        MoveCooltime();
-                        Player.TurnStac += 1;
+                        StartCoroutine(fowardMove());
                     }
-                }
-
-            }
-
-            if (x2 > x1)
-            {
-                if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
-                {
-                   
-                    Debug.Log("Right");
-                    if (Player.isGround && Player.MoveCoolTime <= 0&&yesRMove)
+                    if (hit.transform.CompareTag("leftGo"))
                     {
-                        if (Player.horseRiding)
-                        {
-                            transform.eulerAngles = new Vector3(0, 90, 0);
-                            HorseOBJ.transform.eulerAngles = transform.eulerAngles;
-                            transform.position += transform.forward * 2.006f * 2;
-                            HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
-                        }
-                        else
-                        {
-                            transform.eulerAngles = new Vector3(0, 90, 0);
-                            if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
-                            {
+                        StartCoroutine(leftMove());
+                    }
+                    if (hit.transform.CompareTag("rightGo"))
+                    {
+                        StartCoroutine(rightMove());
+                    }
+                    if (hit.transform.CompareTag("backGo"))
+                    {
+                        StartCoroutine(backMove());
+                    }
+                }
+            }
+        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                x1 = Input.mousePosition.x;
+                y1 = Input.mousePosition.y;
+            }
 
-                                animator.SetTrigger("Attack");
-                               
+            if (Input.GetMouseButtonUp(0) && !isChangeButton)
+            {
+                x2 = Input.mousePosition.x;
+                y2 = Input.mousePosition.y;
 
-                            }
-                            else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                if (x1 > x2)
+                {
+                    if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
+                    {
+                        Debug.Log("Left");
+                        if (Player.isGround && Player.MoveCoolTime <= 0 && yesLMove)
+                        {
+                            if (Player.horseRiding)
                             {
-                                PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                                
+                                transform.eulerAngles = new Vector3(0, -90, 0);
+                                HorseOBJ.transform.eulerAngles = transform.eulerAngles;
+                                transform.position += transform.forward * 2.006f * 2;
+                                HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
                             }
                             else
                             {
-                                StartCoroutine(rightMove());
-                                rightMoving = true;
-                            }
-                        }
+                                transform.eulerAngles = new Vector3(0, -90, 0);
+                                if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                                {
+                                    animator.SetTrigger("Attack");
 
-                        MoveCooltime();
-                        Player.TurnStac += 1;
-                       
+                                }
+                                else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                                {
+                                    PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+
+                                }
+                                else
+                                {
+                                    StartCoroutine(leftMove());
+                                    leftMoving = true;
+                                }
+                            }
+
+
+
+
+
+                            MoveCooltime();
+                            Player.TurnStac += 1;
+                        }
                     }
+
                 }
 
-            }
-
-            if (y1 > y2)
-            {
-                if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
+                if (x2 > x1)
                 {
-                    Debug.Log("back");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 &&yesBMove)
+                    if (Mathf.Abs(x1 - x2) > Mathf.Abs(y2 - y1))
                     {
 
-                        if (Player.horseRiding)
+                        Debug.Log("Right");
+                        if (Player.isGround && Player.MoveCoolTime <= 0 && yesRMove)
                         {
-                            transform.eulerAngles = new Vector3(0, 180, 0);
-                            HorseOBJ.transform.eulerAngles = transform.eulerAngles;
-                            transform.position += transform.forward * 2.006f * 2;
-                            HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
-                        }
-                        else
-                        {
-                            transform.eulerAngles = new Vector3(0, 180, 0);
-                            if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                            if (Player.horseRiding)
                             {
-
-                                animator.SetTrigger("Attack");
-                                
-
-                            }
-                            else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
-                            {
-                                PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                                
+                                transform.eulerAngles = new Vector3(0, 90, 0);
+                                HorseOBJ.transform.eulerAngles = transform.eulerAngles;
+                                transform.position += transform.forward * 2.006f * 2;
+                                HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
                             }
                             else
                             {
-                                StartCoroutine(backMove());
-                                backMoving = true;
+                                transform.eulerAngles = new Vector3(0, 90, 0);
+                                if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                                {
+
+                                    animator.SetTrigger("Attack");
+
+
+                                }
+                                else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                                {
+                                    PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+
+                                }
+                                else
+                                {
+                                    StartCoroutine(rightMove());
+                                    rightMoving = true;
+                                }
                             }
+
+                            MoveCooltime();
+                            Player.TurnStac += 1;
+
                         }
-                        MoveCooltime();
-                        Player.TurnStac += 1;
                     }
+
                 }
 
-            }
-            if (y2 > y1)
-            {
-                if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
+                if (y1 > y2)
                 {
-                    Debug.Log("front");
-                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesFMove)
+                    if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
                     {
-                        if (Player.horseRiding)
+                        Debug.Log("back");
+                        if (Player.isGround && Player.MoveCoolTime <= 0 && yesBMove)
                         {
-                            transform.eulerAngles = new Vector3(0, 0, 0);
-                            HorseOBJ.transform.eulerAngles = transform.eulerAngles;
-                            transform.position += transform.forward * 2.006f * 2;
-                            HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
-                        }
-                        else
-                        {
-                            transform.eulerAngles = new Vector3(0, 0, 0);
-                            if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+
+                            if (Player.horseRiding)
                             {
-                                animator.SetTrigger("Attack");
-                            
-                            }
-                            else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
-                            {
-                                PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
-                               
+                                transform.eulerAngles = new Vector3(0, 180, 0);
+                                HorseOBJ.transform.eulerAngles = transform.eulerAngles;
+                                transform.position += transform.forward * 2.006f * 2;
+                                HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
                             }
                             else
                             {
-                                StartCoroutine(fowardMove());
-                                fowardMoving = true;
+                                transform.eulerAngles = new Vector3(0, 180, 0);
+                                if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                                {
+
+                                    animator.SetTrigger("Attack");
+
+
+                                }
+                                else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                                {
+                                    PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+
+                                }
+                                else
+                                {
+                                    StartCoroutine(backMove());
+                                    backMoving = true;
+                                }
                             }
+                            MoveCooltime();
+                            Player.TurnStac += 1;
                         }
-                        MoveCooltime();
-                        Player.TurnStac += 1;
                     }
+
                 }
+                if (y2 > y1)
+                {
+                    if (Mathf.Abs(x1 - x2) < Mathf.Abs(y2 - y1))
+                    {
+                        Debug.Log("front");
+                        if (Player.isGround && Player.MoveCoolTime <= 0 && yesFMove)
+                        {
+                            if (Player.horseRiding)
+                            {
+                                transform.eulerAngles = new Vector3(0, 0, 0);
+                                HorseOBJ.transform.eulerAngles = transform.eulerAngles;
+                                transform.position += transform.forward * 2.006f * 2;
+                                HorseOBJ.transform.position = new Vector3(transform.position.x, HorseOBJ.transform.position.y, transform.position.z);
+                            }
+                            else
+                            {
+                                transform.eulerAngles = new Vector3(0, 0, 0);
+                                if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                                {
+                                    animator.SetTrigger("Attack");
 
+                                }
+                                else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                                {
+                                    PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+
+                                }
+                                else
+                                {
+                                    StartCoroutine(fowardMove());
+                                    fowardMoving = true;
+                                }
+                            }
+                            MoveCooltime();
+                            Player.TurnStac += 1;
+                        }
+                    }
+
+                }
+            }
+            if (isMoving)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
+            }
+            Debug.DrawRay(transform.position + new Vector3(0, 0.2f, 0), transform.forward * 1.5f, Color.blue);
+            Debug.DrawRay(transform.position + new Vector3(0, slopeYLen, 0) + transform.forward * slopeMitLen, transform.forward * slopeRayLength, Color.blue);
+        }
+
+        void MoveCooltime()
+        {
+            Player.MoveCoolTime = Player.MoveCool;
+        }
+
+        IEnumerator leftMove()
+        {
+            MoveGoblin();
+            transform.eulerAngles = new Vector3(0, -90, 0);
+            nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+            isMoving = true;
+            animator.SetBool("Walk", true);
+
+            //경사로 감지
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, 1.2f, 0);
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+
+            yield return new WaitForSeconds(0.7f);
+            leftMoving = false;
+            isMoving = false;
+            animator.SetBool("Walk", false);
+        }
+        IEnumerator rightMove()
+        {
+            MoveGoblin();
+            transform.eulerAngles = new Vector3(0, 90, 0);
+            nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+            isMoving = true;
+            animator.SetBool("Walk", true);
+
+            //경사로 감지
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, 1.2f, 0);
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+
+            yield return new WaitForSeconds(.7f);
+            leftMoving = false;
+            isMoving = false;
+            animator.SetBool("Walk", false);
+
+        }
+        IEnumerator fowardMove()
+        {
+            MoveGoblin();
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+            isMoving = true;
+            animator.SetBool("Walk", true);
+
+            //경사로 감지
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, 1.2f, 0);
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+
+            yield return new WaitForSeconds(.7f);
+            leftMoving = false;
+            isMoving = false;
+            animator.SetBool("Walk", false);
+
+        }
+        IEnumerator backMove()
+        {
+            MoveGoblin();
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+            isMoving = true;
+            animator.SetBool("Walk", true);
+
+            //경사로 감지
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, 1.2f, 0);
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
+            {
+                if (hit.transform.CompareTag("SlopePlatform"))
+                {
+                    nPosition += new Vector3(0, -1f, 0);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            yield return new WaitForSeconds(.7f);
+            leftMoving = false;
+            isMoving = false;
+            animator.SetBool("Walk", false);
+
+        }
+
+        void MoveGoblin()
+        {
+            int i = 0;
+            for (i = 0; i < Goblin.Length; i++)
+            {
+                Goblin[i].GetComponent<Goblin_E>().GoblinMove();
             }
         }
-        if (isMoving)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
-        }
-        Debug.DrawRay(transform.position + new Vector3(0, 0.2f, 0), transform.forward * 1.5f, Color.blue);
-        Debug.DrawRay(transform.position + new Vector3(0, slopeYLen, 0) + transform.forward * slopeMitLen, transform.forward * slopeRayLength, Color.blue);
     }
 
-    void MoveCooltime()
-    {
-        Player.MoveCoolTime = Player.MoveCool;
-    }
-
-   IEnumerator leftMove()
-    {
-        MoveGoblin();
-        transform.eulerAngles = new Vector3(0, -90, 0);
-        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-        isMoving = true;
-        animator.SetBool("Walk", true);
-
-        //경사로 감지
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, 1.2f, 0);
-                yield return new WaitForSeconds(0.2f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-
-        yield return new WaitForSeconds(0.7f);
-        leftMoving = false;
-        isMoving = false;
-        animator.SetBool("Walk", false);
-    }
-    IEnumerator rightMove()
-    {
-        MoveGoblin();
-        transform.eulerAngles = new Vector3(0, 90, 0);
-        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-        isMoving = true;
-        animator.SetBool("Walk", true);
-
-        //경사로 감지
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, 1.2f, 0);
-                yield return new WaitForSeconds(0.2f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-
-        yield return new WaitForSeconds(.7f);
-        leftMoving = false;
-        isMoving = false;
-        animator.SetBool("Walk", false);
-     
-    }
-    IEnumerator fowardMove()
-    {
-        MoveGoblin();
-        transform.eulerAngles = new Vector3(0, 0, 0);
-        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-        isMoving = true;
-        animator.SetBool("Walk", true);
-
-        //경사로 감지
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, 1.2f, 0);
-                yield return new WaitForSeconds(0.2f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-
-        yield return new WaitForSeconds(.7f);
-        leftMoving = false;
-        isMoving = false;
-        animator.SetBool("Walk", false);
-
-    }
-    IEnumerator backMove()
-    {
-        MoveGoblin();
-        transform.eulerAngles = new Vector3(0, 180, 0);
-        nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-        isMoving = true;
-        animator.SetBool("Walk", true);
-
-        //경사로 감지
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0, 0.2f, 0), transform.forward, out hit, 1.5f))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, 1.2f, 0);
-                yield return new WaitForSeconds(0.2f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -0.8f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-        else if (Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0) + transform.forward * -1.2f, transform.forward, out hit, 2))
-        {
-            if (hit.transform.CompareTag("SlopePlatform"))
-            {
-                nPosition += new Vector3(0, -1f, 0);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-        yield return new WaitForSeconds(.7f);
-        leftMoving = false;
-        isMoving = false;
-        animator.SetBool("Walk", false);
-
-    }
-
-    private void MoveGoblin()
-    {
-        int i = 0;
-        for(i = 0; i < Goblin.Length; i++)
-        {
-            Goblin[i].GetComponent<Goblin_E>().GoblinMove();
-        }
-    }
-}
