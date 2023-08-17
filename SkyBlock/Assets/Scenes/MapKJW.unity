@@ -472,6 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bdea4186c765b46a1d9d20efc0b9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HintCanvas: {fileID: 0}
   m_TurnText: {fileID: 1341438847}
   player: {fileID: 0}
 --- !u!224 &81406946
@@ -602,6 +603,10 @@ PrefabInstance:
     - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_Name
       value: P_tile3 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
       objectReference: {fileID: 0}
     - target: {fileID: 2951364610026646595, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_RootOrder
@@ -1308,6 +1313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_tile4 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1753010308941768148, guid: 53515debb61372545aa4ef928a19ca16, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53515debb61372545aa4ef928a19ca16, type: 3}
 --- !u!1001 &543093334
@@ -1614,6 +1623,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 43.749, y: 152.732, z: 123.442}
+--- !u!1 &640062728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1753010308941768148, guid: 53515debb61372545aa4ef928a19ca16, type: 3}
+  m_PrefabInstance: {fileID: 1325602258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &640062734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640062728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29be1717267b2ef46b29d86ddb48ab1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &653683782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,6 +2417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_tile3 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 2951364610026646595, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_RootOrder
       value: 31
@@ -3108,6 +3138,10 @@ PrefabInstance:
     - target: {fileID: 2898141084870370368, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}
       propertyPath: m_Name
       value: P_tile2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898141084870370368, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}
@@ -5800,6 +5834,10 @@ PrefabInstance:
     - target: {fileID: 2898141084870370368, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}
       propertyPath: m_Name
       value: P_tile2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898141084870370368, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}

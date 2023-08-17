@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
+  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bdea4186c765b46a1d9d20efc0b9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HintCanvas: {fileID: 0}
   m_TurnText: {fileID: 1341438847}
   player: {fileID: 0}
 --- !u!224 &81406946
@@ -801,6 +802,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_tile1
       objectReference: {fileID: 0}
+    - target: {fileID: 6066893446949182888, guid: 571374a5ea4b6e74187efc7d7f7b3f39, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 6879881606182291218, guid: 571374a5ea4b6e74187efc7d7f7b3f39, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -857,6 +862,10 @@ PrefabInstance:
     - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_Name
       value: P_tile3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
       objectReference: {fileID: 0}
     - target: {fileID: 2951364610026646595, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_RootOrder
@@ -1206,6 +1215,10 @@ PrefabInstance:
     - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_Name
       value: P_tile3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
       objectReference: {fileID: 0}
     - target: {fileID: 2951364610026646595, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_RootOrder
@@ -1853,6 +1866,10 @@ PrefabInstance:
     - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_Name
       value: P_tile3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
       objectReference: {fileID: 0}
     - target: {fileID: 2951364610026646595, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_RootOrder
@@ -3253,6 +3270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_tile2
       objectReference: {fileID: 0}
+    - target: {fileID: 2898141084870370368, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffaa762bd18d7ea48b4dbb7099cad9a8, type: 3}
 --- !u!1 &1246616914
@@ -3967,6 +3988,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uD55C\uCE78 (3)"
       objectReference: {fileID: 0}
+    - target: {fileID: 6066893446949182888, guid: 571374a5ea4b6e74187efc7d7f7b3f39, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 6879881606182291218, guid: 571374a5ea4b6e74187efc7d7f7b3f39, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -4596,6 +4621,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_tile4
       objectReference: {fileID: 0}
+    - target: {fileID: 1753010308941768148, guid: 53515debb61372545aa4ef928a19ca16, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53515debb61372545aa4ef928a19ca16, type: 3}
 --- !u!1001 &1511968962
@@ -4827,6 +4856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_tile5
       objectReference: {fileID: 0}
+    - target: {fileID: 4149875368341190619, guid: 4b4febf105dc45e4fbf7ab9f7a83c1b6, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b4febf105dc45e4fbf7ab9f7a83c1b6, type: 3}
 --- !u!1001 &1686337521
@@ -4961,6 +4994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_tile4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1753010308941768148, guid: 53515debb61372545aa4ef928a19ca16, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53515debb61372545aa4ef928a19ca16, type: 3}
 --- !u!114 &1701509587 stripped
@@ -4984,6 +5021,10 @@ PrefabInstance:
     - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_Name
       value: P_tile3 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575648685777778425, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
+      propertyPath: m_TagString
+      value: ChangePlatform
       objectReference: {fileID: 0}
     - target: {fileID: 2951364610026646595, guid: b7eba8d63075a5f4cb3dc4f69b15e225, type: 3}
       propertyPath: m_RootOrder

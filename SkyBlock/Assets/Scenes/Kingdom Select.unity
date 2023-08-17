@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11613609, g: 0.42406118, b: 0.73004735, a: 1}
+  m_IndirectSpecularColor: {r: 0.37777323, g: 0.6873614, b: 0.87653464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2581,11 +2581,17 @@ MonoBehaviour:
   - {x: 33.897, y: 262.195, z: 0}
   StageGoButton: {fileID: 1683603214}
   player: {fileID: 264483024}
+  MAPButton: {fileID: 0}
+  StageStarCount: {fileID: 0}
+  MapChapterCount: {fileID: 0}
   playerPosition: 0
   selNum: 0
   CamaraTran: {fileID: 1466620648}
   Clcam: {fileID: 1466620649}
   slideNum: 0
+  MAPNum: 1
+  MapChapterCountNum: {fileID: 0}
+  UILeftRightNum: 0
 --- !u!1001 &283061975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11832,6 +11838,10 @@ MonoBehaviour:
   leftCloud: {fileID: 98802473}
   rightCloud: {fileID: 1666397201}
   MapBu: {fileID: 264483026}
+  DogamBook:
+    serializedVersion: 2
+    m_Bits: 0
+  DogamCanvas: {fileID: 0}
   Go: 0
 --- !u!1001 &1478252621
 PrefabInstance:
