@@ -20,7 +20,9 @@ public class Goblin_E : MonoBehaviour
     [Header("가로로 이동시 체크")]
     public bool isWidth; //가로인가
     private Vector3 nPosition;
-    private bool Move = false;
+    public bool Move = false;
+    [SerializeField]
+    private bool isWall =false;
 
     Animator animator;
    
@@ -37,7 +39,7 @@ public class Goblin_E : MonoBehaviour
             Attack();
         }
 
-        if (Player.TurnStac % AttackNum == AttackNum - 1 && Player.TurnStac != 0)
+        if (Player.TurnStac % AttackNum == AttackNum - 1 && Player.TurnStac != 0 && !isWall)
         {
             attackON = true;
             Red.gameObject.SetActive(true);
@@ -47,6 +49,11 @@ public class Goblin_E : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
             animator.SetBool("isWalk",true);
+           
+        }
+        else
+        {
+            animator.SetBool("isWalk", false);
         }
            
     }
@@ -75,6 +82,7 @@ public class Goblin_E : MonoBehaviour
     {
         if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd))
         {
+            isWall= true;
             if (!isWidth)
             {
                 if (backTurn)
@@ -103,18 +111,23 @@ public class Goblin_E : MonoBehaviour
                     backTurn = true;
                 }
             }
-          
-           
- 
+
     
         }
         else
         {
+            isWall= false;
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-            Move = true;
-           
+            StartCoroutine(WaitPlayerMove());
         }
        
         
+    }
+
+    IEnumerator WaitPlayerMove()
+    {
+        Move = false;
+        yield return new WaitForSeconds(0.5f);
+        Move = true;
     }
 }

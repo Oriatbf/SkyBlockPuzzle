@@ -44,6 +44,7 @@ public class PlayerSwipe : MonoBehaviour
     private RaycastHit Enemyhit;
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
+    public LayerMask MoveTiles;
 
     public Vector3 nPosition;
     
@@ -63,6 +64,18 @@ public class PlayerSwipe : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButton(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTiles))
+            {
+                if (hit.transform.CompareTag("frontGo"))
+                {
+                    StartCoroutine(fowardMove());
+                }
+            }
+        }
         if (Input.GetMouseButtonDown(0))
         {
             x1 = Input.mousePosition.x;
