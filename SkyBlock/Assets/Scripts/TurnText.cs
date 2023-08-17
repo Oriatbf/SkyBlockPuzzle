@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TurnText : MonoBehaviour
 {
+    public GameObject HintCanvas;
     public Text m_TurnText;
     [SerializeField]private  GameObject player;
     public static float T_Stac;
@@ -20,5 +21,14 @@ public class TurnText : MonoBehaviour
     {
         T_Stac = Player.TurnStac;
         m_TurnText.text = T_Stac.ToString();
+    }
+
+    public void HintUIClick()
+    {
+        HintCanvas.SetActive(true);
+    }
+    public void HintUIClose()
+    {
+        HintCanvas.SetActive(false);
     }
 }

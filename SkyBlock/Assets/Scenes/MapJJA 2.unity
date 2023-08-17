@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
+  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bdea4186c765b46a1d9d20efc0b9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HintCanvas: {fileID: 0}
   m_TurnText: {fileID: 1341438847}
   player: {fileID: 0}
 --- !u!224 &81406946
@@ -2424,7 +2425,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.79
+  orthographic size: 13.38
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2462,7 +2463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864523459}
   m_LocalRotation: {x: 0.36603203, y: -0.25716525, z: 0.10599583, w: 0.88806057}
-  m_LocalPosition: {x: 4.3, y: 10.73, z: -0.94}
+  m_LocalPosition: {x: 3.5, y: 10.73, z: -0.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
