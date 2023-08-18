@@ -342,7 +342,7 @@ Canvas:
   m_GameObject: {fileID: 14900337}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 870546886}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4195,7 +4195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f418e21242eca884f8bc84c06dd276f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6ea09522e1b557488d78457c7810358, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8641,6 +8641,7 @@ GameObject:
   - component: {fileID: 514607554}
   - component: {fileID: 514607556}
   - component: {fileID: 514607555}
+  - component: {fileID: 514607557}
   m_Layer: 5
   m_Name: BackGround
   m_TagString: Untagged
@@ -8706,6 +8707,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514607553}
   m_CullTransparentMesh: 1
+--- !u!114 &514607557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514607553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -8}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &516340304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8795,6 +8811,7 @@ GameObject:
   - component: {fileID: 519342434}
   - component: {fileID: 519342433}
   - component: {fileID: 519342432}
+  - component: {fileID: 519342435}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -8886,7 +8903,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 907713a7199a71d4fa1afc3113475427, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3e45299d07158740b1d332e50bb5fbd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8904,6 +8921,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519342430}
   m_CullTransparentMesh: 1
+--- !u!114 &519342435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519342430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &534744949
 GameObject:
   m_ObjectHideFlags: 0
@@ -17148,7 +17180,7 @@ Canvas:
   m_GameObject: {fileID: 1029964375}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 870546886}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -23459,6 +23491,7 @@ GameObject:
   - component: {fileID: 1422138793}
   - component: {fileID: 1422138792}
   - component: {fileID: 1422138791}
+  - component: {fileID: 1422138794}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -23543,6 +23576,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422138789}
   m_CullTransparentMesh: 1
+--- !u!114 &1422138794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422138789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -8}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1423675972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32040,7 +32088,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19d2637f06e0c95489f7e5c607a639f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3e45299d07158740b1d332e50bb5fbd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

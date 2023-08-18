@@ -30,6 +30,8 @@ public class PlayerSwipe : MonoBehaviour
     public static bool yesFMove = false;
     public static bool yesBMove = false;
 
+    public bool oneTimeActive = true; //플레이어 아동이 여러번 실행 되지 않게 해줌 (한번 움직일 때 10번씩 실행됬었던 적 있음)
+
     public float slopeForce = 5;
     public float slopeRayLength = 1.5f; //나중에 지울거
     public float slopeYLen = 0.2f; //;
@@ -56,6 +58,7 @@ public class PlayerSwipe : MonoBehaviour
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         rig.freezeRotation = true;
 
+        oneTimeActive = true;
         leftMoving = false;
         rightMoving = false;
         fowardMoving = false;
@@ -68,49 +71,106 @@ public class PlayerSwipe : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTiles))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTiles) && oneTimeActive)
             {
+                oneTimeActive = false;
                 if (hit.transform.CompareTag("frontGo"))
                 {
-                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesLMove)
-                    {
-
-
-                        transform.eulerAngles = new Vector3(0, -90, 0);
+                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesFMove)
+                    {     
+                        transform.eulerAngles = new Vector3(0, 0, 0);
                         if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                         {
                             animator.SetTrigger("Attack");
-
+                            StartCoroutine(OneTimeActiveCool());
                         }
                         else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
                         {
                             PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+                            StartCoroutine(OneTimeActiveCool());
+                        }
+                        else
+                        {
+                            StartCoroutine(fowardMove());
+                        }
 
+                       
+                    }
+                }
+                if (hit.transform.CompareTag("leftGo"))
+                {
+                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesLMove)
+                    {
+                        transform.eulerAngles = new Vector3(0, 90, 0);
+                        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                        {
+                            animator.SetTrigger("Attack");
+                            StartCoroutine(OneTimeActiveCool());
+                        }
+                        else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                        {
+                            PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+                            StartCoroutine(OneTimeActiveCool());
                         }
                         else
                         {
                             StartCoroutine(leftMove());
-                            leftMoving = true;
+                        }
+                    }
+                        
+                }
+                if (hit.transform.CompareTag("rightGo"))
+                {
+                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesRMove)
+                    {
+                        transform.eulerAngles = new Vector3(0, 90, 0);
+                        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                        {
+                            animator.SetTrigger("Attack");
+                            StartCoroutine(OneTimeActiveCool());
+                        }
+                        else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                        {
+                            PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+                            StartCoroutine(OneTimeActiveCool());
+                        }
+                        else
+                        {
+                            StartCoroutine(rightMove());
                         }
 
-                        StartCoroutine(fowardMove());
+
                     }
-                    if (hit.transform.CompareTag("leftGo"))
-                    {
-                        StartCoroutine(leftMove());
-                    }
-                    if (hit.transform.CompareTag("rightGo"))
-                    {
-                        StartCoroutine(rightMove());
-                    }
-                    if (hit.transform.CompareTag("backGo"))
-                    {
-                        StartCoroutine(backMove());
-                    }
+                    
                 }
+                if (hit.transform.CompareTag("backGo"))
+                {
+                    if (Player.isGround && Player.MoveCoolTime <= 0 && yesBMove)
+                    {
+                        transform.eulerAngles = new Vector3(0, 180, 0);
+                        if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
+                        {
+                            animator.SetTrigger("Attack");
+                            StartCoroutine(OneTimeActiveCool());
+                        }
+                        else if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out PushBlockhit, 2, PushBlocks))
+                        {
+                            PushBlockhit.transform.GetComponent<PushBlock>().blockMove();
+                            StartCoroutine(OneTimeActiveCool());
+                        }
+                        else
+                        {
+                            StartCoroutine(backMove());
+                        }
+
+
+                    }
+                   
+                }
+                
             }
         }
-            if (Input.GetMouseButtonDown(0))
+            /*if (Input.GetMouseButtonDown(0))
             {
                 x1 = Input.mousePosition.x;
                 y1 = Input.mousePosition.y;
@@ -292,14 +352,14 @@ public class PlayerSwipe : MonoBehaviour
                     }
 
                 }
-            }
+            }*/
             if (isMoving)
             {
                 transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
             }
             Debug.DrawRay(transform.position + new Vector3(0, 0.2f, 0), transform.forward * 1.5f, Color.blue);
             Debug.DrawRay(transform.position + new Vector3(0, slopeYLen, 0) + transform.forward * slopeMitLen, transform.forward * slopeRayLength, Color.blue);
-        }
+    }
 
         void MoveCooltime()
         {
@@ -308,6 +368,7 @@ public class PlayerSwipe : MonoBehaviour
 
         IEnumerator leftMove()
         {
+            StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
             transform.eulerAngles = new Vector3(0, -90, 0);
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
@@ -348,6 +409,7 @@ public class PlayerSwipe : MonoBehaviour
         }
         IEnumerator rightMove()
         {
+            StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
             transform.eulerAngles = new Vector3(0, 90, 0);
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
@@ -389,6 +451,7 @@ public class PlayerSwipe : MonoBehaviour
         }
         IEnumerator fowardMove()
         {
+            StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
             transform.eulerAngles = new Vector3(0, 0, 0);
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
@@ -430,6 +493,7 @@ public class PlayerSwipe : MonoBehaviour
         }
         IEnumerator backMove()
         {
+            StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
             transform.eulerAngles = new Vector3(0, 180, 0);
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
@@ -477,5 +541,13 @@ public class PlayerSwipe : MonoBehaviour
                 Goblin[i].GetComponent<Goblin_E>().GoblinMove();
             }
         }
+
+    IEnumerator OneTimeActiveCool()
+    {
+        Player.TurnStac += 1;
+        yield return new WaitForSeconds(1f);
+        oneTimeActive = true;
     }
+ }
+
 
