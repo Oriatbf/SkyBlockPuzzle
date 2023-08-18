@@ -71,13 +71,14 @@ public class PlayerSwipe : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTiles) && oneTimeActive)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTiles) && oneTimeActive && !isChangeButton)
             {
-                oneTimeActive = false;
+                
                 if (hit.transform.CompareTag("frontGo"))
                 {
                     if (Player.isGround && Player.MoveCoolTime <= 0 && yesFMove)
-                    {     
+                    {
+                        oneTimeActive = false;
                         transform.eulerAngles = new Vector3(0, 0, 0);
                         if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                         {
@@ -101,6 +102,7 @@ public class PlayerSwipe : MonoBehaviour
                 {
                     if (Player.isGround && Player.MoveCoolTime <= 0 && yesLMove)
                     {
+                        oneTimeActive = false;
                         transform.eulerAngles = new Vector3(0, 90, 0);
                         if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                         {
@@ -123,6 +125,7 @@ public class PlayerSwipe : MonoBehaviour
                 {
                     if (Player.isGround && Player.MoveCoolTime <= 0 && yesRMove)
                     {
+                        oneTimeActive = false;
                         transform.eulerAngles = new Vector3(0, 90, 0);
                         if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                         {
@@ -147,6 +150,7 @@ public class PlayerSwipe : MonoBehaviour
                 {
                     if (Player.isGround && Player.MoveCoolTime <= 0 && yesBMove)
                     {
+                        oneTimeActive = false;
                         transform.eulerAngles = new Vector3(0, 180, 0);
                         if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                         {
