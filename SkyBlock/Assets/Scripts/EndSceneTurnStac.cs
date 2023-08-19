@@ -7,12 +7,12 @@ public class EndSceneTurnStac : MonoBehaviour
 {
     public Text End_m_TurnText;
     [SerializeField] private GameObject m_player;
-    public float End_T_Stac;
+    public int End_T_Stac;
     // Start is called before the first frame update
     void Start()
     {
         m_player = GameObject.FindGameObjectWithTag("Player");
-       
+        
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class EndSceneTurnStac : MonoBehaviour
 
     private void EndStac()
     {
-        End_T_Stac = TurnText.T_Stac;
+        End_T_Stac = m_player.GetComponent<Player>().TurnStac;
         End_m_TurnText.text = End_T_Stac.ToString();
     }
 }

@@ -20,30 +20,30 @@ public class MainSceneChange : MonoBehaviour
     public void MainSceneClick()
     {
         SceneManager.LoadScene("mapSelectTest");
-        Player.TurnStac = 0;
+   
     }
 
     public void kingdomEnter()
     {
         SceneManager.LoadScene("mapSelectTest");
-        Player.TurnStac = 0;
+    
     }
     public void kingdomStage1()
     {
         SceneManager.LoadScene("TestScene");
-        Player.TurnStac = 0;
+ 
     }
 
     public void NextStage()
     {
         SceneManager.LoadScene("TestScene2");
-        Player.TurnStac = 0;
+       
     }
 
     public void Retry()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
-        Player.TurnStac = 0;
+   
     }
 }

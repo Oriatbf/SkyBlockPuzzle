@@ -48,12 +48,12 @@ public class CloudeCam : MonoBehaviour
         rightCloud.DOMove(new Vector3(-169, 178, 142), 2.5f);
 
         MapBu.CameraSet();
-        StageGoButton.SetActive(true);
+        StartCoroutine(StageGoButtonClick());
         backButton.SetActive(true);
         goButton.SetActive(false);
 
         MapBu.MAPButton.transform.DOLocalMove(new Vector3(0, -440, 0), 1f);
-        MapBu.StageStarCount.transform.DOLocalMove(new Vector3(0, -60, 0), 1f);
+        MapBu.StageStarCount.transform.DOLocalMove(new Vector3(0, -160, 0), 1f);
         MapBu.MapChapterCount.transform.DOLocalMove(new Vector3(0, 440, 0), 1f);
     }
     public void BackButtonClick()
@@ -86,5 +86,9 @@ public class CloudeCam : MonoBehaviour
     }
 
 
-
+    IEnumerator StageGoButtonClick()
+    {
+        yield return new WaitForSeconds(2.5f);
+        StageGoButton.SetActive(true);
+    }
 }

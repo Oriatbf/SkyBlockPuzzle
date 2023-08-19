@@ -8,19 +8,25 @@ public class TurnText : MonoBehaviour
     public GameObject HintCanvas;
     public Text m_TurnText;
     [SerializeField]private  GameObject player;
-    public static float T_Stac;
+    public int TurnStac;
+    private int endTurn;
     // Start is called before the first frame update
     void Start()
     { 
         player = GameObject.FindGameObjectWithTag("Player");
-       
+        
+        endTurn = player.GetComponent<Player>().EndTurn;
     }
 
     // Update is called once per frame
     void Update()
     {
-        T_Stac = Player.TurnStac;
-        m_TurnText.text = T_Stac.ToString();
+        TurnStac = player.GetComponent<Player>().TurnStac;
+        m_TurnText.text = TurnStac.ToString() + "/"+ endTurn.ToString();
+        if(TurnStac > endTurn)
+        {
+            m_TurnText.color = Color.red;
+        }
     }
 
     public void HintUIClick()

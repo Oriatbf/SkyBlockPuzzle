@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     public float stageTurn;
     public static float MoveCoolTime;
     public static  float MoveCool;
-    public float EndTurn; // 턴 수 제약 조건
+    public int EndTurn; // 턴 수 제약 조건
     
     public Horse horse;
 
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     private bool isStair = false;
 
     public static bool horseNoGo = false;
-    public static float TurnStac = 0;
+    public int TurnStac = 0;
     // Start is called before the first frame update
     void Start()
     {

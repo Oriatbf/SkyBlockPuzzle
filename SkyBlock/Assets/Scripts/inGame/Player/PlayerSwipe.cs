@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerSwipe : MonoBehaviour
 {
+    public GameObject player;
     public GameObject[] Goblin;
     [SerializeField]
     private float x1;
@@ -49,10 +50,11 @@ public class PlayerSwipe : MonoBehaviour
     public LayerMask MoveTiles;
 
     public Vector3 nPosition;
-
+    
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         rig = GetComponent<Rigidbody>();
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
@@ -548,7 +550,8 @@ public class PlayerSwipe : MonoBehaviour
 
     IEnumerator OneTimeActiveCool()
     {
-        Player.TurnStac += 1;
+        player.GetComponent<Player>().TurnStac +=1;
+        Debug.Log("11");
         yield return new WaitForSeconds(1f);
         oneTimeActive = true;
     }

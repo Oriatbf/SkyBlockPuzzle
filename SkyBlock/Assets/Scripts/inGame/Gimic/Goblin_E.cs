@@ -25,21 +25,22 @@ public class Goblin_E : MonoBehaviour
     private bool isWall =false;
 
     Animator animator;
-   
+    private int TurnStac;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         animator= GetComponent<Animator>(); 
+        TurnStac = player.GetComponent<Player>().TurnStac;
     }
     void Update()
     {
-        if(Player.TurnStac % AttackNum == 0 && Player.TurnStac != 0 && attackON)
+        if(TurnStac % AttackNum == 0 && TurnStac != 0 && attackON)
         {
             Attack();
         }
 
-        if (Player.TurnStac % AttackNum == AttackNum - 1 && Player.TurnStac != 0 && !isWall)
+        if (TurnStac % AttackNum == AttackNum - 1 && TurnStac != 0 && !isWall)
         {
             attackON = true;
             Red.gameObject.SetActive(true);
@@ -71,7 +72,7 @@ public class Goblin_E : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && Player.TurnStac % AttackNum == 0 && Player.TurnStac != 0)
+        if (other.tag == "Player" && TurnStac % AttackNum == 0 && TurnStac != 0)
         {
             player.SetActive(false); // <<<- 스테이지2 테스트할려고 잠시 켜놓음
             PlayerSpt.Lose();
