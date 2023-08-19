@@ -8,11 +8,14 @@ public class InterectionUi : MonoBehaviour
     public GameObject DogamCanvas;
     public GameObject[] DogamPages;
     public GameObject DogamClose;
+    public GameObject DogamBack;
+    public GameObject DogamNext;
 
     public int dogamPage = 0;
 
     private void Start()
     {
+        DogamBack.gameObject.SetActive(false);
         OptionCanvas.SetActive(false);
         DogamCanvas.SetActive(false);
     }
@@ -71,14 +74,26 @@ public class InterectionUi : MonoBehaviour
                 DogamPages[i].SetActive(false);
             }
         }
+        if(dogamPage == DogamPages.Length-1)
+        {
+            DogamNext.gameObject.SetActive(false);
+        }
+        else
+        {
+            DogamNext.gameObject.SetActive(true);
+        }
         if(dogamPage == 0)
         {
             DogamClose.SetActive(true);
+            DogamBack.SetActive(false);
         }
         else
         {
             DogamClose.SetActive(false);
+            DogamBack.SetActive(true);
         }
+
+        
     }
 
 }
