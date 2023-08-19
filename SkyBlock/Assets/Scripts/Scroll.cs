@@ -62,12 +62,19 @@ public class Scroll : MonoBehaviour
             btnImageRect[3].sizeDelta = new Vector2(120, 120);
 
         }
-        if (Input.GetKeyDown(KeyCode.F4))
+        if (Input.GetKeyDown(KeyCode.F4) || MapBu.MAPNum == 4)
         {
+            slider.value = Mathf.Lerp(slider.value, 0.75f, 0.05f); //일단 뭔진 모르겠는데 붙여넣음
+
             buttonRect[0].sizeDelta = new Vector2(180, buttonRect[0].sizeDelta.y);
             buttonRect[1].sizeDelta = new Vector2(180, buttonRect[1].sizeDelta.y);
             buttonRect[2].sizeDelta = new Vector2(180, buttonRect[2].sizeDelta.y);
             buttonRect[3].sizeDelta = new Vector2(360, buttonRect[3].sizeDelta.y);
+
+            btnImageRect[0].sizeDelta = new Vector2(120, 120); //일단 뭔진 모르겠는데 붙여넣음
+            btnImageRect[1].sizeDelta = new Vector2(120, 120);
+            btnImageRect[2].sizeDelta = new Vector2(120, 120);
+            btnImageRect[3].sizeDelta = new Vector2(180, 180);
 
         }
     }

@@ -133,8 +133,8 @@ public class MapButton : MonoBehaviour
         }
 
         //맵 변경
-        if (slideNum == 3 && MAPNum != 3 && Clcam.Go == false
-            || UILeftRightNum == 2 && MAPNum != 3 && Clcam.Go == false)
+        if (slideNum == 3 && MAPNum != 4 && Clcam.Go == false
+            || UILeftRightNum == 2 && MAPNum != 4 && Clcam.Go == false)
         {
             UILeftRightNum = 0;
             MAPNum += 1;
@@ -147,8 +147,8 @@ public class MapButton : MonoBehaviour
             else if (MAPNum == 1)
                 MapChapterCountNum.text = "Main";
         }
-        if (slideNum == 4 && MAPNum != 0 && Clcam.Go == false
-            || UILeftRightNum == 1 && MAPNum != 0 && Clcam.Go == false)
+        if (slideNum == 4 && MAPNum != 1 && Clcam.Go == false
+            || UILeftRightNum == 1 && MAPNum != 1 && Clcam.Go == false)
         {
             UILeftRightNum = 0;
             MAPNum -= 1;
