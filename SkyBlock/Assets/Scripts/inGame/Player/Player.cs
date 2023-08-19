@@ -63,14 +63,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(SceneManager.GetActiveScene().name == "TestScene2")
-        {
-            EndTurn = 14;
-        }
-        if (SceneManager.GetActiveScene().name == "TestScene")
-        {
-            EndTurn = 27;
-        }
+       
         EndScreen.SetActive(false);
         animator= GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
@@ -150,7 +143,6 @@ public class Player : MonoBehaviour
             {
                 TurnPNG.sprite = TurnSprite;
             }
-            //TurnStac= 0;
             StarCount = 0;
         }
         if (col.tag=="Weapon")
