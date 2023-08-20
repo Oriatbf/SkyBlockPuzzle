@@ -105,7 +105,7 @@ public class PlayerSwipe : MonoBehaviour
                     if (Player.isGround && Player.MoveCoolTime <= 0 && yesLMove)
                     {
                         oneTimeActive = false;
-                        transform.eulerAngles = new Vector3(0, 90, 0);
+                        transform.eulerAngles = new Vector3(0, -90, 0);
                         if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out Enemyhit, 2, EnemyMask))
                         {
                             animator.SetTrigger("Attack");
