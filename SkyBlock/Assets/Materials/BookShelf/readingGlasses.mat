@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BookColor_1 2
+  m_Name: readingGlasses
   m_Shader: {fileID: 4800000, guid: 9baf30ce95c751649b14d96da3a4b4d5, type: 3}
   m_ValidKeywords:
   - _EMISSIVE_SIMPLE
@@ -146,7 +146,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EMISSIVE: 0
-    - _Farthest_Distance: 100
+    - _Farthest_Distance: 10000
     - _GI_Intensity: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -191,8 +191,8 @@ Material:
     - _OcclusionStrength: 1
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
-    - _Offset_Z: -0.15
-    - _Outline_Width: 1
+    - _Offset_Z: -0.18
+    - _Outline_Width: 54
     - _Parallax: 0.02
     - _RimLight: 0
     - _RimLight_FeatherOff: 0
@@ -226,11 +226,11 @@ Material:
     - _utsTechnique: 0
     - _utsVersion: 2.09
     m_Colors:
-    - _1st_ShadeColor: {r: 0.4433962, g: 0.28613967, b: 0.010457456, a: 1}
+    - _1st_ShadeColor: {r: 0.24528301, g: 0.13247141, b: 0, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 1, g: 0.8601958, b: 0.4198113, a: 1}
-    - _Color: {r: 1, g: 0.8601958, b: 0.4198113, a: 1}
+    - _BaseColor: {r: 0.5943396, g: 0.30032873, b: 0, a: 1}
+    - _Color: {r: 0.5943396, g: 0.30032873, b: 0, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 1}
