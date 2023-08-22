@@ -388,6 +388,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (hit.transform.CompareTag("SlopePlatform"))
                 {
                     nPosition += new Vector3(0, 1.2f, 0);
+                    Debug.Log("Test");
                     yield return new WaitForSeconds(0.2f);
                 }
             }
@@ -437,6 +438,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (hit.transform.CompareTag("SlopePlatform"))
                 {
                     nPosition += new Vector3(0, -1f, 0);
+                    Debug.Log("엄");
                     yield return new WaitForSeconds(0.1f);
                 }
             }
@@ -445,6 +447,7 @@ public class PlayerSwipe : MonoBehaviour
                 if (hit.transform.CompareTag("SlopePlatform"))
                 {
                     nPosition += new Vector3(0, -1f, 0);
+                    Debug.Log("엄");
                     yield return new WaitForSeconds(0.1f);
                 }
             }
