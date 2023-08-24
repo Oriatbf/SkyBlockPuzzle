@@ -9,6 +9,7 @@ public class Scroll : MonoBehaviour
     public RectTransform[] buttonRect;
     public RectTransform[] btnImageRect;
     public MapButton MapBu;
+    public CloudeCam cloudecam;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,7 @@ public class Scroll : MonoBehaviour
             btnImageRect[1].sizeDelta = new Vector2(120, 120);
             btnImageRect[2].sizeDelta = new Vector2(120, 120);
             btnImageRect[3].sizeDelta = new Vector2(120, 120);
-
+            cloudecam.BackButtonClick();
         }
         if (Input.GetKey(KeyCode.F2)  || MapBu.MAPNum == 2)
         {
@@ -47,7 +48,7 @@ public class Scroll : MonoBehaviour
             btnImageRect[1].sizeDelta = new Vector2(180, 180);
             btnImageRect[2].sizeDelta = new Vector2(120, 120);
             btnImageRect[3].sizeDelta = new Vector2(120, 120);
-
+            cloudecam.BackButtonClick();
         }
         if (Input.GetKey(KeyCode.F3) || MapBu.MAPNum == 3)
         {
@@ -60,7 +61,7 @@ public class Scroll : MonoBehaviour
             btnImageRect[1].sizeDelta = new Vector2(120, 120);
             btnImageRect[2].sizeDelta = new Vector2(180, 180);
             btnImageRect[3].sizeDelta = new Vector2(120, 120);
-
+            cloudecam.BackButtonClick();
         }
         if (Input.GetKeyDown(KeyCode.F4) || MapBu.MAPNum == 4)
         {
@@ -75,7 +76,7 @@ public class Scroll : MonoBehaviour
             btnImageRect[1].sizeDelta = new Vector2(120, 120);
             btnImageRect[2].sizeDelta = new Vector2(120, 120);
             btnImageRect[3].sizeDelta = new Vector2(180, 180);
-
+            cloudecam.BackButtonClick();
         }
     }
 }

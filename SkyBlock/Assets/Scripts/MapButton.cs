@@ -246,6 +246,26 @@ public class MapButton : MonoBehaviour
         if (UILeftRightNum == 0)
             UILeftRightNum = 2;
     }
+
+    public void map1()
+    {
+        MAPNum = 1;
+        if (MAPNum > 1)
+            MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+        
+        MapChapterCountNum.text = "Main";
+    }
+    public void map2()
+    {
+        MAPNum = 2;
+        MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+    }
+    public void map3()
+    {
+        MAPNum = 3;
+        MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+    }
+
 }
 
 //1.543608 1.440643 1.097633
