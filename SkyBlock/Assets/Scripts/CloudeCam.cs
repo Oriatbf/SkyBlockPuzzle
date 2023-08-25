@@ -91,6 +91,7 @@ public class CloudeCam : MonoBehaviour
     }
 
 
+
     IEnumerator StageGoButtonClick()
     {
         yield return new WaitForSeconds(2.5f);

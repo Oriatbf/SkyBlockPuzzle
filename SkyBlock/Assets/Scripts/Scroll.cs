@@ -35,7 +35,7 @@ public class Scroll : MonoBehaviour
             btnImageRect[1].sizeDelta = new Vector2(120, 120);
             btnImageRect[2].sizeDelta = new Vector2(120, 120);
             btnImageRect[3].sizeDelta = new Vector2(120, 120);
-            cloudecam.BackButtonClick();
+            //cloudecam.BackButtonClick();
         }
         if (Input.GetKey(KeyCode.F2)  || MapBu.MAPNum == 2)
         {
@@ -48,7 +48,7 @@ public class Scroll : MonoBehaviour
             btnImageRect[1].sizeDelta = new Vector2(180, 180);
             btnImageRect[2].sizeDelta = new Vector2(120, 120);
             btnImageRect[3].sizeDelta = new Vector2(120, 120);
-            cloudecam.BackButtonClick();
+            //cloudecam.BackButtonClick();
         }
         if (Input.GetKey(KeyCode.F3) || MapBu.MAPNum == 3)
         {

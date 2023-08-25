@@ -27,6 +27,7 @@ public class MapButton : MonoBehaviour
 
     public Transform CamaraTran;
     public CloudeCam Clcam;
+    public TabSceneMainUI tabSceneMainUI;
 
     Vector3 firstPos, gap;
     bool SlideWait;
@@ -250,20 +251,21 @@ public class MapButton : MonoBehaviour
     public void map1()
     {
         MAPNum = 1;
-        if (MAPNum > 1)
-            MapChapterCountNum.text = MAPNum - 1 + " Chapter";
         
         MapChapterCountNum.text = "Main";
+        Clcam.BackButtonClick();
     }
     public void map2()
     {
         MAPNum = 2;
-        MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+        MapChapterCountNum.text = MAPNum-1 + " Chapter";
+        Clcam.BackButtonClick();
     }
     public void map3()
     {
         MAPNum = 3;
         MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+        Clcam.BackButtonClick();
     }
 
 }
