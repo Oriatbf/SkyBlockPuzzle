@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
+  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5214,6 +5214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_clickMPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 7114139934762237348, guid: fe63e88c44a6b8540971a6cc20855134, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7114139934762237349, guid: fe63e88c44a6b8540971a6cc20855134, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5259,9 +5263,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7114139936482355463, guid: fe63e88c44a6b8540971a6cc20855134, type: 3}
+      propertyPath: EndText
+      value: 
+      objectReference: {fileID: 1400553580}
+    - target: {fileID: 7114139936482355463, guid: fe63e88c44a6b8540971a6cc20855134, type: 3}
       propertyPath: EndScreen
       value: 
       objectReference: {fileID: 1551417461}
+    - target: {fileID: 7114139936482355463, guid: fe63e88c44a6b8540971a6cc20855134, type: 3}
+      propertyPath: NextStageUI
+      value: 
+      objectReference: {fileID: 1483870024}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe63e88c44a6b8540971a6cc20855134, type: 3}
 --- !u!1001 &1739610467
