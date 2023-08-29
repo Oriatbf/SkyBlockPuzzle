@@ -80,7 +80,7 @@ public class ChangeBlock : MonoBehaviour
     {
         if (!isChange)
         {
-            PlayerSwipe.isChangeButton = true;
+            //PlayerSwipe.isChangeButton = true;
             StartCoroutine(wait1sec());
         }
         if (isChange && SelectA && SelectB)
@@ -93,7 +93,7 @@ public class ChangeBlock : MonoBehaviour
             i = 1;
             time = 0.2f;
             isChange = false;
-            PlayerSwipe.isChangeButton = false;
+            //PlayerSwipe.isChangeButton = false;
             SelectA = false;
             SelectB = false;
         }

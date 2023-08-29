@@ -28,14 +28,14 @@ public class NoMoveEnemy : MonoBehaviour
         {
             isWall= false;
         }
-        if (PlayerSwipe.isMoving)
+        /*if (PlayerSwipe.isMoving)
         {
             if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+1f,transform.position.z), transform.forward, 2f, player) && count ==0 && !isWall)
             {
                 count++;
                 playerObject.GetComponent<Player>().Lose();
             }
-        }
+        }*/
     }
 
     private void OnDrawGizmos()
