@@ -43,8 +43,8 @@ public class PlayerSwipe : MonoBehaviour
     Animator animator;
     Rigidbody rig;
 
-    private RaycastHit PushBlockhit;
-    private RaycastHit Enemyhit;
+    public RaycastHit PushBlockhit;
+    public RaycastHit Enemyhit;
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
     public LayerMask MoveTiles;
@@ -372,7 +372,7 @@ public class PlayerSwipe : MonoBehaviour
             Player.MoveCoolTime = Player.MoveCool;
         }
 
-        IEnumerator leftMove()
+        public IEnumerator leftMove()
         {
             StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
@@ -414,7 +414,7 @@ public class PlayerSwipe : MonoBehaviour
             isMoving = false;
             animator.SetBool("Walk", false);
         }
-        IEnumerator rightMove()
+        public IEnumerator rightMove()
         {
             StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
@@ -458,7 +458,7 @@ public class PlayerSwipe : MonoBehaviour
             animator.SetBool("Walk", false);
 
         }
-        IEnumerator fowardMove()
+        public IEnumerator fowardMove()
         {
             StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
@@ -500,7 +500,7 @@ public class PlayerSwipe : MonoBehaviour
             animator.SetBool("Walk", false);
 
         }
-        IEnumerator backMove()
+        public IEnumerator backMove()
         {
             StartCoroutine(OneTimeActiveCool());
             MoveGoblin();
@@ -551,7 +551,7 @@ public class PlayerSwipe : MonoBehaviour
             }
         }
 
-    IEnumerator OneTimeActiveCool()
+    public IEnumerator OneTimeActiveCool()
     {
         player.GetComponent<Player>().TurnStac +=1;
         Debug.Log("11");
