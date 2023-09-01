@@ -33,7 +33,7 @@ public class ElevatorButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("PushBlock"))
+        if (other.CompareTag("Player") || other.CompareTag("PushBlock") || other.CompareTag("Goblin"))
         {
             connectElevator.GetComponent<Elevator>().goDown = true;
         }
