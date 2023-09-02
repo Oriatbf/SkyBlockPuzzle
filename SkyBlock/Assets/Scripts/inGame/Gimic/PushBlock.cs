@@ -7,15 +7,45 @@ public class PushBlock : MonoBehaviour
 {
     [SerializeField]
     private LayerMask StopBlock;
+    [SerializeField]
+    private LayerMask PushBlockLayer;
+    [SerializeField]
+    private LayerMask MoveTile;
 
     public GameObject player;
+    public GameObject ClickPoint;
     public Ease ease;
 
     [SerializeField]
-    private float YRay; //���ڶ�� 0.1, �̵� �÷����̶�� -0.8
-    void Start()
+    private float YRay;
+
+    private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        ClickPoint.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && ClickPoint.gameObject.activeSelf)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, PushBlockLayer))
+            {
+                Vector3 lookDirection = transform.position - player.transform.position;
+                lookDirection.y = 0f;
+                player.transform.rotation = Quaternion.LookRotation(lookDirection);
+
+                blockMove();
+                ClickPoint.gameObject.SetActive(false);
+                if(Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+                {
+                    MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                    detectMeshRenderer.enabled = true;
+                }
+            }
+        }
     }
 
     public void blockMove()

@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] LayerMask MoveTile;
+    [SerializeField] LayerMask EndBlock;
+    [SerializeField] LayerMask PushBlock;
+    [SerializeField] LayerMask Enemy;
     [SerializeField] Animator animator;
     [SerializeField] Player playerSc;
     public GameObject[] Goblin;
@@ -31,14 +34,23 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
             Detect();
             MoveGoblin();
-            playerSc.TurnStac += 1; //�ӽ�
+            playerSc.TurnStac += 1;
         }
 
         if (Input.GetMouseButtonDown(0) && isMoving == false)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTile))
+            Go();
+        }
+    }
+
+    void Go()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTile))
+        {
+            MeshRenderer hitRenderer = hit.transform.GetComponent<MeshRenderer>();
+            if (hitRenderer != null && hitRenderer.enabled)
             {
                 nPosition = hit.transform.position;
                 transform.LookAt(new Vector3(nPosition.x, transform.position.y, nPosition.z));
@@ -46,7 +58,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
@@ -55,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     void Detect()
     {
-        //��� �ݶ��̴� ���� (�Ž� �Ⱥ��̰�)
+        //COl ALL
         Collider[] Allcolliders = Physics.OverlapSphere(this.transform.position, 10000f, MoveTile);
         foreach (Collider Allcollider in Allcolliders)
         {
@@ -63,21 +74,67 @@ public class PlayerController : MonoBehaviour
             otherMeshRenderer.enabled = false;
         }
 
-        //�ָ� �ݶ��̴� ���� (�Ž� ���̰�)
+        //PushBlock ALL
+        Collider[] AllPushBlocks = Physics.OverlapSphere(this.transform.position, 10000f, PushBlock);
+        foreach (Collider AllPushBLock in AllPushBlocks)
+        {
+            PushBlock PushBlockSc = AllPushBLock.GetComponent<PushBlock>();
+            if (PushBlockSc != null)
+                PushBlockSc.ClickPoint.gameObject.SetActive(false);
+        }
+
+        //COL 2f Sphere ON
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, 2f, MoveTile);
         foreach (Collider collider in colliders)
         {
             MeshRenderer otherMeshRenderer = collider.GetComponent<MeshRenderer>();
             otherMeshRenderer.enabled = true;
 
-            //�ڱ� �ؿ��ִ� �ݶ��̴�(�Ž� �Ⱥ��̰�)
-            RaycastHit hitt;
-            if (collider == Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hitt, 3f, MoveTile))
+            //COL MIT OFF
+            RaycastHit hit;
+            if (collider == Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
-                MeshRenderer detectMeshRenderer = hitt.collider.GetComponent<MeshRenderer>();
+                MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                 detectMeshRenderer.enabled = false;
             }
 
+            //Endblock OFF
+            Vector3 direction = transform.position - collider.transform.position;
+            if (Physics.Raycast(collider.transform.position, direction, out hit, 1.5f, EndBlock))
+            {
+                Vector3 direction2 = collider.transform.position - hit.transform.position;
+                if (Physics.Raycast(hit.transform.position, direction2, out hit, 1.5f, MoveTile))
+                {
+                    MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                    detectMeshRenderer.enabled = false;
+                }
+            }
+
+            //Enemy SugneGung
+            if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 2f, Enemy))
+            {
+                Debug.Log("아직 Enemy는 구현 못해쓰");
+                if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+                {
+                    MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                    detectMeshRenderer.enabled = false;
+                }
+            }
+
+            //PushBLock
+            if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 2f, PushBlock))
+            {
+                PushBlock PushBlockSc = hit.transform.GetComponent<PushBlock>();
+                if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+                {
+                    MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                    if (detectMeshRenderer.enabled == true)
+                    {
+                        PushBlockSc.ClickPoint.gameObject.SetActive(true);
+                        detectMeshRenderer.enabled = false;
+                    }
+                }
+            }
         }
     }
     void MoveGoblin()
