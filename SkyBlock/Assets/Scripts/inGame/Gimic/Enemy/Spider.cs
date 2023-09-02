@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+
 
 public class Spider : MonoBehaviour
 {
@@ -13,36 +15,11 @@ public class Spider : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (transform.position.x < player.transform.position.x)
-            {
-                if (Mathf.Abs(transform.position.x) + Mathf.Abs(player.transform.position.x) < 4)
-                {
-                    if (transform.position.z > player.transform.position.z)
-                    {
-                        transform.eulerAngles = new Vector3(0, 180, 0);
-                    }
-                    else
-                    {
-                        transform.eulerAngles = new Vector3(0, 0, 0);
-                    }
-                }
-                else
-                {
-                    transform.eulerAngles = new Vector3(0, 90, 0);
-                }
-
-                
-
-            }
-
-            StartCoroutine(position());
-            
-        }
+        
 
 
         if (Move)

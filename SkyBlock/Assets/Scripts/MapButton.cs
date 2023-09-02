@@ -162,25 +162,7 @@ public class MapButton : MonoBehaviour
             else if (MAPNum == 1)
                 MapChapterCountNum.text = "Main";
         }
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray ray = mCamera.ScreenPointToRay(Input.mousePosition);
-            Debug.Log(ray);
-            Physics.Raycast(ray, out hit);
-            for (int i = 0; i < buttonPrefab.Length; i++)
-            {
-                if (hit.transform == buttonPrefab[i])
-                {
-                    selNum = i;
-                }
-            }
-        }
-
-        else
-        {
-            walkAinm.SetBool("Walk", false);
-        }*/
+    
         if (playerPosition != selNum)
         {
             StageGoButton.SetActive(true);

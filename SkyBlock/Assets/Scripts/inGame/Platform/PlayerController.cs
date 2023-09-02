@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
             Detect();
             MoveGoblin();
-            playerSc.TurnStac += 1; //ÀÓ½Ã
+            playerSc.TurnStac += 1; //ï¿½Ó½ï¿½
         }
 
         if (Input.GetMouseButtonDown(0) && isMoving == false)
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     void Detect()
     {
-        //¸ðµç ÄÝ¶óÀÌ´õ °¨Áö (¸Å½¬ ¾Èº¸ÀÌ°Ô)
+        //ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Å½ï¿½ ï¿½Èºï¿½ï¿½Ì°ï¿½)
         Collider[] Allcolliders = Physics.OverlapSphere(this.transform.position, 10000f, MoveTile);
         foreach (Collider Allcollider in Allcolliders)
         {
@@ -63,14 +63,14 @@ public class PlayerController : MonoBehaviour
             otherMeshRenderer.enabled = false;
         }
 
-        //ÁÖ¸é ÄÝ¶óÀÌ´õ °¨Áö (¸Å½¬ º¸ÀÌ°Ô)
+        //ï¿½Ö¸ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Å½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½)
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, 2f, MoveTile);
         foreach (Collider collider in colliders)
         {
             MeshRenderer otherMeshRenderer = collider.GetComponent<MeshRenderer>();
             otherMeshRenderer.enabled = true;
 
-            //ÀÚ±â ¹Ø¿¡ÀÖ´Â ÄÝ¶óÀÌ´õ(¸Å½¬ ¾Èº¸ÀÌ°Ô)
+            //ï¿½Ú±ï¿½ ï¿½Ø¿ï¿½ï¿½Ö´ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½(ï¿½Å½ï¿½ ï¿½Èºï¿½ï¿½Ì°ï¿½)
             RaycastHit hitt;
             if (collider == Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hitt, 3f, MoveTile))
             {
