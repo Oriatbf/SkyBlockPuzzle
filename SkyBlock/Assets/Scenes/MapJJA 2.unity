@@ -185,6 +185,8 @@ MonoBehaviour:
   PlayerSpt: {fileID: 1701509587}
   backTurn: 0
   isWidth: 0
+  Move: 0
+  isWall: 0
 --- !u!23 &27740705
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -423,6 +425,7 @@ MonoBehaviour:
   HintCanvas: {fileID: 0}
   m_TurnText: {fileID: 1341438847}
   player: {fileID: 0}
+  TurnStac: 0
 --- !u!224 &81406946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2173,6 +2176,8 @@ MonoBehaviour:
   time: 0.2
   start: 0
   isChange: 0
+  SelectA: 0
+  SelectB: 0
 --- !u!1 &861839792
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,6 +2926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_PushBox (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1133394511399502336, guid: c1b4c1eb200317e469927bf8905e57e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b4c1eb200317e469927bf8905e57e2, type: 3}
 --- !u!1001 &1081222458
@@ -3577,6 +3586,10 @@ PrefabInstance:
     - target: {fileID: 1133394511399502336, guid: c1b4c1eb200317e469927bf8905e57e2, type: 3}
       propertyPath: m_Name
       value: P_PushBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133394511399502336, guid: c1b4c1eb200317e469927bf8905e57e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b4c1eb200317e469927bf8905e57e2, type: 3}

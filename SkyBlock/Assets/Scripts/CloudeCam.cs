@@ -69,8 +69,8 @@ public class CloudeCam : MonoBehaviour
         }
         else if (MapBu.MAPNum == 2)
         {
-            transform.DOMove(new Vector3(0, 246, 281), 2.5f);
-            transform.DORotate(new Vector3(40, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(0, 202, 307), 2.5f);
+            transform.DORotate(new Vector3(33.46f, 180, 0), 2.5f);
         }
         else if (MapBu.MAPNum == 3)
         {

@@ -29,10 +29,10 @@ public class Block : MonoBehaviour
 
         for (i = 0; i < materials.Length; i++)
         {
-            if (materials[i].name == "tree2 (Instance)")
-            {
+            //if (materials[i].name == "tree2 (Instance)")
+           // {
                 materials[i] = ClickMaterial;
-            }
+           // }
         }
 
         renderer.materials = materials;

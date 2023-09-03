@@ -39,7 +39,7 @@ public class Goblin_E : MonoBehaviour
         {
             Attack();
         }
-
+        Move = true;
         if (TurnStac % AttackNum == AttackNum - 1 && TurnStac != 0 && !isWall)
         {
             attackON = true;

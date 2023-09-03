@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
     public static  float MoveCool;
     public int EndTurn; // 턴 수 제약 조건
     
-    public Horse horse;
 
     Animator animator;
     Rigidbody rigidbody;
@@ -57,8 +56,6 @@ public class Player : MonoBehaviour
     private bool isWin = false;
     [SerializeField]
     private bool isStair = false;
-
-    public static bool horseNoGo = false;
     public int TurnStac = 0;
     // Start is called before the first frame update
     void Start()
@@ -70,7 +67,6 @@ public class Player : MonoBehaviour
         dontMove= false;
         WeaponOn= false;
         horseRiding= false;
-        horseNoGo= false;
     }
     private void FixedUpdate()
     {

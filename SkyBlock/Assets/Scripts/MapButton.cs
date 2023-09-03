@@ -122,7 +122,7 @@ public class MapButton : MonoBehaviour
             UILeftRightNum = 0;
             selNum += 1;
             slideNum = 0;
-            CameraSet();
+            //CameraSet();
         }
         if (slideNum == 4 && selNum != 0 && selNum == playerPosition && Clcam.Go == true
             || UILeftRightNum == 1 && selNum != 0 && selNum == playerPosition && Clcam.Go == true)
@@ -130,7 +130,7 @@ public class MapButton : MonoBehaviour
             UILeftRightNum = 0;
             selNum -= 1;
             slideNum = 0;
-            CameraSet();
+            //CameraSet();
         }
 
         //맵 변경
@@ -162,7 +162,8 @@ public class MapButton : MonoBehaviour
             else if (MAPNum == 1)
                 MapChapterCountNum.text = "Main";
         }
-    
+       
+
         if (playerPosition != selNum)
         {
             StageGoButton.SetActive(true);

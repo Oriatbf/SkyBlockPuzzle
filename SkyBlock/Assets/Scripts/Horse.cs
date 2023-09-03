@@ -22,10 +22,7 @@ public class Horse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position+new Vector3(0,0.5f,0), transform.forward, 5, enemy))
-        {
-            Player.horseNoGo= true;
-        }
+        
       
         if (!Physics.Raycast(transform.position + new Vector3(0, 0.3f, 0), Vector3.down, 3, platform))
         {
