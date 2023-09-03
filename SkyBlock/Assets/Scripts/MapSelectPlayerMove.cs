@@ -10,7 +10,7 @@ public class MapSelectPlayerMove : MonoBehaviour
     private void Update()
     {
        
-        transform.position = Vector3.MoveTowards(gameObject.transform.position, targetbutton.position, 0.2f);
+        //transform.position = Vector3.MoveTowards(gameObject.transform.position, targetbutton.position, 0.2f);
         
     }
 
