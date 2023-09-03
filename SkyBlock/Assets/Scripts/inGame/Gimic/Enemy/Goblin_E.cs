@@ -39,7 +39,7 @@ public class Goblin_E : MonoBehaviour
         {
             Attack();
         }
-        Move = true;
+        
         if (TurnStac % AttackNum == AttackNum - 1 && TurnStac != 0 && !isWall)
         {
             attackON = true;
@@ -50,7 +50,7 @@ public class Goblin_E : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
             animator.SetBool("isWalk",true);
-           
+            StartCoroutine(moveFalse());
         }
         else
         {
@@ -130,5 +130,11 @@ public class Goblin_E : MonoBehaviour
         Move = false;
         yield return new WaitForSeconds(0.5f);
         Move = true;
+    }
+
+    IEnumerator moveFalse()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Move = false;
     }
 }
