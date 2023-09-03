@@ -5230,7 +5230,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: f7f08942d6194004e892b73f5a3ddb38, type: 2}
     - target: {fileID: 5866666021909216657, guid: a58b7317d20e770428455f91f64e4dbf, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7603786706384944740, guid: a58b7317d20e770428455f91f64e4dbf, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5356,6 +5356,8 @@ MonoBehaviour:
   - {fileID: 2036601118}
   - {fileID: 1886778283}
   pos: {x: 0, y: 0, z: 0}
+  targetNumber: 0
+  Move: 1
 --- !u!1 &267634823
 GameObject:
   m_ObjectHideFlags: 0
