@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Goblin_E : MonoBehaviour
 {
-    [SerializeField] private GameObject colli;
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject Red;
 
     [SerializeField] private float AttackNum;
 
@@ -14,6 +12,7 @@ public class Goblin_E : MonoBehaviour
     public Transform hitPoint;
     public Vector3 hitPointSize;
     public LayerMask blockEnd;
+    public LayerMask playerMask;
     public Player PlayerSpt;
     public bool backTurn;
     [Space]
@@ -43,14 +42,18 @@ public class Goblin_E : MonoBehaviour
         if (TurnStac % AttackNum == AttackNum - 1 && TurnStac != 0 && !isWall)
         {
             attackON = true;
-            Red.gameObject.SetActive(true);
         }
+      
 
         if (Move)
         {
             transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
             animator.SetBool("isWalk",true);
             StartCoroutine(moveFalse());
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
+            {
+                Attack();
+            }
         }
         else
         {
@@ -67,8 +70,9 @@ public class Goblin_E : MonoBehaviour
 
     private void Attack()
     {
-        Red.gameObject.SetActive(false);
-        attackON = false;
+        animator.applyRootMotion = true;
+        animator.SetTrigger("isAttack");
+        StartCoroutine(playerDie());
     }
     private void OnTriggerStay(Collider other)
     {
@@ -128,13 +132,20 @@ public class Goblin_E : MonoBehaviour
     IEnumerator WaitPlayerMove()
     {
         Move = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         Move = true;
     }
 
     IEnumerator moveFalse()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         Move = false;
+    }
+
+    IEnumerator playerDie()
+    {
+        yield return new WaitForSeconds(1);
+        player.gameObject.SetActive(false);
+        PlayerSpt.Lose();
     }
 }
