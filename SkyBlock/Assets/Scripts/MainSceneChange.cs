@@ -36,8 +36,10 @@ public class MainSceneChange : MonoBehaviour
 
     public void NextStage()
     {
-        SceneManager.LoadScene("TestScene2");
-       
+        int currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneNumber+1);
+     
+
     }
 
     public void Retry()
