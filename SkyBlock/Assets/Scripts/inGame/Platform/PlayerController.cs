@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Player playerSc;
     public GameObject[] Goblin;
     Vector3 nPosition;
+
+    public static float timer;
     bool isMoving;
 
     void Start()
@@ -23,6 +25,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (timer >= 0)
+            timer -= Time.deltaTime;
+
         if (Vector3.Distance(transform.position, nPosition) > 0.3f)
         {
             Move();
@@ -37,7 +42,7 @@ public class PlayerController : MonoBehaviour
             playerSc.TurnStac += 1;
         }
 
-        if (Input.GetMouseButtonDown(0) && isMoving == false)
+        if (Input.GetMouseButtonDown(0) && isMoving == false && timer <= 0)
         {
             Go();
         }
