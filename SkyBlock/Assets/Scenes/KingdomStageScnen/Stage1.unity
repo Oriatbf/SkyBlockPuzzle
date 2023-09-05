@@ -5602,6 +5602,7 @@ MonoBehaviour:
   ChangeCoolStac: 0
   SelectA: 0
   SelectB: 0
+  plconSc: {fileID: 1968713960}
 --- !u!1 &861839792
 GameObject:
   m_ObjectHideFlags: 0
@@ -7273,6 +7274,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9028320668996377779, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
   m_PrefabInstance: {fileID: 869273662}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1968713960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9028320668996377781, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
+  m_PrefabInstance: {fileID: 869273662}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968713958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67baafaaf52a59d47a50e99071aec517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1983313848
 GameObject:
   m_ObjectHideFlags: 0

@@ -114,7 +114,7 @@ public class ChangeBlock : MonoBehaviour
 
     IEnumerator wait1sec2()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.2f);
         plconSc.Detect();
     }
 }
