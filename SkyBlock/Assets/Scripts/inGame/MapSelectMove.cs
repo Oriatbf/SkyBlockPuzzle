@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -98,6 +99,25 @@ public class MapSelectMove : MonoBehaviour
             playerStagePos -= 1;
             pos = Stages[playerStagePos].transform.position;
             backMove = true;
+        }
+    }
+    public void EnterInGame()
+    {
+        if (playerStagePos == 0)
+        {
+            LoadingScene.LoadScene("Stage1");
+        }
+        if (playerStagePos == 1)
+        {
+            LoadingScene.LoadScene("Stage2");
+        }
+        if (playerStagePos == 2)
+        {
+            LoadingScene.LoadScene("Stage3");
+        }
+        if (playerStagePos == 3)
+        {
+            LoadingScene.LoadScene("Stage4");
         }
     }
 }
