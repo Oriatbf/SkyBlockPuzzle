@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Player playerSc;
     public GameObject[] Goblin;
+    public GameObject changeEvent;
     Vector3 nPosition;
 
     public static float timer;
@@ -59,7 +60,9 @@ public class PlayerController : MonoBehaviour
             {
                 nPosition = hit.transform.position;
                 transform.LookAt(new Vector3(nPosition.x, transform.position.y, nPosition.z));
+                changeEvent.GetComponent<ChangeBlock>().ChangeCoolStac -= 1;
                 isMoving = true;
+
             }
         }
     }

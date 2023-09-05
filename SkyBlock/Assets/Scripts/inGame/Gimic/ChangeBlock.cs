@@ -9,12 +9,14 @@ public class ChangeBlock : MonoBehaviour
     public Vector3 pos1;
     public Vector3 pos2;
     public LayerMask blockLayer;
+    public GameObject ChangeButton;
 
     public GameObject Aobj;
     public GameObject Bobj;
     public float time = 0.2f;
     public bool start = false;
     public bool isChange = false;
+    public int ChangeCoolStac = 0;
     [SerializeField]
     private bool SelectA = false;
     [SerializeField]
@@ -22,7 +24,7 @@ public class ChangeBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class ChangeBlock : MonoBehaviour
                 start = false;
             }
         }
-        if (Input.GetMouseButton(0) && i == 1 && isChange)
+        if (Input.GetMouseButton(0) && i == 1 && isChange && ChangeCoolStac<=0)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -96,6 +98,7 @@ public class ChangeBlock : MonoBehaviour
             //PlayerSwipe.isChangeButton = false;
             SelectA = false;
             SelectB = false;
+            ChangeCoolStac = 3;
         }
 
     }
