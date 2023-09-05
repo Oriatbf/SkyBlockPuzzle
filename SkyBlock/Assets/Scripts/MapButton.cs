@@ -114,7 +114,7 @@ public class MapButton : MonoBehaviour
                 slideNum = 0;
             }
         }
-
+        /*
         //스테이지 변경
         if(slideNum == 3 && selNum == playerPosition && Clcam.Go == true
             || UILeftRightNum == 2 && selNum == playerPosition && Clcam.Go == true)
@@ -131,7 +131,7 @@ public class MapButton : MonoBehaviour
             selNum -= 1;
             slideNum = 0;
             //CameraSet();
-        }
+        }*/
 
         //맵 변경
         if (slideNum == 3 && MAPNum != 4 && Clcam.Go == false
