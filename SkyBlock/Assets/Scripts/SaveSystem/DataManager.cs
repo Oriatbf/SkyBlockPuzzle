@@ -15,7 +15,14 @@ public class SaveData
 
 public class DataManager : MonoBehaviour
 {
+    public static DataManager instance;
+
     string path;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {

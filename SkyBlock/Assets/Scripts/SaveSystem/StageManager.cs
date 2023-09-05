@@ -22,12 +22,13 @@ public class StageManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.C))
         {
-            StageClear(false, false, false);
+            StageClear(1,false, false, false);
         }
     }
 
-    void StageClear(bool star1, bool star2, bool star3)
+    public void StageClear(int takeLastClearStage, bool star1, bool star2, bool star3)
     {
+        lastClearStage = takeLastClearStage;
         if (clearStage >= lastClearStage)
         {
             clearStars1[lastClearStage] = star1;
@@ -41,5 +42,6 @@ public class StageManager : MonoBehaviour
             clearStars2.Add(star2);
             clearStars3.Add(star3);
         }
+        DataManager.instance.JsonSave();
     }
 }
