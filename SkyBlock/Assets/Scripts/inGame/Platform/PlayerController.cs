@@ -72,8 +72,9 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Walk", true);
     }
 
-    void Detect()
+    public void Detect()
     {
+        
         //COl ALL
         Collider[] Allcolliders = Physics.OverlapSphere(this.transform.position, 10000f, MoveTile);
         foreach (Collider Allcollider in Allcolliders)
@@ -143,6 +144,15 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    public void AllMeshFalse()
+    {
+        Collider[] Allcolliders = Physics.OverlapSphere(this.transform.position, 10000f, MoveTile);
+        foreach (Collider Allcollider in Allcolliders)
+        {
+            MeshRenderer otherMeshRenderer = Allcollider.GetComponent<MeshRenderer>();
+            otherMeshRenderer.enabled = false;
         }
     }
     void MoveGoblin()

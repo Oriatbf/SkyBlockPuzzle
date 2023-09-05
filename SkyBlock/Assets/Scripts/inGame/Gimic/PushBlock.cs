@@ -14,7 +14,9 @@ public class PushBlock : MonoBehaviour
 
     public GameObject player;
     public GameObject ClickPoint;
+    public GameObject parentObject;
     public Ease ease;
+    public static bool DetetcON;
 
     RaycastHit hitt;
 
@@ -27,6 +29,18 @@ public class PushBlock : MonoBehaviour
         ClickPoint.gameObject.SetActive(false);
     }
 
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.up, out hit, 2f, MoveTile))
+        {
+            MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+            if (detectMeshRenderer.enabled == true)
+                hit.collider.transform.parent = parentObject.transform;
+            else
+                hit.collider.transform.parent = gameObject.transform;
+        }
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && ClickPoint.gameObject.activeSelf)

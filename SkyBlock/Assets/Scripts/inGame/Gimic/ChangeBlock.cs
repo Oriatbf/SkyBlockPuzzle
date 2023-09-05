@@ -21,10 +21,11 @@ public class ChangeBlock : MonoBehaviour
     private bool SelectA = false;
     [SerializeField]
     private bool SelectB = false;
-    // Start is called before the first frame update
+
+    public PlayerController plconSc;
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -83,6 +84,7 @@ public class ChangeBlock : MonoBehaviour
         if (!isChange)
         {
             //PlayerSwipe.isChangeButton = true;
+            plconSc.AllMeshFalse();
             StartCoroutine(wait1sec());
         }
         if (isChange && SelectA && SelectB)
@@ -99,6 +101,7 @@ public class ChangeBlock : MonoBehaviour
             SelectA = false;
             SelectB = false;
             ChangeCoolStac = 3;
+            StartCoroutine(wait1sec2());
         }
 
     }
@@ -107,5 +110,11 @@ public class ChangeBlock : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         isChange = true;
+    }
+
+    IEnumerator wait1sec2()
+    {
+        yield return new WaitForSeconds(0.01f);
+        plconSc.Detect();
     }
 }
