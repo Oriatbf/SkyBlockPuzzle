@@ -5,6 +5,8 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     private int i;
+    [SerializeField]
+    private GameObject SelectArrow;
     public Material ClickMaterial;
     public Material[] defaultMaterials;
     public Material[] realDefault;
@@ -26,13 +28,13 @@ public class Block : MonoBehaviour
     public void Click()
     {
         Material[] materials = defaultMaterials;
-
+        SelectArrow.SetActive(true);
         for (i = 0; i < materials.Length; i++)
         {
-            //if (materials[i].name == "tree2 (Instance)")
-           // {
+            if (materials[i].name == "tree2 (Instance)")
+            {
                 materials[i] = ClickMaterial;
-           // }
+            }
         }
 
         renderer.materials = materials;
@@ -41,5 +43,6 @@ public class Block : MonoBehaviour
     public void DefaultMeterial()
     {
         renderer.materials = realDefault;
+        SelectArrow.SetActive(false);
     }
 }
