@@ -67,6 +67,7 @@ public class Goblin_E : MonoBehaviour
 
     private void Attack()
     {
+        PlayerController.timer = 2f;
         animator.applyRootMotion = true;
         animator.SetTrigger("isAttack");
         StartCoroutine(playerDie());
@@ -115,7 +116,8 @@ public class Goblin_E : MonoBehaviour
         }
         else
         {
-            isWall= false;
+            PlayerController.timer = 1f;
+            isWall = false;
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
             StartCoroutine(WaitPlayerMove());
         }

@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject changeEvent;
     Vector3 nPosition;
 
-    public static float timer;
+    public static float timer; // Push 0.5f, golbin walk 1f, goblin attack 2f
     bool isMoving;
 
     void Start()
@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
         if (timer >= 0)
             timer -= Time.deltaTime;
 
+        if (timer <= 0 && timer >= -1)
+        {
+            timer = -5f;
+            Detect();
+        }
+
         if (Vector3.Distance(transform.position, nPosition) > 0.3f)
         {
             Move();
@@ -38,7 +44,8 @@ public class PlayerController : MonoBehaviour
             transform.position = nPosition;
             animator.SetBool("Walk", false);
             isMoving = false;
-            Detect();
+            AllMeshFalse();
+            timer = 0.1f; // Detect();
             MoveGoblin();
             playerSc.TurnStac += 1;
         }

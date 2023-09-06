@@ -26,6 +26,8 @@ public class ChangeBlock : MonoBehaviour
 
     void Start()
     {
+        GameObject plconObj = GameObject.FindGameObjectWithTag("Player");
+        plconSc = plconObj.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
