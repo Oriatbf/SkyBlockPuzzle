@@ -9,6 +9,10 @@ public class DogamClick : MonoBehaviour
 
     private void OnMouseDown()
     {
-        DogamUI.SetActive(true);
+        if(InterectionUi.isOptionCanvas == false)
+        {
+            DogamUI.SetActive(true);
+        }
+       
     }
 }

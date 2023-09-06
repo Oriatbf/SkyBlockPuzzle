@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &166702628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8577752439470969831, guid: 3d612e5502ea88f4cb4a6be9182efe91, type: 3}
+  m_PrefabInstance: {fileID: 1702985128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &206215217
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +591,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5980524307174194355, guid: 52e8a034e5efca34b8c9f0c90932beed, type: 3}
+      propertyPath: HintCanvas
+      value: 
+      objectReference: {fileID: 166702628}
     - target: {fileID: 5980524307174194367, guid: 52e8a034e5efca34b8c9f0c90932beed, type: 3}
       propertyPath: m_Name
       value: InGameCanvas 1

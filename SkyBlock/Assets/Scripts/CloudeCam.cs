@@ -13,7 +13,6 @@ public class CloudeCam : MonoBehaviour
     public Transform rightCloud;
 
     public MapButton MapBu;
-    public LayerMask DogamBook;
 
     public GameObject DogamCanvas;
     public bool Go = false;
@@ -24,15 +23,6 @@ public class CloudeCam : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit,Mathf.Infinity, DogamBook))
-            {
-                DogamCanvas.SetActive(true);
-            }
-        }
         if(MapBu.MAPNum != 2)
         {
             goButton.SetActive(false);

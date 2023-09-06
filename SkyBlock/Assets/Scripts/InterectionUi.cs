@@ -10,6 +10,7 @@ public class InterectionUi : MonoBehaviour
     public GameObject DogamClose;
     public GameObject DogamBack;
     public GameObject DogamNext;
+    public static bool isOptionCanvas = false;
 
     public int dogamPage = 0;
 
@@ -25,6 +26,7 @@ public class InterectionUi : MonoBehaviour
     public void optionClick()
     {
         OptionCanvas.SetActive(true);
+        isOptionCanvas= true;
     }
 
     public void O_closeGame()
@@ -35,6 +37,7 @@ public class InterectionUi : MonoBehaviour
     public void O_close()
     {
         OptionCanvas.SetActive(false);
+        isOptionCanvas= false;
     }
 
     //도감 UI
