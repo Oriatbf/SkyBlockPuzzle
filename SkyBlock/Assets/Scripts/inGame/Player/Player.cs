@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     public GameObject NextStageUI; //게임오버시 버튼 인터렉터블 OnOFF
 
     public float StarCount = 0;
-    public float stageTurn;
     public static float MoveCoolTime;
     public static  float MoveCool;
     public int EndTurn; // 턴 수 제약 조건
@@ -47,10 +46,8 @@ public class Player : MonoBehaviour
     public Vector3 hitPointSize;
     private Vector3 myTrans;
 
-    public static bool WeaponOn = false;
     public static bool isGround;
     public bool dontMove;
-    public static bool horseRiding = false;
     public static bool isPushBlock = false;
     public static bool isFrontEnemy = false;
     private bool isWin = false;
@@ -65,8 +62,6 @@ public class Player : MonoBehaviour
         animator= GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         dontMove= false;
-        WeaponOn= false;
-        horseRiding= false;
     }
     private void FixedUpdate()
     {
@@ -128,30 +123,23 @@ public class Player : MonoBehaviour
         if (col.tag == "Goal")
         {
             isWin= true;
-            Debug.Log("승리");
             EndScreen.SetActive(true);
             FinishPNG.sprite = FinishSprite;
+            StageManager.instance.StageClear(1,true, false, false);
             if (StarCount == 1)
             {
+                StageManager.instance.StageClear(1, true, true, false);
                 starPNG.sprite = StarSprite;
             }
             if (StarCount == 1 && TurnStac <= EndTurn)
             {
+                StageManager.instance.StageClear(1, true, true, true);
                 TurnPNG.sprite = TurnSprite;
             }
             StarCount = 0;
         }
-        if (col.tag=="Weapon")
-        {
-
-            WeaponOBJ.GetComponent<Weapons>().Active();
-            WeaponOn = true;
-
-        }
-        if(col.tag == "horse")
-        { 
-            horseRiding= true;    
-        }
+      
+      
 
         if (col.CompareTag("stairDown"))
         {
@@ -159,15 +147,7 @@ public class Player : MonoBehaviour
         }
         
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "horse")
-        {
-  
-            horseRiding = false;
-
-        }
-    }
+   
 
     private void OnDrawGizmos()
     {

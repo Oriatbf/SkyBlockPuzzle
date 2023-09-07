@@ -17,6 +17,7 @@ public class MapSelectMove : MonoBehaviour
     public int targetNumber;
     public bool Move = true;
     private bool backMove = true;
+    public CloudeCam Clcm;
     // Update is called once per frame
 
     private void Start()
@@ -27,7 +28,7 @@ public class MapSelectMove : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Clcm.Go)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
