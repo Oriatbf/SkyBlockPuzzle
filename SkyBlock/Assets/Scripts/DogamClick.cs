@@ -12,6 +12,7 @@ public class DogamClick : MonoBehaviour
         if(InterectionUi.isOptionCanvas == false)
         {
             DogamUI.SetActive(true);
+            InterectionUi.isDogamCanvas = true;
         }
        
     }

@@ -71,7 +71,7 @@ public class MapButton : MonoBehaviour
         // 슬라이드
         if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
-            if (InterectionUi.isOptionCanvas == false)
+            if (InterectionUi.isOptionCanvas == false && InterectionUi.isDogamCanvas == false)
             {
                 SlideWait = true;
                 firstPos = Input.GetMouseButtonDown(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position;

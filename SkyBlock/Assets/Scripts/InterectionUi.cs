@@ -11,6 +11,7 @@ public class InterectionUi : MonoBehaviour
     public GameObject DogamBack;
     public GameObject DogamNext;
     public static bool isOptionCanvas = false;
+    public static bool isDogamCanvas = false;
 
     public int dogamPage = 0;
 
@@ -44,6 +45,7 @@ public class InterectionUi : MonoBehaviour
     public void D_close()
     {
         DogamCanvas.SetActive(false);
+        isDogamCanvas = false;
     }
     public void D_Next()
     {
