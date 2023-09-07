@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     public static bool isPushBlock = false;
     public static bool isFrontEnemy = false;
     private bool isWin = false;
+    private bool takeStar = false;
+    private bool turnClear = false;
     [SerializeField]
     private bool isStair = false;
     public int TurnStac = 0;
@@ -125,17 +127,17 @@ public class Player : MonoBehaviour
             isWin= true;
             EndScreen.SetActive(true);
             FinishPNG.sprite = FinishSprite;
-            StageManager.instance.StageClear(1,true, false, false);
             if (StarCount == 1)
             {
-                StageManager.instance.StageClear(1, true, true, false);
+                takeStar = true;
                 starPNG.sprite = StarSprite;
             }
             if (StarCount == 1 && TurnStac <= EndTurn)
             {
-                StageManager.instance.StageClear(1, true, true, true);
+                turnClear= true;
                 TurnPNG.sprite = TurnSprite;
             }
+            StageManager.instance.StageClear(0, true, takeStar, turnClear);
             StarCount = 0;
         }
       
