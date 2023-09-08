@@ -40,6 +40,7 @@ public class PushBlock : MonoBehaviour
             else
                 hit.collider.transform.parent = gameObject.transform;
         }
+
     }
     private void Update()
     {

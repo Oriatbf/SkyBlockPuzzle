@@ -41,7 +41,7 @@ public class ChangeBlock : MonoBehaviour
                 start = false;
             }
         }
-        if (Input.GetMouseButton(0) && i == 1 && isChange && ChangeCoolStac<=0)
+        if (Input.GetMouseButton(0) && i == 1 && !start && isChange && ChangeCoolStac<=0)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -49,12 +49,31 @@ public class ChangeBlock : MonoBehaviour
             {
                 if (hit.transform.CompareTag("ChangePlatform"))
                 {
-                    start = true;
-                    pos1 = hit.collider.transform.position;
-                    Aobj = hit.collider.gameObject;
-                    hit.collider.transform.GetComponent<Block>().Click();
-                    i += 1;
-                    SelectA = true;
+                    if (Aobj != null)
+                    {
+                        if(hit.transform.position != Aobj.transform.position
+                            && hit.transform.position != Bobj.transform.position)
+                        {
+                            Aobj.GetComponent<Block>().DefaultMeterial();
+                            time = 0.2f;
+                            start = true;
+                            pos1 = hit.collider.transform.position;
+                            Aobj = hit.collider.gameObject;
+                            hit.collider.transform.GetComponent<Block>().Click();
+                            i += 1;
+                            SelectA = true;
+                        }
+                    }
+                    else
+                    {
+                        time = 0.2f;
+                        start = true;
+                        pos1 = hit.collider.transform.position;
+                        Aobj = hit.collider.gameObject;
+                        hit.collider.transform.GetComponent<Block>().Click();
+                        i += 1;
+                        SelectA = true;
+                    }
                 }
             }
         }
@@ -68,11 +87,30 @@ public class ChangeBlock : MonoBehaviour
                 {
                     if (hit.transform.position != Aobj.transform.position)
                     {
-                        pos2 = hit.collider.transform.position;
-                        Bobj = hit.collider.gameObject;
-                        hit.collider.transform.GetComponent<Block>().Click();
-                        i += 1;
-                        SelectB = true;
+                        if(Bobj != null)
+                        {
+                            if (hit.transform.position != Bobj.transform.position)
+                            {
+                                Bobj.GetComponent<Block>().DefaultMeterial();
+                                time = 0.2f;
+                                start = true;
+                                pos2 = hit.collider.transform.position;
+                                Bobj = hit.collider.gameObject;
+                                hit.collider.transform.GetComponent<Block>().Click();
+                                i = 1;
+                                SelectB = true;
+                            }
+                        }
+                        else
+                        {
+                            time = 0.2f;
+                            start = true;
+                            pos2 = hit.collider.transform.position;
+                            Bobj = hit.collider.gameObject;
+                            hit.collider.transform.GetComponent<Block>().Click();
+                            i = 1;
+                            SelectB = true;
+                        }
                     }
                    
                 }
@@ -102,6 +140,8 @@ public class ChangeBlock : MonoBehaviour
             //PlayerSwipe.isChangeButton = false;
             SelectA = false;
             SelectB = false;
+            Aobj = null;
+            Bobj = null;
             ChangeCoolStac = 3;
             StartCoroutine(wait1sec2());
         }
@@ -116,7 +156,24 @@ public class ChangeBlock : MonoBehaviour
 
     IEnumerator wait1sec2()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         plconSc.Detect();
+    }
+
+    public void Cancel()
+    {
+        if (Aobj != null)
+            Aobj.GetComponent<Block>().DefaultMeterial();
+        if (Bobj != null)
+            Bobj.GetComponent<Block>().DefaultMeterial();
+
+        time = 0.2f;
+        i = 1;
+        SelectA = false;
+        SelectB = false;
+        isChange = false;
+        Aobj = null;
+        Bobj = null;
+        StartCoroutine(wait1sec2());
     }
 }
