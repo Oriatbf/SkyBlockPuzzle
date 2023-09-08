@@ -53,8 +53,9 @@ public class MapSelectMove : MonoBehaviour
                     playerStagePos -= 1;
                     pos = Stages[playerStagePos].transform.position;
                     backMove = true;
-                }            
-            }
+                }
+                stageNumber.instance.CurrentStageNum(targetNumber);
+}
         }
         if (Move)
         {

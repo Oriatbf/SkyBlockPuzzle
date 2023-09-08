@@ -55,6 +55,7 @@ public class MainSceneChange : MonoBehaviour
     {
         int currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneNumber+1);
+        stageNumber.instance.stageNum += 1;
      
 
     }

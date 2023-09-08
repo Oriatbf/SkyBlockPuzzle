@@ -7,8 +7,10 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
 
+    
     public int lastClearStage;
     public int clearStage;
+
     public List<bool> clearStars1 = new List<bool>();
     public List<bool> clearStars2 = new List<bool>();
     public List<bool> clearStars3 = new List<bool>();
@@ -16,6 +18,7 @@ public class StageManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        
     }
 
     private void Update()
@@ -44,4 +47,6 @@ public class StageManager : MonoBehaviour
         }
         DataManager.instance.JsonSave();
     }
+
+ 
 }

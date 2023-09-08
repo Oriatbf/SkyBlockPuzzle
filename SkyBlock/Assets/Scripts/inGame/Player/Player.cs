@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
 
-    
+    private int currentPlayerStage;
 
     private RaycastHit PushBlockhit;
     private RaycastHit Enemyhit;
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        currentPlayerStage = stageNumber.instance.stageNum;
         EndScreen.SetActive(false);
         animator= GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
@@ -132,12 +132,14 @@ public class Player : MonoBehaviour
                 takeStar = true;
                 starPNG.sprite = StarSprite;
             }
-            if (StarCount == 1 && TurnStac <= EndTurn)
+            if (StarCount == 1 && TurnStac < EndTurn)
             {
                 turnClear= true;
                 TurnPNG.sprite = TurnSprite;
             }
-            StageManager.instance.StageClear(0, true, takeStar, turnClear);
+
+            if (!StageManager.instance.clearStars1[currentPlayerStage] && !StageManager.instance.clearStars2[currentPlayerStage]&& !StageManager.instance.clearStars3[currentPlayerStage])
+                StageManager.instance.StageClear(currentPlayerStage, true, takeStar, turnClear);
             StarCount = 0;
         }
       
@@ -178,4 +180,5 @@ public class Player : MonoBehaviour
         }
       
     }
+
 }
