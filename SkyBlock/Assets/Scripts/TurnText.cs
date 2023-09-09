@@ -7,6 +7,7 @@ public class TurnText : MonoBehaviour
 {
     public GameObject HintCanvas;
     public Text m_TurnText;
+    public Text[] endStac;
     [SerializeField]private  GameObject player;
     public int TurnStac;
     private int endTurn;
@@ -16,6 +17,10 @@ public class TurnText : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         
         endTurn = player.GetComponent<Player>().EndTurn;
+        for(int i = 0; i < endStac.Length; i++)
+        {
+            endStac[i].text = player.GetComponent<Player>().EndTurn.ToString();
+        }
     }
 
     // Update is called once per frame

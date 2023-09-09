@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MapSelectMove : MonoBehaviour
@@ -9,7 +10,7 @@ public class MapSelectMove : MonoBehaviour
     Animator animator;
 
     private Vector3 direction;
-
+    public float moveSpeed;
     public LayerMask mapStage;
     public int playerStagePos;
     public GameObject[] Stages;
@@ -17,6 +18,7 @@ public class MapSelectMove : MonoBehaviour
     public int targetNumber;
     public bool Move = true;
     private bool backMove = true;
+    private bool isMoving; // 연속 클릭 막기
     public CloudeCam Clcm;
     // Update is called once per frame
 
@@ -28,7 +30,7 @@ public class MapSelectMove : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Clcm.Go)
+        if (Input.GetMouseButtonDown(0) && Clcm.Go && !isMoving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -47,20 +49,23 @@ public class MapSelectMove : MonoBehaviour
                     playerStagePos += 1;
                     pos = Stages[playerStagePos ].transform.position;
                     Move= true;
+                    isMoving= true;
                 }
                 else if (targetNumber < playerStagePos)
                 {
                     playerStagePos -= 1;
                     pos = Stages[playerStagePos].transform.position;
                     backMove = true;
+                    isMoving = true;
                 }
                 stageNumber.instance.CurrentStageNum(targetNumber);
 }
         }
         if (Move)
         {
+            
             animator.SetBool("Walk", true);
-            transform.position = Vector3.MoveTowards(transform.position, pos, 30f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, pos, moveSpeed * Time.deltaTime);
             direction = Stages[playerStagePos].transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(direction);
             if (Vector3.Distance(transform.position, pos) < 0.1f)
@@ -73,7 +78,7 @@ public class MapSelectMove : MonoBehaviour
         if (backMove)
         {
             animator.SetBool("Walk", true);
-            transform.position = Vector3.MoveTowards(transform.position, pos, 30f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, pos, moveSpeed * Time.deltaTime);;
             direction = Stages[playerStagePos].transform.position - transform.position;
             transform.rotation = Quaternion.LookRotation(direction);
             if (Vector3.Distance(transform.position, pos) < 0.1f)
@@ -93,6 +98,10 @@ public class MapSelectMove : MonoBehaviour
             pos = Stages[playerStagePos].transform.position;
             Move = true;
         }
+        else
+        {
+            isMoving = false;
+        }
     }
     private void playerbackMove()
     {
@@ -102,24 +111,22 @@ public class MapSelectMove : MonoBehaviour
             pos = Stages[playerStagePos].transform.position;
             backMove = true;
         }
+        else
+        {
+            isMoving = false;
+        }
     }
     public void EnterInGame()
     {
-        if (playerStagePos == 0)
+       
+        for (int i = 0; i < Stages.Length; i++)
         {
-            LoadingScene.LoadScene("Stage1");
+            if(playerStagePos == i)
+            {
+                SceneManager.LoadScene(3+i);
+
+            }
         }
-        if (playerStagePos == 1)
-        {
-            LoadingScene.LoadScene("Stage2");
-        }
-        if (playerStagePos == 2)
-        {
-            LoadingScene.LoadScene("Stage3");
-        }
-        if (playerStagePos == 3)
-        {
-            LoadingScene.LoadScene("Stage4");
-        }
+     
     }
 }
