@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EndText.GetComponent<Text>().text = "1-" + (stageNumber.instance.stageNum+1).ToString() + "스테이지";
         animator = GetComponent<Animator>();
         currentPlayerStage = stageNumber.instance.stageNum;
         EndScreen.SetActive(false);
