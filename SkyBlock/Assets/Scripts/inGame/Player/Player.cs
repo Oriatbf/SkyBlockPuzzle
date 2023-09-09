@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public GameObject Particle_EnemyDestroy;
+
     public LayerMask platform;
     public LayerMask stopMoveBlock;
     public LayerMask PushBlocks;
@@ -61,7 +63,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         EndText.GetComponent<Text>().text = "1-" + (stageNumber.instance.stageNum+1).ToString() + "스테이지";
-        animator = GetComponent<Animator>();
         currentPlayerStage = stageNumber.instance.stageNum;
         EndScreen.SetActive(false);
         dontMove= false;
@@ -139,8 +140,8 @@ public class Player : MonoBehaviour
                 TurnPNG.sprite = TurnSprite;
             }
 
-            if (!StageManager.instance.clearStars1[currentPlayerStage] && !StageManager.instance.clearStars2[currentPlayerStage]&& !StageManager.instance.clearStars3[currentPlayerStage])
-                StageManager.instance.StageClear(currentPlayerStage, true, takeStar, turnClear);
+            StageManager.instance.StageClear(currentPlayerStage, true, takeStar, turnClear);
+            StageManager.instance.StageClear(currentPlayerStage+1, false, false, false);
             StarCount = 0;
         }
       
@@ -176,6 +177,7 @@ public class Player : MonoBehaviour
             if (collider.CompareTag("Goblin") || collider.CompareTag("Destroy"))
             {
                 animator.SetTrigger("Attack");
+                Instantiate(Particle_EnemyDestroy, collider.transform.position + Vector3.up * 0.5f, Particle_EnemyDestroy.transform.rotation);
                 collider.gameObject.SetActive(false);
                 PlayerconSc.GoblinDetect();
             }

@@ -2040,6 +2040,7 @@ MonoBehaviour:
   animator: {fileID: 9028320668996377782}
   playerSc: {fileID: 9028320668996377778}
   Goblin: []
+  changeEvent: {fileID: 0}
 --- !u!114 &9028320668996377778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2052,6 +2053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd963da97c55af949b01ccf4fa521ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Particle_EnemyDestroy: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
   platform:
     serializedVersion: 2
     m_Bits: 512
@@ -2075,13 +2077,14 @@ MonoBehaviour:
   EndText: {fileID: 0}
   NextStageUI: {fileID: 0}
   StarCount: 0
-  stageTurn: 0
   EndTurn: 0
+  animator: {fileID: 9028320668996377782}
   hitPoint: {fileID: 9028320668219434246}
   hitPointSize: {x: 0.5, y: 0.6, z: 0.83}
   dontMove: 0
   isStair: 0
   TurnStac: 0
+  PlayerconSc: {fileID: 0}
 --- !u!1 &9028320669060426228
 GameObject:
   m_ObjectHideFlags: 0

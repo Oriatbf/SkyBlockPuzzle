@@ -34,9 +34,12 @@ public class StageManager : MonoBehaviour
         lastClearStage = takeLastClearStage;
         if (clearStage >= lastClearStage)
         {
-            clearStars1[lastClearStage] = star1;
-            clearStars2[lastClearStage] = star2;
-            clearStars3[lastClearStage] = star3;
+            if(!clearStars1[lastClearStage])
+                clearStars1[lastClearStage] = star1;
+            if (!clearStars2[lastClearStage])
+                clearStars2[lastClearStage] = star2;
+            if (!clearStars3[lastClearStage])
+                clearStars3[lastClearStage] = star3;
         }
         else
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37777323, g: 0.6873614, b: 0.87653464, a: 1}
+  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3832,13 +3832,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 910444653}
   m_HandleRect: {fileID: 463157262}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1029964381}
+        m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
+        m_MethodName: MusicSetLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &224486309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3855,7 +3867,7 @@ RectTransform:
   - {fileID: 1505659268}
   - {fileID: 1368441575}
   m_Father: {fileID: 227072695}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3971,7 +3983,6 @@ GameObject:
   - component: {fileID: 227072694}
   - component: {fileID: 227072693}
   - component: {fileID: 227072692}
-  - component: {fileID: 227072696}
   m_Layer: 5
   m_Name: OptionCanvas
   m_TagString: Untagged
@@ -4057,9 +4068,9 @@ RectTransform:
   - {fileID: 1466538430}
   - {fileID: 801212984}
   - {fileID: 1409840709}
+  - {fileID: 1513162524}
   - {fileID: 224486309}
   - {fileID: 961442282}
-  - {fileID: 1513162524}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4068,21 +4079,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &227072696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227072691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc0db95bffb84e45b0c61bf59278561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: a21dc2be2e16e224ca8560d8bd4bc832, type: 2}
-  Musicslider: {fileID: 224486308}
-  Effectslider: {fileID: 961442281}
 --- !u!1001 &239204557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15672,7 +15668,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1029964381}
+        m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
+        m_MethodName: EffectSetLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &961442282
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15689,7 +15697,7 @@ RectTransform:
   - {fileID: 306416554}
   - {fileID: 740923198}
   m_Father: {fileID: 227072695}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16998,6 +17006,7 @@ GameObject:
   - component: {fileID: 1029964378}
   - component: {fileID: 1029964377}
   - component: {fileID: 1029964376}
+  - component: {fileID: 1029964381}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -17115,6 +17124,21 @@ MonoBehaviour:
   - {fileID: 453022055}
   yesStar: {fileID: 21300000, guid: 32901b2bcfdba854e8580bd8f5f376ec, type: 3}
   noStar: {fileID: 21300000, guid: 7e85130c9b494dc46a36675817cf87c9, type: 3}
+--- !u!114 &1029964381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029964375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc0db95bffb84e45b0c61bf59278561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: a21dc2be2e16e224ca8560d8bd4bc832, type: 2}
+  Musicslider: {fileID: 224486308}
+  Effectslider: {fileID: 961442281}
 --- !u!1001 &1043470564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22986,7 +23010,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409840708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -24.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22995,8 +23019,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -293, y: 208}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: -293, y: 257.6403}
+  m_SizeDelta: {x: 400, y: 76.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1409840710
 MonoBehaviour:
@@ -24808,17 +24832,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513162523}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -22.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 227072695}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -316, y: 20}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: -316, y: 65.56}
+  m_SizeDelta: {x: 400, y: 86.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513162525
 MonoBehaviour:

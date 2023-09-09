@@ -38,16 +38,16 @@ public class MapSelectMove : MonoBehaviour
             {
                 for(int i = 0; i< Stages.Length; i++)
                 {
-                    if (Stages[i].name == hit.collider.gameObject.name)
+                    if (StageManager.instance.clearStage >= i && Stages[i] == hit.collider.gameObject)
                     {
-                        targetNumber = i;                                 
+                        targetNumber = i;                     
                     }
                 }
               
                 if(targetNumber > playerStagePos)
                 {
                     playerStagePos += 1;
-                    pos = Stages[playerStagePos ].transform.position;
+                    pos = Stages[playerStagePos].transform.position;
                     Move= true;
                     isMoving= true;
                 }
@@ -118,15 +118,6 @@ public class MapSelectMove : MonoBehaviour
     }
     public void EnterInGame()
     {
-       
-        for (int i = 0; i < Stages.Length; i++)
-        {
-            if(playerStagePos == i)
-            {
-                SceneManager.LoadScene(3+i);
-
-            }
-        }
-     
+        SceneManager.LoadScene(3 + playerStagePos);
     }
 }
