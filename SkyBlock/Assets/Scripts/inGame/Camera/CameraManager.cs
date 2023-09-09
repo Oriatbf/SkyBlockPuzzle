@@ -111,14 +111,14 @@ public class CameraManager : MonoBehaviour
 
         if (slideNum == 3 && timer <= 0)
         {
-            timer = 0.5f;
-            transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 90, transform.eulerAngles.z), 1.5f);
+            timer = 1.2f;
+            transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 90, transform.eulerAngles.z), 1.2f);
 
         }
         else if(slideNum == 4 && timer <= 0)
         {
-            timer = 0.5f;
-            transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 90, transform.eulerAngles.z), 1.5f);
+            timer = 1.2f;
+            transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 90, transform.eulerAngles.z), 1.2f);
         }
     }
 }

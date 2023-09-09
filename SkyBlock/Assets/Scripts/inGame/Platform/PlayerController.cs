@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour
 
     public void Detect()
     {
-        
         //COl ALL
         Collider[] Allcolliders = Physics.OverlapSphere(this.transform.position, 10000f, MoveTile);
         foreach (Collider Allcollider in Allcolliders)
@@ -97,6 +96,15 @@ public class PlayerController : MonoBehaviour
             PushBlock PushBlockSc = AllPushBLock.GetComponent<PushBlock>();
             if (PushBlockSc != null)
                 PushBlockSc.ClickPoint.gameObject.SetActive(false);
+        }
+
+        //Enemy ALL
+        Collider[] AllEnemyBlocks = Physics.OverlapSphere(this.transform.position, 10000f, PushBlock);
+        foreach (Collider AllEnemyBLock in AllEnemyBlocks)
+        {
+            PushBlock EnemySc = AllEnemyBLock.GetComponent<PushBlock>();
+            if (EnemySc != null)
+                EnemySc.ClickPoint.gameObject.SetActive(false);
         }
 
         //COL 2f Sphere ON
@@ -126,14 +134,19 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            Debug.DrawRay(collider.transform.position, Vector3.up * 2);
             //Enemy SugneGung
-            if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 2f, Enemy))
+            if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 5f, Enemy))
             {
-                Debug.Log("아직 Enemy는 구현 못해쓰");
+                EnemyClickpoint EnemySc = hit.transform.GetComponent<EnemyClickpoint>();
                 if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
                 {
                     MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
-                    detectMeshRenderer.enabled = false;
+                    if (detectMeshRenderer.enabled == true)
+                    {
+                       EnemySc.ClickPoint.gameObject.SetActive(true);
+                        detectMeshRenderer.enabled = false;
+                    }
                 }
             }
 
@@ -170,4 +183,10 @@ public class PlayerController : MonoBehaviour
             Goblin[i].GetComponent<Goblin_E>().GoblinMove();
         }
     }
+
+    public void GoblinDetect()
+    {
+        Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+    }
+
 }

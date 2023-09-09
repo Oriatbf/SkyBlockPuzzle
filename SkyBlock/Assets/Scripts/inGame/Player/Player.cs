@@ -37,9 +37,8 @@ public class Player : MonoBehaviour
     public static  float MoveCool;
     public int EndTurn; // 턴 수 제약 조건
     
-
-    Animator animator;
-    Rigidbody rigidbody;
+    [SerializeField]
+    private Animator animator;
     
     public Transform hitPoint;
 
@@ -56,13 +55,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool isStair = false;
     public int TurnStac = 0;
+
+    public PlayerController PlayerconSc;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentPlayerStage = stageNumber.instance.stageNum;
         EndScreen.SetActive(false);
-        animator= GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody>();
         dontMove= false;
     }
     private void FixedUpdate()
@@ -174,7 +174,9 @@ public class Player : MonoBehaviour
         {
             if (collider.CompareTag("Goblin") || collider.CompareTag("Destroy"))
             {
-               collider.gameObject.SetActive(false);
+                animator.SetTrigger("Attack");
+                collider.gameObject.SetActive(false);
+                PlayerconSc.GoblinDetect();
             }
               
         }

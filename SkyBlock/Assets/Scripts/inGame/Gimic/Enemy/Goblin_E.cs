@@ -31,7 +31,9 @@ public class Goblin_E : MonoBehaviour
     }
     void Update()
     {
-        if(TurnStac % AttackNum == 0 && TurnStac != 0 && attackON)
+
+
+        if (TurnStac % AttackNum == 0 && TurnStac != 0 && attackON)
         {
             Attack();
         }
@@ -141,7 +143,8 @@ public class Goblin_E : MonoBehaviour
     IEnumerator playerDie()
     {
         yield return new WaitForSeconds(1);
-        player.gameObject.SetActive(false);
         player.GetComponent<Player>().Lose();
+        yield return new WaitForSeconds(0.1f);
+        player.gameObject.SetActive(false);
     }
 }

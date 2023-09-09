@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37777323, g: 0.6873614, b: 0.87653464, a: 1}
+  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5500,11 +5500,11 @@ GameObject:
   - component: {fileID: 325863555}
   m_Layer: 0
   m_Name: MusicScore
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &325863555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5527,7 +5527,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5483797547379379213, guid: a21dc2be2e16e224ca8560d8bd4bc832, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 381426074a60f8e48934c72c194f1dd4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

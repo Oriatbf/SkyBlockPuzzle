@@ -65,7 +65,7 @@ public class PushBlock : MonoBehaviour
         {
             transform.DOMoveX(transform.position.x + 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
-            PlayerController.timer = 0.5f;
+            PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
@@ -76,7 +76,7 @@ public class PushBlock : MonoBehaviour
         {
             transform.DOMoveX(transform.position.x - 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
-            PlayerController.timer = 0.5f;
+            PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
@@ -87,7 +87,7 @@ public class PushBlock : MonoBehaviour
         {
             transform.DOMoveZ(transform.position.z + 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
-            PlayerController.timer = 0.5f;
+            PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
@@ -98,7 +98,7 @@ public class PushBlock : MonoBehaviour
         {
             transform.DOMoveZ(transform.position.z - 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
-            PlayerController.timer = 0.5f;
+            PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
