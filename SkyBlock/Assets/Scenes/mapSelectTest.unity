@@ -17117,7 +17117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stage: {fileID: 456436333}
-  player: {fileID: 0}
+  player: {fileID: 264483024}
   Stars:
   - {fileID: 1080078470}
   - {fileID: 2085971335}
@@ -29712,19 +29712,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d50d8529a8b685d4490e7e1b7fb42959, type: 3}
---- !u!114 &1826849557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148602799688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b7a72c35daba743b5422963de93ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 1466620647}
 --- !u!65 &1826849560
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33620,7 +33607,6 @@ GameObject:
   - component: {fileID: 3469287837061600087}
   - component: {fileID: 1711813856221931421}
   - component: {fileID: 1826849560}
-  - component: {fileID: 1826849557}
   m_Layer: 9
   m_Name: Stage1
   m_TagString: Untagged

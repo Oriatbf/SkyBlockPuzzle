@@ -11,18 +11,12 @@ public class Stagestar : MonoBehaviour
     public Image[] Stars;
     public Sprite yesStar;
     public Sprite noStar;
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        
-    }
-    // Update is called once per frame
+
     void Update()
     {
-        currentStage = player.GetComponent<MapSelectMove>().playerStagePos ;
+        currentStage = player.GetComponent<MapSelectMove>().playerStagePos;
 
-        Stage.text = "1-" +(currentStage+1).ToString();
+        Stage.text =( "1-" +(currentStage+1)).ToString();
 
         if (StageManager.instance.clearStars1[currentStage])
             Stars[0].sprite= yesStar;

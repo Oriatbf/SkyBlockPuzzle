@@ -99,10 +99,10 @@ public class PlayerController : MonoBehaviour
         }
 
         //Enemy ALL
-        Collider[] AllEnemyBlocks = Physics.OverlapSphere(this.transform.position, 10000f, PushBlock);
+        Collider[] AllEnemyBlocks = Physics.OverlapSphere(this.transform.position, 10000f, Enemy);
         foreach (Collider AllEnemyBLock in AllEnemyBlocks)
         {
-            PushBlock EnemySc = AllEnemyBLock.GetComponent<PushBlock>();
+            EnemyClickpoint EnemySc = AllEnemyBLock.GetComponent<EnemyClickpoint>();
             if (EnemySc != null)
                 EnemySc.ClickPoint.gameObject.SetActive(false);
         }
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
                     MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                     if (detectMeshRenderer.enabled == true)
                     {
-                       EnemySc.ClickPoint.gameObject.SetActive(true);
+                        EnemySc.ClickPoint.gameObject.SetActive(true);
                         detectMeshRenderer.enabled = false;
                     }
                 }
@@ -154,13 +154,16 @@ public class PlayerController : MonoBehaviour
             if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 2f, PushBlock))
             {
                 PushBlock PushBlockSc = hit.transform.GetComponent<PushBlock>();
-                if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+                if(hit.transform.position.y > transform.position.y)
                 {
-                    MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
-                    if (detectMeshRenderer.enabled == true)
+                    if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
                     {
-                        PushBlockSc.ClickPoint.gameObject.SetActive(true);
-                        detectMeshRenderer.enabled = false;
+                        MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                        if (detectMeshRenderer.enabled == true)
+                        {
+                            PushBlockSc.ClickPoint.gameObject.SetActive(true);
+                            detectMeshRenderer.enabled = false;
+                        }
                     }
                 }
             }
@@ -186,7 +189,9 @@ public class PlayerController : MonoBehaviour
 
     public void GoblinDetect()
     {
-        Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+        Goblin = null;
+        if(GameObject.FindGameObjectsWithTag("Goblin") != null)
+            Goblin = GameObject.FindGameObjectsWithTag("Goblin");
     }
 
 }

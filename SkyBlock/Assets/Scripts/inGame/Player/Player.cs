@@ -180,6 +180,7 @@ public class Player : MonoBehaviour
                 Instantiate(Particle_EnemyDestroy, collider.transform.position + Vector3.up * 0.5f, Particle_EnemyDestroy.transform.rotation);
                 collider.gameObject.SetActive(false);
                 PlayerconSc.GoblinDetect();
+                PlayerconSc.Detect();
             }
               
         }
