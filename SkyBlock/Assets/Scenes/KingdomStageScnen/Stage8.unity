@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37788615, g: 0.68749017, b: 0.87652427, a: 1}
+  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5623,6 +5623,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   ChangeButton: {fileID: 0}
+  CancelButton: {fileID: 0}
   Aobj: {fileID: 0}
   Bobj: {fileID: 0}
   time: 1.5

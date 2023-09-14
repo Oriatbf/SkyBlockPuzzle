@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 197665175}
   - component: {fileID: 197665174}
   m_Layer: 5
-  m_Name: Cancel
+  m_Name: CancelButtonUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1368,6 +1368,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   ChangeButton: {fileID: 0}
+  CancelButton: {fileID: 0}
   Aobj: {fileID: 0}
   Bobj: {fileID: 0}
   time: 0.2

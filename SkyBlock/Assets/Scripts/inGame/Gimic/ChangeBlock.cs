@@ -10,6 +10,7 @@ public class ChangeBlock : MonoBehaviour
     public Vector3 pos2;
     public LayerMask blockLayer;
     public GameObject ChangeButton;
+    public GameObject CancelButton;
 
     public GameObject Aobj;
     public GameObject Bobj;
@@ -24,10 +25,15 @@ public class ChangeBlock : MonoBehaviour
 
     public PlayerController plconSc;
 
-    void Start()
+    private void Awake()
     {
         GameObject plconObj = GameObject.FindGameObjectWithTag("Player");
         plconSc = plconObj.GetComponent<PlayerController>();
+        CancelButton = GameObject.Find("CancelButtonUI");
+    }
+    void Start()
+    {
+        CancelButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -142,6 +148,7 @@ public class ChangeBlock : MonoBehaviour
             SelectB = false;
             Aobj = null;
             Bobj = null;
+            CancelButton.SetActive(false);
             ChangeCoolStac = 3;
             StartCoroutine(wait1sec2());
         }
@@ -152,6 +159,7 @@ public class ChangeBlock : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         isChange = true;
+        CancelButton.SetActive(true);
     }
 
     IEnumerator wait1sec2()
@@ -172,6 +180,7 @@ public class ChangeBlock : MonoBehaviour
         SelectA = false;
         SelectB = false;
         isChange = false;
+        CancelButton.SetActive(false);
         Aobj = null;
         Bobj = null;
         StartCoroutine(wait1sec2());

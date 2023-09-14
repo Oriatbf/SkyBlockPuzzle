@@ -18,6 +18,7 @@ public class PushBlock : MonoBehaviour
     public Ease ease;
     public static bool DetetcON;
 
+    RaycastHit hit;
     RaycastHit hitt;
 
     [SerializeField]
@@ -31,14 +32,14 @@ public class PushBlock : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.up, out hit, 2f, MoveTile))
+        RaycastHit hittt;
+        if (Physics.Raycast(transform.position, Vector3.up, out hittt, 2f, MoveTile))
         {
-            MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+            MeshRenderer detectMeshRenderer = hittt.collider.GetComponent<MeshRenderer>();
             if (detectMeshRenderer.enabled == true)
-                hit.collider.transform.parent = parentObject.transform;
+                hittt.collider.transform.parent = parentObject.transform;
             else
-                hit.collider.transform.parent = gameObject.transform;
+                hittt.collider.transform.parent = gameObject.transform;
         }
 
     }
@@ -60,7 +61,6 @@ public class PushBlock : MonoBehaviour
 
     public void blockMove()
     {
-        RaycastHit hit;
         if (player.transform.forward == Vector3.right && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), out hit, 1.2f, StopBlock))
         {
             transform.DOMoveX(transform.position.x + 2f, 1).SetEase(ease);
@@ -105,8 +105,6 @@ public class PushBlock : MonoBehaviour
                 detectMeshRenderer.enabled = true;
             }
         }
-
-
     }
 
     void MoveTIleRegen()
