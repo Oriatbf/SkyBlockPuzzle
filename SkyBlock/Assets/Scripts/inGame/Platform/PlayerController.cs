@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         Spider = GameObject.FindGameObjectsWithTag("Spider");
         nPosition = transform.position;
         Detect();
+        Tutorial.instance.TutorialPlay();
     }
 
     void Update()
@@ -51,9 +53,9 @@ public class PlayerController : MonoBehaviour
             timer = 0.1f; // Detect();
             MoveGoblin();
             playerSc.TurnStac += 1;
+            Tutorial.instance.TutorialPlayPos(transform.position);
         }
-
-        if (Input.GetMouseButtonDown(0) && isMoving == false && timer <= 0)
+        if (Input.GetMouseButtonDown(0) && isMoving == false && timer <= 0 && !EventSystem.current.IsPointerOverGameObject())
         {
             Go();
         }
