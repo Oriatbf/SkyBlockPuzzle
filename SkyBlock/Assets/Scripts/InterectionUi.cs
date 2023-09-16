@@ -14,12 +14,15 @@ public class InterectionUi : MonoBehaviour
     public static bool isDogamCanvas = false;
 
     public int dogamPage = 0;
+    public MapButton MapButtonSc;
+    public CloudeCam Clcam;
 
     private void Start()
     {
         DogamBack.gameObject.SetActive(false);
         OptionCanvas.SetActive(false);
         DogamCanvas.SetActive(false);
+
     }
 
 
@@ -101,4 +104,10 @@ public class InterectionUi : MonoBehaviour
         
     }
 
+    public void GoDOgamIcon()
+    {
+        MapButtonSc.MAPNum = 1;
+        MapButtonSc.MapChapterCountNum.text = "Main";
+        Clcam.BackButtonClick();
+    }
 }

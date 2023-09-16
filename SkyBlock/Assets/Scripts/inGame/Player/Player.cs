@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(hitPoint.position, hitPointSize);
         foreach(Collider collider in colliders)
         {
-            if (collider.CompareTag("Goblin") || collider.CompareTag("Destroy"))
+            if (collider.CompareTag("Goblin") || collider.CompareTag("Spider") || collider.CompareTag("Destroy"))
             {
                 animator.SetTrigger("Attack");
                 Instantiate(Particle_EnemyDestroy, collider.transform.position + Vector3.up * 0.5f, Particle_EnemyDestroy.transform.rotation);

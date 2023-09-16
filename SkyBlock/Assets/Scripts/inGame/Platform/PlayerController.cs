@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask PlayerLayer;
     [SerializeField] Animator animator;
     [SerializeField] Player playerSc;
-    public GameObject[] Goblin;
+    public GameObject[] Goblin, Spider;
     public GameObject changeEvent;
     Vector3 nPosition;
 
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+        Spider = GameObject.FindGameObjectsWithTag("Spider");
         nPosition = transform.position;
         Detect();
     }
@@ -135,7 +136,7 @@ public class PlayerController : MonoBehaviour
                     detectMeshRenderer.enabled = false;
                 }
             }
-            //Enemy SugneGung
+            //Enemy
             if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 5f, Enemy))
             {
                 EnemyClickpoint EnemySc = hit.transform.GetComponent<EnemyClickpoint>();
@@ -195,6 +196,10 @@ public class PlayerController : MonoBehaviour
         {
             Goblin[i].GetComponent<Goblin_E>().GoblinMove();
         }
+        for (i = 0; i < Spider.Length; i++)
+        {
+            Spider[i].GetComponent<Spider_E>().SpiderMove();
+        }
     }
 
     public void GoblinDetect()
@@ -202,6 +207,9 @@ public class PlayerController : MonoBehaviour
         Goblin = null;
         if(GameObject.FindGameObjectsWithTag("Goblin") != null)
             Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+        Spider = null;
+        if (GameObject.FindGameObjectsWithTag("Spider") != null)
+            Goblin = GameObject.FindGameObjectsWithTag("Spider");
     }
 
 }
