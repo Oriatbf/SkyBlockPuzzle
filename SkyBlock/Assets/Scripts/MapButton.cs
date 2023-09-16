@@ -118,24 +118,7 @@ public class MapButton : MonoBehaviour
                 slideNum = 0;
             }
         }
-        /*
-        //스테이지 변경
-        if(slideNum == 3 && selNum == playerPosition && Clcam.Go == true
-            || UILeftRightNum == 2 && selNum == playerPosition && Clcam.Go == true)
-        {
-            UILeftRightNum = 0;
-            selNum += 1;
-            slideNum = 0;
-            //CameraSet();
-        }
-        if (slideNum == 4 && selNum != 0 && selNum == playerPosition && Clcam.Go == true
-            || UILeftRightNum == 1 && selNum != 0 && selNum == playerPosition && Clcam.Go == true)
-        {
-            UILeftRightNum = 0;
-            selNum -= 1;
-            slideNum = 0;
-            //CameraSet();
-        }*/
+      
 
         //맵 변경
         if (slideNum == 3 && MAPNum != 4 && Clcam.Go == false
