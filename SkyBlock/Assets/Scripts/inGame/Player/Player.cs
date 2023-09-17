@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
             if (StarCount == 1 && TurnStac < EndTurn)
             {
                 turnClear= true;
-                TurnImageText.color = new Color(255,192,25,255);
+                TurnImageText.color = new Color(255 / 255.0f, 192 / 255.0f, 25 / 255.0f, 1.0f);
             }
 
             StageManager.instance.StageClear(currentPlayerStage, true, takeStar, turnClear);
