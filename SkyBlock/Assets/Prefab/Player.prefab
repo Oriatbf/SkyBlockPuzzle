@@ -824,7 +824,6 @@ GameObject:
   - component: {fileID: 9028320668085271770}
   - component: {fileID: 9028320668085271771}
   - component: {fileID: 9028320668085271768}
-  - component: {fileID: 9028320668085271769}
   m_Layer: 7
   m_Name: sword uv
   m_TagString: Untagged
@@ -898,18 +897,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9028320668085271769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9028320668085271766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a9ed8e650c36248bc372d3417edc69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9028320668089118663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,6 +2033,7 @@ MonoBehaviour:
   animator: {fileID: 9028320668996377782}
   playerSc: {fileID: 9028320668996377778}
   Goblin: []
+  Spider: []
   changeEvent: {fileID: 0}
 --- !u!114 &9028320668996377778
 MonoBehaviour:
@@ -2076,14 +2064,13 @@ MonoBehaviour:
   FinishSprite: {fileID: 21300000, guid: 84acd7f994136a149915fb2d87893e76, type: 3}
   starPNG: {fileID: 0}
   StarSprite: {fileID: 21300000, guid: 010fee0e02f3a9543bc9394bd77a43c0, type: 3}
-  TurnPNG: {fileID: 0}
-  TurnSprite: {fileID: 21300000, guid: a5bf8bf65971aca41873514358930b26, type: 3}
+  TurnImageText: {fileID: 0}
   WeaponOBJ: {fileID: 9028320668085271766}
   EndScreen: {fileID: 0}
   EndText: {fileID: 0}
   NextStageUI: {fileID: 0}
   StarCount: 0
-  EndTurn: 5
+  EndTurn: 10
   animator: {fileID: 9028320668996377782}
   hitPoint: {fileID: 9028320668219434246}
   hitPointSize: {x: 0.5, y: 0.6, z: 0.83}

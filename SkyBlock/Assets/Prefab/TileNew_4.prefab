@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6716473941987791901}
   - component: {fileID: 8849927581467238615}
   - component: {fileID: 7859018426720451662}
+  - component: {fileID: -1625579269094121666}
   m_Layer: 9
   m_Name: TileNew_4
   m_TagString: ChangePlatform
@@ -107,6 +108,19 @@ MonoBehaviour:
   ClickMaterial: {fileID: 2100000, guid: 92b6d923258d574478806c34d3943d05, type: 2}
   defaultMaterials: []
   realDefault: []
+--- !u!65 &-1625579269094121666
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048624138925555970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.000883, y: 2.1000972, z: 2}
+  m_Center: {x: 0.0004416108, y: 0.05004865, z: 0}
 --- !u!1 &7859018426056740828
 GameObject:
   m_ObjectHideFlags: 0
