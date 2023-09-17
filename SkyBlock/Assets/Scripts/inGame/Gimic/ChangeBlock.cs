@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeBlock : MonoBehaviour
 {
+
     public int i = 1;
     public Vector3 pos1;
     public Vector3 pos2;
     public LayerMask blockLayer;
     public GameObject ChangeButton;
     public GameObject CancelButton;
+    public Image ChangeButtonImage;
+    public Image ChangeButtonCoolImage;
+    public GameObject ChangeButtonCoolObj;
+    public ChangeButtonSprites ChangeButtonSpriteSc;
+    public RectTransform ChangeButtonRT;
 
     public GameObject Aobj;
     public GameObject Bobj;
@@ -29,14 +36,41 @@ public class ChangeBlock : MonoBehaviour
     {
         GameObject plconObj = GameObject.FindGameObjectWithTag("Player");
         plconSc = plconObj.GetComponent<PlayerController>();
+        ChangeButtonImage = GameObject.Find("ChangeButton").GetComponent<Image>();
+        ChangeButtonRT = GameObject.Find("ChangeButton").GetComponent<RectTransform>();
+        ChangeButtonCoolObj = GameObject.Find("ChangeButtonCool");
+        ChangeButtonCoolImage = GameObject.Find("ChangeButtonCool").GetComponent<Image>();
         CancelButton = GameObject.Find("CancelButtonUI");
+        ChangeButtonSpriteSc = GameObject.Find("ChangeButton").GetComponent<ChangeButtonSprites>();
     }
     void Start()
     {
         CancelButton.SetActive(false);
+        ChangeButtonCoolObj.SetActive(false);
     }
 
-    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if(ChangeCoolStac == 3)
+        {
+            ChangeButtonCoolObj.SetActive(true);
+            ChangeButtonCoolImage.fillAmount = 1;
+        }
+        else if(ChangeCoolStac == 2)
+        {
+            ChangeButtonCoolImage.fillAmount = 0.66f;
+        }
+        else if (ChangeCoolStac == 1)
+        {
+            ChangeButtonCoolImage.fillAmount = 0.33f;
+        }
+        else
+        {
+            ChangeButtonCoolImage.fillAmount = 0;
+            ChangeButtonCoolObj.SetActive(false);
+        }
+    }
+
     void Update()
     {
         if (start)
@@ -149,6 +183,9 @@ public class ChangeBlock : MonoBehaviour
             Aobj = null;
             Bobj = null;
             CancelButton.SetActive(false);
+            ChangeButtonImage.sprite = ChangeButtonSpriteSc.ButtonSprites[0];
+            ChangeButtonRT.sizeDelta = new Vector2(220, 262);
+            ChangeButtonRT.anchoredPosition = new Vector2(ChangeButtonRT.anchoredPosition.x, -815f);
             ChangeCoolStac = 3;
             StartCoroutine(wait1sec2());
         }
@@ -160,6 +197,9 @@ public class ChangeBlock : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isChange = true;
         CancelButton.SetActive(true);
+        ChangeButtonImage.sprite = ChangeButtonSpriteSc.ButtonSprites[1];
+        ChangeButtonRT.sizeDelta = new Vector2(201, 218);
+        ChangeButtonRT.anchoredPosition = new Vector2(ChangeButtonRT.anchoredPosition.x, -824f);
     }
 
     IEnumerator wait1sec2()
@@ -181,6 +221,9 @@ public class ChangeBlock : MonoBehaviour
         SelectB = false;
         isChange = false;
         CancelButton.SetActive(false);
+        ChangeButtonImage.sprite = ChangeButtonSpriteSc.ButtonSprites[0];
+        ChangeButtonRT.sizeDelta = new Vector2(220, 262);
+        ChangeButtonRT.anchoredPosition = new Vector2(ChangeButtonRT.anchoredPosition.x, -816f);
         Aobj = null;
         Bobj = null;
         StartCoroutine(wait1sec2());

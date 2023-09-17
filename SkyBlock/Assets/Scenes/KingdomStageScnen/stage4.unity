@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
+  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -818,7 +818,6 @@ GameObject:
   - component: {fileID: 856628560}
   - component: {fileID: 856628559}
   - component: {fileID: 856628558}
-  - component: {fileID: 856628561}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -876,35 +875,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &856628561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856628557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14181b0f2d9886a4c956d39bbef90bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  i: 1
-  pos1: {x: 0, y: 0, z: 0}
-  pos2: {x: 0, y: 0, z: 0}
-  blockLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  ChangeButton: {fileID: 0}
-  CancelButton: {fileID: 0}
-  Aobj: {fileID: 0}
-  Bobj: {fileID: 0}
-  time: 0.2
-  start: 0
-  isChange: 0
-  ChangeCoolStac: 0
-  SelectA: 0
-  SelectB: 0
-  plconSc: {fileID: 1965476227}
 --- !u!1 &861839792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1007,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d409ac356cc85940bfce84dadd384a3, type: 3}
+--- !u!114 &1066548721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5227187340466492401, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+  m_PrefabInstance: {fileID: 1163950924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14181b0f2d9886a4c956d39bbef90bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1088032719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1132,7 @@ PrefabInstance:
     - target: {fileID: 4636532312452565386, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 856628561}
+      objectReference: {fileID: 1066548721}
     - target: {fileID: 4636532312452565386, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Change
@@ -1823,17 +1804,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd963da97c55af949b01ccf4fa521ffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1965476227 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9028320668996377781, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
-  m_PrefabInstance: {fileID: 329618981}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67baafaaf52a59d47a50e99071aec517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1983313848

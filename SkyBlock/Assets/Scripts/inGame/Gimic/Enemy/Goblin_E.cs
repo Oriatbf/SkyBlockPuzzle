@@ -80,6 +80,7 @@ public class Goblin_E : MonoBehaviour
 
     public void GoblinMove()
     {
+        Debug.Log("움직임1");
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
         {
             Attack();
@@ -125,6 +126,7 @@ public class Goblin_E : MonoBehaviour
             isWall = false;
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
             StartCoroutine(WaitPlayerMove());
+            Debug.Log("움직임2");
         }
        
         

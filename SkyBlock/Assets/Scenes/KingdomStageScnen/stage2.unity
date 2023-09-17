@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
+  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -816,7 +816,7 @@ PrefabInstance:
     - target: {fileID: 9028320668996377781, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: changeEvent
       value: 
-      objectReference: {fileID: 856628557}
+      objectReference: {fileID: 0}
     - target: {fileID: 9028320668996377785, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -1212,7 +1212,6 @@ GameObject:
   - component: {fileID: 856628560}
   - component: {fileID: 856628559}
   - component: {fileID: 856628558}
-  - component: {fileID: 856628561}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1270,35 +1269,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &856628561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856628557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14181b0f2d9886a4c956d39bbef90bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  i: 1
-  pos1: {x: 0, y: 0, z: 0}
-  pos2: {x: 0, y: 0, z: 0}
-  blockLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  ChangeButton: {fileID: 0}
-  CancelButton: {fileID: 0}
-  Aobj: {fileID: 0}
-  Bobj: {fileID: 0}
-  time: 0.2
-  start: 0
-  isChange: 0
-  ChangeCoolStac: 0
-  SelectA: 0
-  SelectB: 0
-  plconSc: {fileID: 523316354}
 --- !u!1 &861839792
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,7 +2169,7 @@ PrefabInstance:
     - target: {fileID: 4636532312452565386, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 856628561}
+      objectReference: {fileID: 1961910941}
     - target: {fileID: 4636532312452565386, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Change
@@ -2258,6 +2228,17 @@ PrefabInstance:
       objectReference: {fileID: 523316354}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+--- !u!114 &1961910941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5227187340466492401, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+  m_PrefabInstance: {fileID: 1961910940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14181b0f2d9886a4c956d39bbef90bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1961910942 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4953190324315974046, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}

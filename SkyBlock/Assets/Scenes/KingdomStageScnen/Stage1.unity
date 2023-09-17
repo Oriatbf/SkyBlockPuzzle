@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
+  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5319,7 +5319,6 @@ GameObject:
   - component: {fileID: 856628560}
   - component: {fileID: 856628559}
   - component: {fileID: 856628558}
-  - component: {fileID: 856628561}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -5377,35 +5376,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &856628561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856628557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14181b0f2d9886a4c956d39bbef90bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  i: 1
-  pos1: {x: 0, y: 0, z: 0}
-  pos2: {x: 0, y: 0, z: 0}
-  blockLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  ChangeButton: {fileID: 0}
-  CancelButton: {fileID: 0}
-  Aobj: {fileID: 0}
-  Bobj: {fileID: 0}
-  time: 1.5
-  start: 0
-  isChange: 0
-  ChangeCoolStac: 0
-  SelectA: 0
-  SelectB: 0
-  plconSc: {fileID: 1968713960}
 --- !u!1 &861839792
 GameObject:
   m_ObjectHideFlags: 0
@@ -6414,22 +6384,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8710903756101182354, guid: 4be451d9deb226f46996e0996f30b2f4, type: 3}
   m_PrefabInstance: {fileID: 1360996939}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1968713958 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9028320668996377779, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
-  m_PrefabInstance: {fileID: 869273662}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1968713960 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9028320668996377781, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
-  m_PrefabInstance: {fileID: 869273662}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968713958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67baafaaf52a59d47a50e99071aec517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1983313848
 GameObject:
   m_ObjectHideFlags: 0
@@ -6668,22 +6622,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1498362032, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 856628561}
-    - target: {fileID: 1890968271067768121, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 565987766}
-    - target: {fileID: 4636532312452565386, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 856628561}
-    - target: {fileID: 4953190323107420008, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1968713958}
     - target: {fileID: 4953190324152403408, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -6732,19 +6670,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraCenter
       objectReference: {fileID: 0}
-    - target: {fileID: 4953190324187030833, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 565987766}
-    - target: {fileID: 7246955951054015597, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 565987766}
-    - target: {fileID: 8210636503272881522, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 565987766}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 83440601, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
 --- !u!1 &7246955951808760980 stripped
 GameObject:

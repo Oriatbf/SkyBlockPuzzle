@@ -20,16 +20,30 @@ public class PlayerController : MonoBehaviour
     public static float timer; // Push 0.5f, golbin walk 1f, goblin attack 2f
     bool isMoving;
     private bool gameInSpider;
+    public bool gameInGoblin;
 
-    void Start()
+    void Awake()
     {
+        changeEvent = GameObject.Find("InGameCanvas");
+        Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         Spider = GameObject.FindGameObjectsWithTag("Spider");
+    }
+    void Start()
+    {
         nPosition = transform.position;
         Detect();
-        Tutorial.instance.TutorialPlay();
         if (Spider == null)
             gameInSpider = false;
+        else
+            gameInSpider = true;
+
+        if (Goblin == null)
+            gameInGoblin = false;
+        else
+            gameInGoblin = true;
+
+        Tutorial.instance.TutorialPlay();
     }
 
     void Update()
@@ -116,7 +130,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //COL 2f Sphere ON
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 2f, MoveTile);
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1.8f, MoveTile);
         foreach (Collider collider in colliders)
         {
             MeshRenderer otherMeshRenderer = collider.GetComponent<MeshRenderer>();
@@ -196,14 +210,17 @@ public class PlayerController : MonoBehaviour
     }
     void MoveGoblin()
     {
-        int i = 0;
-        for (i = 0; i < Goblin.Length; i++)
+        if (gameInGoblin)
         {
-            Goblin[i].GetComponent<Goblin_E>().GoblinMove();
+            for (int i = 0; i < Goblin.Length; i++)
+            {
+                Goblin[i].GetComponent<Goblin_E>().GoblinMove();
+            }
         }
+
         if (gameInSpider)
         {
-            for (i = 0; i < Spider.Length; i++)
+            for (int i = 0; i < Spider.Length; i++)
             {
                 Spider[i].GetComponent<Spider_E>().SpiderMove();
             }

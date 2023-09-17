@@ -273,7 +273,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 856628561}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeBlock, Assembly-CSharp
         m_MethodName: Cancel
         m_Mode: 1
@@ -539,7 +539,7 @@ PrefabInstance:
     - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: TurnPNG
       value: 
-      objectReference: {fileID: 894469054}
+      objectReference: {fileID: 0}
     - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: starPNG
       value: 
@@ -1091,7 +1091,7 @@ PrefabInstance:
     - target: {fileID: 5980524307004167664, guid: 52e8a034e5efca34b8c9f0c90932beed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 856628561}
+      objectReference: {fileID: 0}
     - target: {fileID: 5980524307004167664, guid: 52e8a034e5efca34b8c9f0c90932beed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Change
@@ -1291,7 +1291,6 @@ GameObject:
   - component: {fileID: 856628560}
   - component: {fileID: 856628559}
   - component: {fileID: 856628558}
-  - component: {fileID: 856628561}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1349,35 +1348,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &856628561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856628557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14181b0f2d9886a4c956d39bbef90bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  i: 1
-  pos1: {x: 0, y: 0, z: 0}
-  pos2: {x: 0, y: 0, z: 0}
-  blockLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  ChangeButton: {fileID: 0}
-  CancelButton: {fileID: 0}
-  Aobj: {fileID: 0}
-  Bobj: {fileID: 0}
-  time: 0.2
-  start: 0
-  isChange: 0
-  ChangeCoolStac: 0
-  SelectA: 0
-  SelectB: 0
-  plconSc: {fileID: 0}
 --- !u!1 &861839792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,17 +1543,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4796205361307657049, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
   m_PrefabInstance: {fileID: 894469050}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &894469054 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4796205360304905646, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
-  m_PrefabInstance: {fileID: 894469050}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &894469055 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4796205360067536565, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
