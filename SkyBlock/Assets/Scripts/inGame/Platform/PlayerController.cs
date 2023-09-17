@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
         else
             gameInGoblin = true;
 
-        Tutorial.instance.TutorialPlay();
+        if(Tutorial.instance != null)
+            Tutorial.instance.TutorialPlay();
     }
 
     void Update()
@@ -70,7 +71,8 @@ public class PlayerController : MonoBehaviour
             timer = 0.1f; // Detect();
             MoveGoblin();
             playerSc.TurnStac += 1;
-            Tutorial.instance.TutorialPlayPos(transform.position);
+            if (Tutorial.instance != null)
+                Tutorial.instance.TutorialPlayPos(transform.position);
         }
         if (Input.GetMouseButtonDown(0) && isMoving == false && timer <= 0 && !EventSystem.current.IsPointerOverGameObject())
         {

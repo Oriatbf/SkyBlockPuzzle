@@ -6622,6 +6622,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1890968271067768121, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 565987766}
+    - target: {fileID: 1890968271067768121, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TutorialPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953190323295890534, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4953190324152403408, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -6669,6 +6681,30 @@ PrefabInstance:
     - target: {fileID: 4953190324152403410, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_Name
       value: CameraCenter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953190324187030833, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 565987766}
+    - target: {fileID: 4953190324187030833, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TutorialPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246955951054015597, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 565987766}
+    - target: {fileID: 7246955951054015597, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TutorialPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210636503272881522, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 565987766}
+    - target: {fileID: 8210636503272881522, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TutorialPlay
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 83440601, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}

@@ -80,12 +80,13 @@ public class Goblin_E : MonoBehaviour
 
     public void GoblinMove()
     {
-        Debug.Log("움직임1");
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
+        RaycastHit hitInfo;
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, out hitInfo, 2))
         {
-            Attack();
+            if (hitInfo.transform.CompareTag("Player"))
+                Attack();
         }
-        else if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd) 
+        if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd) 
             || !Physics.Raycast(transform.position + transform.forward * 2 + Vector3.up * 1.2f, -transform.up, 2, platForm))
         {
             isWall= true;
@@ -120,13 +121,12 @@ public class Goblin_E : MonoBehaviour
 
     
         }
-        else
+        else if (hitInfo.transform == null || !hitInfo.transform.CompareTag("Player"))
         {
             PlayerController.timer = 1f;
             isWall = false;
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
             StartCoroutine(WaitPlayerMove());
-            Debug.Log("움직임2");
         }
        
         
