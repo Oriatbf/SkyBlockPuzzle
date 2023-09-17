@@ -26,8 +26,7 @@ public class Player : MonoBehaviour
     public Sprite FinishSprite;
     public Image starPNG;
     public Sprite StarSprite;
-    public Image TurnPNG;
-    public Sprite TurnSprite;
+    public Text TurnImageText;
 
     public GameObject WeaponOBJ;
     public GameObject EndScreen;
@@ -138,7 +137,7 @@ public class Player : MonoBehaviour
             if (StarCount == 1 && TurnStac < EndTurn)
             {
                 turnClear= true;
-                TurnPNG.sprite = TurnSprite;
+                TurnImageText.color = new Color(255,192,25,255);
             }
 
             StageManager.instance.StageClear(currentPlayerStage, true, takeStar, turnClear);
