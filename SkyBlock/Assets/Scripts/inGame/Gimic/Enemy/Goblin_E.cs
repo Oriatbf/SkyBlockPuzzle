@@ -10,6 +10,7 @@ public class Goblin_E : MonoBehaviour
 
     private bool attackON = true;
     public LayerMask blockEnd;
+    public LayerMask platForm;
     public LayerMask playerMask;
     public bool backTurn;
     [Space]
@@ -65,6 +66,7 @@ public class Goblin_E : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward * 2);
+        Gizmos.DrawRay(transform.position + transform.forward *2 + Vector3.up*1.2f, -transform.up * 2);
     }
 
     private void Attack()
@@ -82,7 +84,8 @@ public class Goblin_E : MonoBehaviour
         {
             Attack();
         }
-        else if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd))
+        else if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd) 
+            || !Physics.Raycast(transform.position + transform.forward * 2 + Vector3.up * 1.2f, -transform.up, 2, platForm))
         {
             isWall= true;
             if (!isWidth)

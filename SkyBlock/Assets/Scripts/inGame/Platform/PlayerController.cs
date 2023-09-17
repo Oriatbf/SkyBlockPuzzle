@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public static float timer; // Push 0.5f, golbin walk 1f, goblin attack 2f
     bool isMoving;
+    private bool gameInSpider;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
         nPosition = transform.position;
         Detect();
         Tutorial.instance.TutorialPlay();
+        if (Spider == null)
+            gameInSpider = false;
     }
 
     void Update()
@@ -198,10 +201,14 @@ public class PlayerController : MonoBehaviour
         {
             Goblin[i].GetComponent<Goblin_E>().GoblinMove();
         }
-        for (i = 0; i < Spider.Length; i++)
+        if (gameInSpider)
         {
-            Spider[i].GetComponent<Spider_E>().SpiderMove();
+            for (i = 0; i < Spider.Length; i++)
+            {
+                Spider[i].GetComponent<Spider_E>().SpiderMove();
+            }
         }
+      
     }
 
     public void GoblinDetect()
