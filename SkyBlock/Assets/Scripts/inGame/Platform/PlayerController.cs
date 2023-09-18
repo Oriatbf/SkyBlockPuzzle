@@ -19,13 +19,12 @@ public class PlayerController : MonoBehaviour
 
     public static float timer; // Push 0.5f, golbin walk 1f, goblin attack 2f
     bool isMoving;
-    private bool gameInSpider;
+    public bool gameInSpider;
     public bool gameInGoblin;
 
     void Awake()
     {
         changeEvent = GameObject.Find("InGameCanvas");
-        Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         Spider = GameObject.FindGameObjectsWithTag("Spider");
     }
@@ -33,12 +32,12 @@ public class PlayerController : MonoBehaviour
     {
         nPosition = transform.position;
         Detect();
-        if (Spider == null)
+        if (Spider.Length == 0)
             gameInSpider = false;
         else
             gameInSpider = true;
 
-        if (Goblin == null)
+        if (Goblin.Length == 0)
             gameInGoblin = false;
         else
             gameInGoblin = true;

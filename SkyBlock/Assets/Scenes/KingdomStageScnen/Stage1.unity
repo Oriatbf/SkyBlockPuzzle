@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
+  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6626,13 +6626,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 565987766}
-    - target: {fileID: 1890968271067768121, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TutorialPlay
+    - target: {fileID: 4953190323295890539, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4953190323295890534, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
+    - target: {fileID: 4953190323870571860, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953190324152403408, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_RootOrder
@@ -6686,28 +6686,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 565987766}
-    - target: {fileID: 4953190324187030833, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TutorialPlay
-      objectReference: {fileID: 0}
     - target: {fileID: 7246955951054015597, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 565987766}
-    - target: {fileID: 7246955951054015597, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TutorialPlay
-      objectReference: {fileID: 0}
     - target: {fileID: 8210636503272881522, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 565987766}
-    - target: {fileID: 8210636503272881522, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TutorialPlay
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 83440601, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
 --- !u!1 &7246955951808760980 stripped
 GameObject:
