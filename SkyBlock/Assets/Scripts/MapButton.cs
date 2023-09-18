@@ -56,6 +56,19 @@ public class MapButton : MonoBehaviour
             MapChapterCountNum.text = "Main";
 
     }
+
+    /*void FixedUpdate()
+    {
+        if (MAPNum > 1)
+        {
+            Debug.Log(MAPNum);
+            MapChapterCountNum.text = MAPNum - 1 + " Chapter";
+        }
+        else if (MAPNum == 1)
+        {
+            MapChapterCountNum.text = "Main";
+        }
+    }*/
     void Update()
     {
         if(selNum == playerPosition)
