@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ChangeBlock : MonoBehaviour
@@ -81,7 +82,7 @@ public class ChangeBlock : MonoBehaviour
                 start = false;
             }
         }
-        if (Input.GetMouseButton(0) && i == 1 && !start && isChange && ChangeCoolStac<=0)
+        if (Input.GetMouseButton(0) && i == 1 && !start && isChange && ChangeCoolStac<=0 && !EventSystem.current.IsPointerOverGameObject())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

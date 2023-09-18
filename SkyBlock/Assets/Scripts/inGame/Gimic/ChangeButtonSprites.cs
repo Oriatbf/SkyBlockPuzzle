@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class ChangeButtonSprites : MonoBehaviour
 {
-    [Header("0: ¹öÆ° ¾È´­¸°°Å, 1: ´­¸°°Å")]
+    [Header("0: ï¿½ï¿½Æ° ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½, 1: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public Sprite[] ButtonSprites;
 }

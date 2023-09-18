@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
+  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -495,9 +495,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Change
       objectReference: {fileID: 0}
+    - target: {fileID: 4636532312891023557, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4953190323295890534, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953190323870571860, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953190324152403408, guid: 7025d635f4e73bd4baa751546e62faf6, type: 3}
       propertyPath: m_RootOrder
@@ -5989,7 +5997,7 @@ PrefabInstance:
       objectReference: {fileID: 306788845}
     - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: EndTurn
-      value: 4
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: TurnPNG

@@ -141,7 +141,7 @@ public class Goblin_E : MonoBehaviour
 
     IEnumerator moveFalse()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.7f);
         Move = false;
     }
 

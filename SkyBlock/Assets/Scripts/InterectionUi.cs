@@ -48,6 +48,14 @@ public class InterectionUi : MonoBehaviour
     public void D_close()
     {
         DogamCanvas.SetActive(false);
+        dogamPage = 0;
+        for (int i = 1; i < DogamPages.Length; i++)
+        {     
+            DogamPages[i].SetActive(false);
+        }
+        DogamPages[0].SetActive(true);
+        DogamBack.SetActive(false);
+        DogamNext.gameObject.SetActive(true);
         isDogamCanvas = false;
     }
     public void D_Next()
@@ -97,7 +105,7 @@ public class InterectionUi : MonoBehaviour
         }
         else
         {
-            DogamClose.SetActive(false);
+          
             DogamBack.SetActive(true);
         }
 

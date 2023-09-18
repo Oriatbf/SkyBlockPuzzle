@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class playerMove : MonoBehaviour
 {
     Animator animator;
-    private float startDelay = 2f;
+    private float startDelay = 1f;
     private bool isDelay = true;
 
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class playerMove : MonoBehaviour
 
     IEnumerator goToKingdom()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("mapSelectTest");
     }
 }

@@ -27,7 +27,6 @@ public class MapButton : MonoBehaviour
 
     public Transform CamaraTran;
     public CloudeCam Clcam;
-    public TabSceneMainUI tabSceneMainUI;
 
     Vector3 firstPos, gap;
     bool SlideWait;

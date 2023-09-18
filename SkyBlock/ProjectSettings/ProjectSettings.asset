@@ -39,7 +39,9 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 0}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
@@ -68,7 +70,7 @@ PlayerSettings:
   androidRenderOutsideSafeArea: 0
   androidUseSwappy: 1
   androidBlitType: 0
-  androidResizableWindow: 0
+  androidResizableWindow: 1
   androidDefaultWindowWidth: 1920
   androidDefaultWindowHeight: 1080
   androidMinimumWindowWidth: 400
@@ -152,7 +154,7 @@ PlayerSettings:
   targetPixelDensity: 30
   resolutionScalingMode: 0
   resetResolutionOnWindowResize: 0
-  androidSupportedAspectRatio: 0
+  androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.MetaGame_2022.SkyBlockPuzzle
