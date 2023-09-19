@@ -40,6 +40,6 @@ public class playerMove : MonoBehaviour
     IEnumerator goToKingdom()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("mapSelectTest");
+        SceneManager.LoadScene("ChapterSelect");
     }
 }

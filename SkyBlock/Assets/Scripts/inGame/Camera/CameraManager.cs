@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class CameraManager : MonoBehaviour
 {
-    float timer = 0; //Å¸ÀÌ¸Ó
+    float timer = 0; //Å¸ï¿½Ì¸ï¿½
 
     [SerializeField] GameObject MainCamera;
     Vector3 SavedPosiotion;
@@ -20,46 +20,21 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        SavedPosiotion = MainCamera.transform.position; // ½ÃÀÛ½Ã Ä«¸Þ¶ó ÇöÀç À§Ä¡°ª ÀúÀå
-        SavedRotation = MainCamera.transform.rotation; // ½ÃÀÛ½Ã Ä«¸Þ¶ó ÇöÀç È¸Àü°ª ÀúÀå
+        SavedPosiotion = MainCamera.transform.position; // ï¿½ï¿½ï¿½Û½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        SavedRotation = MainCamera.transform.rotation; // ï¿½ï¿½ï¿½Û½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private void Update()
     {
-        //Å¸ÀÌ¸Ó
+        //Å¸ï¿½Ì¸ï¿½
         if (timer > 0)
             timer -= Time.deltaTime;
 
-        //--------------------------------(Ä«¸Þ¶ó Å¾´Ù¿î)
+        //--------------------------------(Ä«ï¿½Þ¶ï¿½ Å¾ï¿½Ù¿ï¿½)
 
-        if (Input.GetMouseButton(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+       
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.gameObject.tag == "Player" && timer <= 0 && Zoom == false)
-                {
-                    Zoom = true;
-                    timer = 1.5f;
-
-                    MainCamera.transform.DOMove(transform.position, 1.5f);
-                    MainCamera.transform.DORotate(new Vector3(90, MainCamera.transform.rotation.y, MainCamera.transform.rotation.z), 1.5f);
-                }
-
-                if (hit.transform.gameObject.tag == "Player" && timer <= 0 && Zoom == true)
-                {
-                    Zoom = false;
-                    timer = 1.5f;
-
-                    MainCamera.transform.DOMove(SavedPosiotion, 1.5f);
-                    MainCamera.transform.DORotate(SavedRotation.eulerAngles, 1.5f);
-                }
-            }
-        }
-
-        //--------------------------------(½º¿ÍÀÌÇÁ °¨Áö)
+        //--------------------------------(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 
         if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
@@ -107,7 +82,7 @@ public class CameraManager : MonoBehaviour
             }
         }
 
-        //--------------------------------(Ä«¸Þ¶ó È¸Àü)
+        //--------------------------------(Ä«ï¿½Þ¶ï¿½ È¸ï¿½ï¿½)
 
         if (slideNum == 3 && timer <= 0)
         {

@@ -36,13 +36,13 @@ public class MainSceneChange : MonoBehaviour
     IEnumerator mainsceneClick()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("mapSelectTest");
+        SceneManager.LoadScene("ChapterSelect");
     }
 
     public void kingdomEnter()
     {
 
-        SceneManager.LoadScene("mapSelectTest");
+        SceneManager.LoadScene("ChapterSelect");
     
     }
     public void kingdomStage1()
