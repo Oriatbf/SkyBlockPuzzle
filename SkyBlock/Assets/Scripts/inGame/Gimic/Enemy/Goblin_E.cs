@@ -149,7 +149,7 @@ public class Goblin_E : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         player.GetComponent<Player>().Lose();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(5f);
         player.gameObject.SetActive(false);
     }
 }

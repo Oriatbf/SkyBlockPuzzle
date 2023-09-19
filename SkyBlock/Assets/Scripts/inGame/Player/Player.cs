@@ -116,11 +116,18 @@ public class Player : MonoBehaviour
 
     public void Lose()
     {
+        animator.SetTrigger("Die");
         isWin = false;
         EndText.GetComponent<Text>().text = "GameOver";
         NextStageUI.GetComponent<Button>().interactable = false;
-        EndScreen.SetActive(true);
+        StartCoroutine(EndScreenOn());
     }
+
+    IEnumerator EndScreenOn()
+    {
+        yield return new WaitForSeconds(2);
+        EndScreen.SetActive(true);
+    } 
 
     private void OnTriggerEnter(Collider col)
     {
