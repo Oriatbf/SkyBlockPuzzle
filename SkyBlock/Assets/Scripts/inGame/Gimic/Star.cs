@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Star : MonoBehaviour
 {
+    public GameObject Particle_GetStar;
     public GameObject player;
     public float playerStarCount;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class Star : MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            Instantiate(Particle_GetStar, transform.position + Vector3.up * 0.5f, Particle_GetStar.transform.rotation);
             player.GetComponent<Player>().StarCount++;
             Destroy(gameObject);
         }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ChangeBlock : MonoBehaviour
 {
+    public GameObject Particle_ChangeBlock;
 
     public int i = 1;
     public Vector3 pos1;
@@ -174,7 +175,10 @@ public class ChangeBlock : MonoBehaviour
             Bobj.GetComponent<Block>().DefaultMeterial();
             Aobj.transform.position = pos2;
             Bobj.transform.position = pos1;
-           
+
+            Instantiate(Particle_ChangeBlock, Aobj.transform.position + Vector3.up * 0.5f, Particle_ChangeBlock.transform.rotation);
+            Instantiate(Particle_ChangeBlock, Bobj.transform.position + Vector3.up * 0.5f, Particle_ChangeBlock.transform.rotation);
+
             i = 1;
             time = 0.2f;
             isChange = false;
