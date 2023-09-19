@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class ChangeBlock : MonoBehaviour
 {
-    public GameObject Particle_ChangeBlock;
-
     public int i = 1;
     public Vector3 pos1;
     public Vector3 pos2;
@@ -36,8 +34,8 @@ public class ChangeBlock : MonoBehaviour
 
     private void Awake()
     {
-        GameObject plconObj = GameObject.FindGameObjectWithTag("Player");
-        plconSc = plconObj.GetComponent<PlayerController>();
+        plconSc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        
         ChangeButtonImage = GameObject.Find("ChangeButton").GetComponent<Image>();
         ChangeButtonRT = GameObject.Find("ChangeButton").GetComponent<RectTransform>();
         ChangeButtonCoolObj = GameObject.Find("ChangeButtonCool");
@@ -163,7 +161,7 @@ public class ChangeBlock : MonoBehaviour
     }
     public void Change()
     {
-        if (!isChange && ChangeCoolStac <= 0)
+        if (!isChange && ChangeCoolStac <= 0 && PlayerController.isMoving != true)
         {
             //PlayerSwipe.isChangeButton = true;
             plconSc.AllMeshFalse();
@@ -176,8 +174,14 @@ public class ChangeBlock : MonoBehaviour
             Aobj.transform.position = pos2;
             Bobj.transform.position = pos1;
 
-            Instantiate(Particle_ChangeBlock, Aobj.transform.position + Vector3.up * 0.5f, Particle_ChangeBlock.transform.rotation);
-            Instantiate(Particle_ChangeBlock, Bobj.transform.position + Vector3.up * 0.5f, Particle_ChangeBlock.transform.rotation);
+            if (ParticleManager.Particles != null)
+            {
+            Instantiate(ParticleManager.Particles[0], Aobj.transform.position + Vector3.up * 0.5f, ParticleManager.Particles[0].transform.rotation);
+            Instantiate(ParticleManager.Particles[0], Bobj.transform.position + Vector3.up * 0.5f, ParticleManager.Particles[0].transform.rotation);
+            }
+
+            if (SoundEffectManager.SFX != null)
+                SoundEffectManager.PlaySoundEffect(7);
 
             i = 1;
             time = 0.2f;
@@ -199,6 +203,9 @@ public class ChangeBlock : MonoBehaviour
 
     IEnumerator wait1sec()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(5);
+
         yield return new WaitForSeconds(0.1f);
         isChange = true;
         CancelButton.SetActive(true);
@@ -219,6 +226,9 @@ public class ChangeBlock : MonoBehaviour
             Aobj.GetComponent<Block>().DefaultMeterial();
         if (Bobj != null)
             Bobj.GetComponent<Block>().DefaultMeterial();
+
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(6);
 
         time = 0.2f;
         i = 1;

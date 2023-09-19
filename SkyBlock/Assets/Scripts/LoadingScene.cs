@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScene : MonoBehaviour
 {
-    public static string nextScene;
+    public static int nextScene;
     [SerializeField]
     Image progressBar;
 
@@ -14,9 +14,9 @@ public class LoadingScene : MonoBehaviour
         StartCoroutine(LoadScene());
     }
 
-    public static void LoadScene(string sceneName)
+    public static void LoadScene(int sceneNum)
     {
-        nextScene = sceneName;
+        nextScene = sceneNum;
         SceneManager.LoadScene("LoadingScene");
     }
 

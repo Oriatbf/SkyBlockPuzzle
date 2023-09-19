@@ -193,26 +193,6 @@ public class MapButton : MonoBehaviour
             UILeftRightNum = 0;
     }
 
-    public void EnterInGame()
-    {
-        if(selNum == 0)
-        {
-            LoadingScene.LoadScene("Stage1");
-        }
-        if (selNum == 1)
-        {
-            LoadingScene.LoadScene("Stage2");
-        }
-        if (selNum == 2)
-        {
-            LoadingScene.LoadScene("Stage3");
-        }
-        if (selNum == 3)
-        {
-            LoadingScene.LoadScene("Stage4");
-        }
-    }
-
     public void CameraSet()
     {
         CamaraTran.DOMove(new Vector3(CamareTransformMove[selNum].x, CamareTransformMove[selNum].y, CamareTransformMove[selNum].z), 2.5f);

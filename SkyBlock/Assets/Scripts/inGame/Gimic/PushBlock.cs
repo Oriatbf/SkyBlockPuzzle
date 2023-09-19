@@ -68,6 +68,7 @@ public class PushBlock : MonoBehaviour
             PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
+                SoundEffectManager.PlaySoundEffect(2);
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                 detectMeshRenderer.enabled = true;
             }
@@ -79,6 +80,7 @@ public class PushBlock : MonoBehaviour
             PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
+                SoundEffectManager.PlaySoundEffect(2);
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                 detectMeshRenderer.enabled = true;
             }
@@ -90,6 +92,7 @@ public class PushBlock : MonoBehaviour
             PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
+                SoundEffectManager.PlaySoundEffect(2);
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                 detectMeshRenderer.enabled = true;
             }
@@ -101,13 +104,10 @@ public class PushBlock : MonoBehaviour
             PlayerController.timer = 1f;
             if (Physics.Raycast(hitt.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
             {
+                SoundEffectManager.PlaySoundEffect(2);
                 MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                 detectMeshRenderer.enabled = true;
             }
         }
-    }
-
-    void MoveTIleRegen()
-    { 
     }
 }

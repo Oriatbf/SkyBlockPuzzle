@@ -123,6 +123,9 @@ public class Goblin_E : MonoBehaviour
         }
         else if (hitInfo.transform == null || !hitInfo.transform.CompareTag("Player"))
         {
+            if (SoundEffectManager.SFX != null)
+                SoundEffectManager.PlaySoundEffect(0);
+
             PlayerController.timer = 1f;
             isWall = false;
             nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;

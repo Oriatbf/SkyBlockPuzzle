@@ -10,8 +10,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public GameObject Particle_EnemyDestroy;
-
     public LayerMask platform;
     public LayerMask stopMoveBlock;
     public LayerMask PushBlocks;
@@ -135,6 +133,9 @@ public class Player : MonoBehaviour
         {
             isWin= true;
             EndScreen.SetActive(true);
+            if (SoundEffectManager.SFX != null)
+                SoundEffectManager.PlaySoundEffect(8);
+
             FinishPNG.sprite = FinishSprite;
             if (StarCount == 1)
             {
@@ -183,15 +184,27 @@ public class Player : MonoBehaviour
         {
             if (collider.CompareTag("Goblin") || collider.CompareTag("Spider") || collider.CompareTag("Destroy"))
             {
+                StartCoroutine(AttackDelay(collider));
                 animator.SetTrigger("Attack");
-                Instantiate(Particle_EnemyDestroy, collider.transform.position + Vector3.up * 0.5f, Particle_EnemyDestroy.transform.rotation);
-                collider.gameObject.SetActive(false);
-                PlayerconSc.GoblinDetect();
-                PlayerconSc.Detect();
             }
               
         }
       
+    }
+
+    IEnumerator AttackDelay(Collider collider)
+    {
+        yield return new WaitForSeconds(0.3f);
+
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(4);
+
+        if (ParticleManager.Particles != null)
+            Instantiate(ParticleManager.Particles[2], collider.transform.position + Vector3.up * 0.5f, ParticleManager.Particles[2].transform.rotation);
+
+        collider.gameObject.SetActive(false);
+        PlayerconSc.GoblinDetect();
+        PlayerconSc.Detect();
     }
 
 }
