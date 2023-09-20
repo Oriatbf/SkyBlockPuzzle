@@ -52,10 +52,10 @@ public class CloudeCam : MonoBehaviour
         stageClickButton.StageGoButton.SetActive(false);
         leftCloud.DOMove(new Vector3(34, 143.5f, 142), 2.5f);
         rightCloud.DOMove(new Vector3(-32, 178,142), 2.5f);
-        if (MapBu.MAPNum == 1)
+        if (MapBu.MAPNum == 1) // µµ°¨¾À
         {
-            transform.DOMove(new Vector3(516, 136, 348), 2.5f);
-            transform.DORotate(new Vector3(15, 180, 0), 2.5f);
+            transform.position = (new Vector3(1540, 200, 348));
+            transform.DORotate (new Vector3(20, 180, 0),0f);
         }
         else if (MapBu.MAPNum == 2)
         {
@@ -69,8 +69,14 @@ public class CloudeCam : MonoBehaviour
         }
         else if (MapBu.MAPNum == 4)
         {
-            transform.DOMove(new Vector3(-1065, 136, 348), 2.5f);
-            transform.DORotate(new Vector3(15, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(-1065, 275, 348), 2.5f);
+            transform.DORotate(new Vector3(33.46f, 180, 0), 2.5f);
+        }
+        else if (MapBu.MAPNum == 5) //µµ°¨ -> ±â»ç ¼¶
+        {
+            transform.position = (new Vector3(0, 202, 307));
+            transform.DORotate(new Vector3(33.46f, 180, 0), 0f);
+            MapBu.MAPNum = 2;
         }
         backButton.SetActive(false);
         goButton.SetActive(true);

@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InterectionUi : MonoBehaviour
 {
     public GameObject OptionCanvas;
+    public Image DogamIcon;
     public GameObject DogamCanvas;
     public GameObject[] DogamPages;
     public GameObject DogamClose;
     public GameObject DogamBack;
     public GameObject DogamNext;
+    public Sprite GoMain;
+    public Sprite GoDogam;
+    public bool isDogamScene = false;
     public static bool isOptionCanvas = false;
     public static bool isDogamCanvas = false;
 
@@ -114,8 +119,23 @@ public class InterectionUi : MonoBehaviour
 
     public void GoDOgamIcon()
     {
-        MapButtonSc.MAPNum = 1;
-        MapButtonSc.MapChapterCountNum.text = "Main";
-        Clcam.BackButtonClick();
+        if (!isDogamScene)
+        {
+            MapButtonSc.MAPNum = 1;
+            MapButtonSc.MapChapterCountNum.text = "Main";
+            Clcam.BackButtonClick();
+            DogamIcon.sprite = GoMain;
+            isDogamScene = true;
+        }
+        else
+        {
+            MapButtonSc.MAPNum = 5;
+            MapButtonSc.MapChapterCountNum.text = "Stage 1";
+            Clcam.BackButtonClick();
+            DogamIcon.sprite = GoDogam;
+            isDogamScene = false;
+        }
+       
     }
+    
 }
