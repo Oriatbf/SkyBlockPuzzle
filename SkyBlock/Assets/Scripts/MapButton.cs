@@ -8,6 +8,8 @@ using DG.Tweening;
 public class MapButton : MonoBehaviour
 {
     [SerializeField]
+    GameObject FadeObj;
+    [SerializeField]
     public Transform[] buttonPrefab;
     [SerializeField]
     public Vector3[] CamareTransformMove;
@@ -44,6 +46,7 @@ public class MapButton : MonoBehaviour
     }
     private void Start()
     {
+        StartCoroutine(FadeInStart());
         playerPosition = 0;
         mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Playermove = GameObject.FindGameObjectWithTag("Player").GetComponent<MapSelectPlayerMove>();
@@ -230,6 +233,18 @@ public class MapButton : MonoBehaviour
         Clcam.BackButtonClick();
     }
 
+    public IEnumerator FadeInStart()
+    {
+        FadeObj.SetActive(true);
+        for (float f = 1f; f > 0; f -= 0.02f)
+        {
+            Color c = FadeObj.GetComponent<Image>().color;
+            c.a = f;
+            FadeObj.GetComponent<Image>().color = c;
+            yield return null;
+        }
+        FadeObj.SetActive(false);
+    }
 }
 
 //1.543608 1.440643 1.097633

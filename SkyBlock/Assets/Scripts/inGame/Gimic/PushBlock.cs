@@ -61,7 +61,7 @@ public class PushBlock : MonoBehaviour
 
     public void blockMove()
     {
-        if (player.transform.forward == Vector3.right && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), out hit, 1.2f, StopBlock))
+        if (player.transform.forward == Vector3.right && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), out hit, 1.4f, StopBlock))
         {
             transform.DOMoveX(transform.position.x + 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
@@ -73,7 +73,7 @@ public class PushBlock : MonoBehaviour
                 detectMeshRenderer.enabled = true;
             }
         }
-        if (player.transform.forward == Vector3.left && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), out hit, 1.2f, StopBlock))
+        if (player.transform.forward == Vector3.left && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), out hit, 1.4f, StopBlock))
         {
             transform.DOMoveX(transform.position.x - 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
@@ -85,7 +85,7 @@ public class PushBlock : MonoBehaviour
                 detectMeshRenderer.enabled = true;
             }
         }
-        if(player.transform.forward == Vector3.forward && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), out hit, 1.2f, StopBlock))
+        if(player.transform.forward == Vector3.forward && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), out hit, 1.4f, StopBlock))
         {
             transform.DOMoveZ(transform.position.z + 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
@@ -97,7 +97,7 @@ public class PushBlock : MonoBehaviour
                 detectMeshRenderer.enabled = true;
             }
         }
-        if (player.transform.forward == Vector3.back && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), out hit, 1.2f, StopBlock))
+        if (player.transform.forward == Vector3.back && !Physics.Raycast(transform.position + new Vector3(0, YRay, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), out hit, 1.4f, StopBlock))
         {
             transform.DOMoveZ(transform.position.z - 2f, 1).SetEase(ease);
             ClickPoint.gameObject.SetActive(false);
