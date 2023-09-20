@@ -37,13 +37,13 @@ public class CloudeCam : MonoBehaviour
         if (SoundEffectManager.SFX != null)
             SoundEffectManager.PlaySoundEffect(10);
         Go = true;
-        leftCloud.DOMove(new Vector3(211, 143.5f, 142), 2.5f);
-        rightCloud.DOMove(new Vector3(-169, 178, 142), 2.5f);
+   ;
 
         MapBu.CameraSet();
         StartCoroutine(StageGoButtonClick());
         backButton.SetActive(true);
         goButton.SetActive(false);
+        StartCoroutine(DisappearTime());
 
         MapBu.MAPButton.transform.DOLocalMove(new Vector3(0, -440, 0), 1f);
         MapBu.StageStarCount.transform.DOLocalMove(new Vector3(0, -160, 0), 1f);

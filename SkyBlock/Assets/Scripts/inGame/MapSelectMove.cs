@@ -118,6 +118,6 @@ public class MapSelectMove : MonoBehaviour
     }
     public void EnterInGame()
     {
-        LoadingScene.LoadScene(3 + playerStagePos);
+        SceneManager.LoadScene(3 + playerStagePos);
     }
 }
