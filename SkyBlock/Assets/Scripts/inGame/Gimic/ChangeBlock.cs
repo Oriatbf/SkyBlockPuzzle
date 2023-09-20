@@ -161,7 +161,7 @@ public class ChangeBlock : MonoBehaviour
     }
     public void Change()
     {
-        if (!isChange && ChangeCoolStac <= 0 && PlayerController.isMoving != true)
+        if (!isChange && ChangeCoolStac <= 0 && PlayerController.isMoving != true && PlayerController.timer <= 0)
         {
             //PlayerSwipe.isChangeButton = true;
             plconSc.AllMeshFalse();
