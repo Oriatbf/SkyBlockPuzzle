@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
+  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -657,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4796205361089684288, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4796205361089684300, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
       propertyPath: m_Pivot.x
@@ -758,7 +758,7 @@ PrefabInstance:
     - target: {fileID: 4796205361089684301, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 42935318569900498}
     - target: {fileID: 4796205361089684301, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
       propertyPath: m_RenderMode
       value: 1
@@ -994,7 +994,7 @@ PrefabInstance:
     - target: {fileID: 9028320668996377781, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: changeEvent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 856628557}
     - target: {fileID: 9028320668996377785, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -7524,7 +7524,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 42935318569900498}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -8356,7 +8356,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 42935318569900498}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
