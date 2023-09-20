@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
+  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2107447047366723615, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 56512310}
+    - target: {fileID: 2107447047366723615, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MusicSetLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694790158180500271, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 56512310}
+    - target: {fileID: 2694790158180500271, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EffectSetLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 3667299485362661073, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -174,6 +190,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3667299485362661074, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+      propertyPath: OptionCanvas
+      value: 
+      objectReference: {fileID: 56512309}
     - target: {fileID: 3667299485362661075, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
       propertyPath: m_Name
       value: noTutorials
@@ -285,6 +305,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aaf7b221dff1c84ebda23ad97d61cad, type: 3}
+--- !u!114 &56512307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2694790158180500271, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+  m_PrefabInstance: {fileID: 49063948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &56512308 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2107447047366723615, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+  m_PrefabInstance: {fileID: 49063948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &56512309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3462359035917173001, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+  m_PrefabInstance: {fileID: 49063948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &56512310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56512309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc0db95bffb84e45b0c61bf59278561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: a21dc2be2e16e224ca8560d8bd4bc832, type: 2}
+  Musicslider: {fileID: 56512308}
+  Effectslider: {fileID: 56512307}
 --- !u!1 &81603486
 GameObject:
   m_ObjectHideFlags: 0

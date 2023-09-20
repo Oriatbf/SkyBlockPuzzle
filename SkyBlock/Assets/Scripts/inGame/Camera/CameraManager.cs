@@ -12,11 +12,13 @@ public class CameraManager : MonoBehaviour
     Quaternion SavedRotation;
 
     //Swipe ---
-    bool Zoom = false;
     bool SlideWait;
     Vector3 firstPos, gap;
     int slideNum;
     // ---
+
+    [SerializeField] GameObject OptionCanvas;
+    [SerializeField] GameObject HintCanvas;
 
     void Start()
     {
@@ -30,19 +32,15 @@ public class CameraManager : MonoBehaviour
         if (timer > 0)
             timer -= Time.deltaTime;
 
-        //--------------------------------(ī�޶� ž�ٿ�)
-
-       
-
         //--------------------------------(�������� ����)
 
-        if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
+        if (Input.GetMouseButtonDown(0) && OptionCanvas.activeSelf != true && HintCanvas.activeSelf != true || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             SlideWait = true;
             firstPos = Input.GetMouseButtonDown(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position;
         }
 
-        if (Input.GetMouseButton(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved))
+        if (Input.GetMouseButton(0) && OptionCanvas.activeSelf != true && HintCanvas.activeSelf != true || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved))
         {
             gap = (Input.GetMouseButton(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position) - firstPos;
             if (gap.magnitude < 100) return;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
+  m_IndirectSpecularColor: {r: 0.37788555, g: 0.6874883, b: 0.87652326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3123,6 +3123,7 @@ GameObject:
   - component: {fileID: 2315898523881271885}
   - component: {fileID: 7883572219643392526}
   - component: {fileID: 389917975812596453}
+  - component: {fileID: 7883572219643392527}
   m_Layer: 5
   m_Name: OptionCanvas (1)
   m_TagString: Untagged
@@ -4358,7 +4359,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7883572219643392527}
         m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
         m_MethodName: EffectSetLevel
         m_Mode: 0
@@ -4795,7 +4796,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7883572219643392527}
         m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
         m_MethodName: MusicSetLevel
         m_Mode: 0
@@ -8473,6 +8474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 4953190323906317112}
+  OptionCanvas: {fileID: 739331122493592986}
+  HintCanvas: {fileID: 3962741598712224275}
 --- !u!1 &4953190324460353079
 GameObject:
   m_ObjectHideFlags: 0
@@ -9463,6 +9466,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7883572219643392527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739331122493592986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc0db95bffb84e45b0c61bf59278561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: a21dc2be2e16e224ca8560d8bd4bc832, type: 2}
+  Musicslider: {fileID: 2842126934376668300}
+  Effectslider: {fileID: 2246088748187735996}
 --- !u!114 &8019874370829274679
 MonoBehaviour:
   m_ObjectHideFlags: 0

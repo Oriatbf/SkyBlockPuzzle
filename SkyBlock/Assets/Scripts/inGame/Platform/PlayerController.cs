@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public static bool isMoving;
     public bool gameInSpider;
     public bool gameInGoblin;
+    public static bool DetectOff;
 
     void Awake()
     {
@@ -107,6 +108,8 @@ public class PlayerController : MonoBehaviour
 
     public void Detect()
     {
+        if(DetectOff != true)
+        {
         //COl ALL
         Collider[] Allcolliders = Physics.OverlapSphere(this.transform.position, 10000f, MoveTile);
         foreach (Collider Allcollider in Allcolliders)
@@ -135,75 +138,76 @@ public class PlayerController : MonoBehaviour
 
         //COL 2f Sphere ON
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1.8f, MoveTile);
-        foreach (Collider collider in colliders)
-        {
-            MeshRenderer otherMeshRenderer = collider.GetComponent<MeshRenderer>();
-            otherMeshRenderer.enabled = true;
-
-            //COL MIT OFF
-            RaycastHit hit;
-            if (collider == Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+            foreach (Collider collider in colliders)
             {
-                MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
-                detectMeshRenderer.enabled = false;
-            }
+                MeshRenderer otherMeshRenderer = collider.GetComponent<MeshRenderer>();
+                otherMeshRenderer.enabled = true;
 
-            //Endblock OFF
-            Vector3 direction = transform.position - collider.transform.position;
-            if (Physics.Raycast(collider.transform.position, direction, out hit, 1.5f, EndBlock))
-            {
-                Vector3 direction2 = collider.transform.position - hit.transform.position;
-                if (Physics.Raycast(hit.transform.position, direction2, out hit, 1.5f, MoveTile))
+                //COL MIT OFF
+                RaycastHit hit;
+                if (collider == Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
                 {
                     MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                     detectMeshRenderer.enabled = false;
                 }
-            }
-            //Enemy
-            if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 5f, Enemy))
-            {
-                EnemyClickpoint EnemySc = hit.transform.GetComponent<EnemyClickpoint>();
-                if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+
+                //Endblock OFF
+                Vector3 direction = transform.position - collider.transform.position;
+                if (Physics.Raycast(collider.transform.position, direction, out hit, 1.5f, EndBlock))
                 {
-                    MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
-                    if (detectMeshRenderer.enabled == true)
+                    Vector3 direction2 = collider.transform.position - hit.transform.position;
+                    if (Physics.Raycast(hit.transform.position, direction2, out hit, 1.5f, MoveTile))
                     {
-                        EnemySc.ClickPoint.gameObject.SetActive(true);
+                        MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                         detectMeshRenderer.enabled = false;
                     }
                 }
-            }
-
-            //PushBLock
-            if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 2f, PushBlock))
-            {
-                if (!Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
-                    Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
-                     !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
-                    Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
-                     !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
-                    Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
-                     !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
-                    Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer))
+                //Enemy
+                if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 5f, Enemy))
                 {
-                    PushBlock PushBlockSc = hit.transform.GetComponent<PushBlock>();
-                    if(hit.transform.position.y > transform.position.y)
+                    EnemyClickpoint EnemySc = hit.transform.GetComponent<EnemyClickpoint>();
+                    if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
                     {
-                        if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+                        MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                        if (detectMeshRenderer.enabled == true)
                         {
-                            MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
-                            if (detectMeshRenderer.enabled == true)
-                            {
-                                PushBlockSc.ClickPoint.gameObject.SetActive(true);
-                                detectMeshRenderer.enabled = false;
-                            }
+                            EnemySc.ClickPoint.gameObject.SetActive(true);
+                            detectMeshRenderer.enabled = false;
                         }
                     }
                 }
-                else if(Physics.Raycast(collider.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+
+                //PushBLock
+                if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 2f, PushBlock))
                 {
-                    MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
-                    detectMeshRenderer.enabled = false;
+                    if (!Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
+                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
+                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
+                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 1.2f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer))
+                    {
+                        PushBlock PushBlockSc = hit.transform.GetComponent<PushBlock>();
+                        if (hit.transform.position.y > transform.position.y)
+                        {
+                            if (collider == Physics.Raycast(hit.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+                            {
+                                MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                                if (detectMeshRenderer.enabled == true)
+                                {
+                                    PushBlockSc.ClickPoint.gameObject.SetActive(true);
+                                    detectMeshRenderer.enabled = false;
+                                }
+                            }
+                        }
+                    }
+                    else if (Physics.Raycast(collider.transform.position + Vector3.up, Vector3.down, out hit, 2f, MoveTile))
+                    {
+                        MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
+                        detectMeshRenderer.enabled = false;
+                    }
                 }
             }
         }
@@ -244,7 +248,7 @@ public class PlayerController : MonoBehaviour
             Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         Spider = null;
         if (GameObject.FindGameObjectsWithTag("Spider") != null)
-            Goblin = GameObject.FindGameObjectsWithTag("Spider");
+            Spider = GameObject.FindGameObjectsWithTag("Spider");
     }
 
 }

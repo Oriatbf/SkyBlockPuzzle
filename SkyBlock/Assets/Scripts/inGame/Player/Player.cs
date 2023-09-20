@@ -132,7 +132,8 @@ public class Player : MonoBehaviour
         if (col.tag == "Goal")
         {
             isWin= true;
-            EndScreen.SetActive(true);
+            PlayerController.DetectOff = true;
+            StartCoroutine(GoalDelay());
             if (SoundEffectManager.SFX != null)
                 SoundEffectManager.PlaySoundEffect(8);
 
@@ -207,4 +208,12 @@ public class Player : MonoBehaviour
         PlayerconSc.Detect();
     }
 
+    IEnumerator GoalDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (ParticleManager.Particles != null)
+            Instantiate(ParticleManager.Particles[3], transform.position + new Vector3(0, -1.2f, 0.5f), ParticleManager.Particles[3].transform.rotation);
+        yield return new WaitForSeconds(1.5f);
+        EndScreen.SetActive(true);
+    }
 }
