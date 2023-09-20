@@ -21,6 +21,7 @@ public class Goblin_E : MonoBehaviour
     [SerializeField]
     private bool isWall =false;
 
+
     Animator animator;
     private int TurnStac;
 
@@ -50,7 +51,11 @@ public class Goblin_E : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
             animator.SetBool("isWalk",true);
             StartCoroutine(moveFalse());
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, blockEnd))
+            {
+                isWall = true;
+            }
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask) && !isWall)
             {
                 Attack();
             }
@@ -83,8 +88,12 @@ public class Goblin_E : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, out hitInfo, 2))
         {
+            
             if (hitInfo.transform.CompareTag("Player"))
+            {
                 Attack();
+            }
+                
         }
         if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd) 
             || !Physics.Raycast(transform.position + transform.forward * 2 + Vector3.up * 1.2f, -transform.up, 2, platForm))
