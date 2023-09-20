@@ -86,12 +86,16 @@ public class CameraManager : MonoBehaviour
         {
             timer = 1.2f;
             transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 90, transform.eulerAngles.z), 1.2f);
+            if (SoundEffectManager.SFX != null)
+                SoundEffectManager.PlaySoundEffect(10);
 
         }
         else if(slideNum == 4 && timer <= 0)
         {
             timer = 1.2f;
             transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 90, transform.eulerAngles.z), 1.2f);
+            if (SoundEffectManager.SFX != null)
+                SoundEffectManager.PlaySoundEffect(10);
         }
     }
 }

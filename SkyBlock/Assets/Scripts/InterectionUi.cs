@@ -34,6 +34,8 @@ public class InterectionUi : MonoBehaviour
     // 옵션 UI 프로그래밍
     public void optionClick()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(11);
         OptionCanvas.SetActive(true);
         isOptionCanvas= true;
     }
@@ -52,6 +54,8 @@ public class InterectionUi : MonoBehaviour
     //도감 UI
     public void D_close()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(12);
         DogamCanvas.SetActive(false);
         dogamPage = 0;
         for (int i = 1; i < DogamPages.Length; i++)
@@ -65,6 +69,8 @@ public class InterectionUi : MonoBehaviour
     }
     public void D_Next()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(12);
         dogamPage++;
         if(dogamPage > DogamPages.Length-1)
         {
@@ -74,6 +80,8 @@ public class InterectionUi : MonoBehaviour
     }
     public void D_Back()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(12);
         dogamPage--;
         if (dogamPage < 0)
         {

@@ -34,6 +34,8 @@ public class CloudeCam : MonoBehaviour
 
     public void GoButtonClick()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(10);
         Go = true;
         leftCloud.DOMove(new Vector3(211, 143.5f, 142), 2.5f);
         rightCloud.DOMove(new Vector3(-169, 178, 142), 2.5f);
@@ -49,6 +51,8 @@ public class CloudeCam : MonoBehaviour
     }
     public void BackButtonClick()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(10);
         Go = false;
         stageClickButton.StageGoButton.SetActive(false);
         leftCloud.DOMove(new Vector3(34, 143.5f, 142), 2.5f);
@@ -106,6 +110,8 @@ public class CloudeCam : MonoBehaviour
 
     IEnumerator StageGoButtonClick()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(11);
         yield return new WaitForSeconds(2.5f);
         if(Go)
             StageGoButton.SetActive(true);

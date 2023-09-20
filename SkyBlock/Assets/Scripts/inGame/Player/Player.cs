@@ -220,7 +220,10 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         if (ParticleManager.Particles != null)
             Instantiate(ParticleManager.Particles[3], transform.position + new Vector3(0, -1.2f, 0.5f), ParticleManager.Particles[3].transform.rotation);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(9);
+        yield return new WaitForSeconds(0.5f);
         EndScreen.SetActive(true);
     }
 }
