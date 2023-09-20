@@ -11,6 +11,7 @@ public class CloudeCam : MonoBehaviour
     public GameObject backButton;
     public Transform leftCloud;
     public Transform rightCloud;
+    public GameObject[] MoveDisappear;
 
     public MapButton MapBu;
 
@@ -52,29 +53,32 @@ public class CloudeCam : MonoBehaviour
         stageClickButton.StageGoButton.SetActive(false);
         leftCloud.DOMove(new Vector3(34, 143.5f, 142), 2.5f);
         rightCloud.DOMove(new Vector3(-32, 178,142), 2.5f);
-        if (MapBu.MAPNum == 1) // µµ°¨¾À
+        if (MapBu.MAPNum == 1) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            transform.position = (new Vector3(1540, 200, 348));
+            transform.DOMove (new Vector3(1540, 200, 348),0f);
             transform.DORotate (new Vector3(20, 180, 0),0f);
         }
         else if (MapBu.MAPNum == 2)
         {
-            transform.DOMove(new Vector3(0, 202, 307), 2.5f);
-            transform.DORotate(new Vector3(33.46f, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(0, 202, 307), 1.5f);
+            transform.DORotate(new Vector3(33.46f, 180, 0), 1.5f);
+            StartCoroutine(DisappearTime());
         }
         else if (MapBu.MAPNum == 3)
         {
-            transform.DOMove(new Vector3(-530, 202, 307), 2.5f);
-            transform.DORotate(new Vector3(33.46f, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(-530, 202, 307), 1.5f);
+            transform.DORotate(new Vector3(33.46f, 180, 0), 1.5f);
+            StartCoroutine(DisappearTime());
         }
         else if (MapBu.MAPNum == 4)
         {
-            transform.DOMove(new Vector3(-1065, 275, 348), 2.5f);
-            transform.DORotate(new Vector3(33.46f, 180, 0), 2.5f);
+            transform.DOMove(new Vector3(-1065, 275, 348), 1.5f);
+            transform.DORotate(new Vector3(33.46f, 180, 0), 1.5f);
+            StartCoroutine(DisappearTime());
         }
-        else if (MapBu.MAPNum == 5) //µµ°¨ -> ±â»ç ¼¶
+        else if (MapBu.MAPNum == 5) //ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ ï¿½ï¿½
         {
-            transform.position = (new Vector3(0, 202, 307));
+            transform.DOMove(new Vector3(0, 202, 307),0f);
             transform.DORotate(new Vector3(33.46f, 180, 0), 0f);
             MapBu.MAPNum = 2;
         }
@@ -86,7 +90,19 @@ public class CloudeCam : MonoBehaviour
         MapBu.MapChapterCount.transform.DOLocalMove(new Vector3(0, 0, 0), 1f);
     }
 
+    IEnumerator DisappearTime()
+    {
+        for(int i = 0; i < MoveDisappear.Length; i++)
+        {
+            MoveDisappear[i].SetActive(false);
+        }
 
+        yield return new WaitForSeconds(1.5f);
+        for (int i = 0; i < MoveDisappear.Length; i++)
+        {
+            MoveDisappear[i].SetActive(true);
+        }
+    }
 
     IEnumerator StageGoButtonClick()
     {

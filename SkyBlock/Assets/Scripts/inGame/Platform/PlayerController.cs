@@ -244,12 +244,12 @@ public class PlayerController : MonoBehaviour
 
     public void GoblinDetect()
     {
-        Goblin = null;
-        if(GameObject.FindGameObjectsWithTag("Goblin") != null)
-            Goblin = GameObject.FindGameObjectsWithTag("Goblin");
-        Spider = null;
-        if (GameObject.FindGameObjectsWithTag("Spider") != null)
-            Spider = GameObject.FindGameObjectsWithTag("Spider");
+        
+        
+        Goblin = GameObject.FindGameObjectsWithTag("Goblin");
+        
+      
+        Spider = GameObject.FindGameObjectsWithTag("Spider");
     }
 
 }

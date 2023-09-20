@@ -217,8 +217,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.2596618, z: 1}
-  m_Center: {x: 0, y: 1.1418536, z: 0}
+  m_Size: {x: 1, y: 1.7417899, z: 1}
+  m_Center: {x: -0, y: 0.90078944, z: 0}
 --- !u!114 &1835566001664468695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +236,9 @@ MonoBehaviour:
   blockEnd:
     serializedVersion: 2
     m_Bits: 6144
+  platForm:
+    serializedVersion: 2
+    m_Bits: 512
   playerMask:
     serializedVersion: 2
     m_Bits: 128

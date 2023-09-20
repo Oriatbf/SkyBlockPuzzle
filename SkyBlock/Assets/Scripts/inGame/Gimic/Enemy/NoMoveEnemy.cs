@@ -35,7 +35,7 @@ public class NoMoveEnemy : MonoBehaviour
         {
             count++;
             animator.SetTrigger("Attack");
-            playerObject.GetComponent<Player>().Lose();
+            
         }
         
     }
@@ -44,5 +44,10 @@ public class NoMoveEnemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), transform.forward * 2f);
+    }
+
+    public void AttackAnim()
+    {
+        playerObject.GetComponent<Player>().Lose();
     }
 }
