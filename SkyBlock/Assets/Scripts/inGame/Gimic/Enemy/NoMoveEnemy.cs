@@ -10,6 +10,8 @@ public class NoMoveEnemy : MonoBehaviour
     private int count = 0;
     [SerializeField]
     private bool isWall;
+    [SerializeField]
+    Animator animator;
     
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,7 @@ public class NoMoveEnemy : MonoBehaviour
         if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+1f,transform.position.z), transform.forward, 2f, player) && count ==0 && !isWall)
         {
             count++;
+            animator.SetTrigger("Attack");
             playerObject.GetComponent<Player>().Lose();
         }
         

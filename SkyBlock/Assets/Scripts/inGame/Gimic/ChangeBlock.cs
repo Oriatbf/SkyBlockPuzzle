@@ -18,6 +18,7 @@ public class ChangeBlock : MonoBehaviour
     public GameObject ChangeButtonCoolObj;
     public ChangeButtonSprites ChangeButtonSpriteSc;
     public RectTransform ChangeButtonRT;
+    public GameObject ChangeText;
 
     public GameObject Aobj;
     public GameObject Bobj;
@@ -42,32 +43,39 @@ public class ChangeBlock : MonoBehaviour
         ChangeButtonCoolImage = GameObject.Find("ChangeButtonCool").GetComponent<Image>();
         CancelButton = GameObject.Find("CancelButtonUI");
         ChangeButtonSpriteSc = GameObject.Find("ChangeButton").GetComponent<ChangeButtonSprites>();
+        ChangeText = GameObject.Find("ChangeNum");
     }
     void Start()
     {
         CancelButton.SetActive(false);
         ChangeButtonCoolObj.SetActive(false);
+        ChangeText.SetActive(false);
     }
 
     void FixedUpdate()
     {
         if(ChangeCoolStac == 3)
         {
+            ChangeText.SetActive(true);
+            ChangeText.GetComponent<Text>().text = ChangeCoolStac.ToString();
             ChangeButtonCoolObj.SetActive(true);
             ChangeButtonCoolImage.fillAmount = 1;
         }
         else if(ChangeCoolStac == 2)
         {
+            ChangeText.GetComponent<Text>().text = ChangeCoolStac.ToString();
             ChangeButtonCoolImage.fillAmount = 0.66f;
         }
         else if (ChangeCoolStac == 1)
         {
+            ChangeText.GetComponent<Text>().text = ChangeCoolStac.ToString();
             ChangeButtonCoolImage.fillAmount = 0.33f;
         }
         else
         {
             ChangeButtonCoolImage.fillAmount = 0;
             ChangeButtonCoolObj.SetActive(false);
+            ChangeText.SetActive(false);
         }
     }
 

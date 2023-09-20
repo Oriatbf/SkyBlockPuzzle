@@ -114,6 +114,13 @@ public class Player : MonoBehaviour
 
     public void Lose()
     {
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(4);
+
+        if (ParticleManager.Particles != null)
+            Instantiate(ParticleManager.Particles[4], transform.position + Vector3.up * 0.5f, ParticleManager.Particles[4].transform.rotation);
+
+        PlayerController.DetectOff = true;
         animator.SetTrigger("Die");
         isWin = false;
         EndText.GetComponent<Text>().text = "GameOver";

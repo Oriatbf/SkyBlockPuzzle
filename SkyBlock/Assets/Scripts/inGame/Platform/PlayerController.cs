@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        DetectOff = false;
         changeEvent = GameObject.Find("InGameCanvas");
         Goblin = GameObject.FindGameObjectsWithTag("Goblin");
         Spider = GameObject.FindGameObjectsWithTag("Spider");
@@ -137,7 +138,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //COL 2f Sphere ON
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1.7f, MoveTile);
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1.8f, MoveTile);
             foreach (Collider collider in colliders)
             {
                 MeshRenderer otherMeshRenderer = collider.GetComponent<MeshRenderer>();
@@ -180,14 +181,14 @@ public class PlayerController : MonoBehaviour
                 //PushBLock
                 if (collider == Physics.Raycast(collider.transform.position, Vector3.up, out hit, 2f, PushBlock))
                 {
-                    if (!Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 1.4f, PushStopBlock) &&
-                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
-                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 1.4f, PushStopBlock) &&
-                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
-                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 1.4f, PushStopBlock) &&
-                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
-                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 1.4f, PushStopBlock) &&
-                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer))
+                    if (!Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 1.8f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
+                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 90, 0) * new Vector3(0, 0, -1), 1.8f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 270, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
+                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 1.8f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer) ||
+                         !Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 0, 0) * new Vector3(0, 0, -1), 1.8f, PushStopBlock) &&
+                        Physics.Raycast(hit.transform.position + new Vector3(0, 0.6f, 0), Quaternion.Euler(0, 180, 0) * new Vector3(0, 0, -1), 2f, PlayerLayer))
                     {
                         PushBlock PushBlockSc = hit.transform.GetComponent<PushBlock>();
                         if (hit.transform.position.y > transform.position.y)
