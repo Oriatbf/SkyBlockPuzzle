@@ -9,6 +9,7 @@ public class ParticleManager : MonoBehaviour
 
     private void Awake()
     {
+
         Particles = ParticlesDummy;
     }
 }
