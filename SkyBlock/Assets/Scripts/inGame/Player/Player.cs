@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
                 takeStar = true;
                 starPNG.sprite = StarSprite;
             }
-            if (StarCount == 1 && TurnStac < EndTurn)
+            if (TurnStac < EndTurn)
             {
                 turnClear= true;
                 TurnImageText.color = new Color(255 / 255.0f, 192 / 255.0f, 25 / 255.0f, 1.0f);

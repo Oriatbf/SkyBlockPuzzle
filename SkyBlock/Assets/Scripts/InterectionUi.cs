@@ -17,6 +17,7 @@ public class InterectionUi : MonoBehaviour
     public bool isDogamScene = false;
     public static bool isOptionCanvas = false;
     public static bool isDogamCanvas = false;
+    public Text DogamText;
 
     public int dogamPage = 0;
     public MapButton MapButtonSc;
@@ -134,6 +135,7 @@ public class InterectionUi : MonoBehaviour
             Clcam.BackButtonClick();
             DogamIcon.sprite = GoMain;
             isDogamScene = true;
+            DogamText.text = "맵 선택";
         }
         else
         {
@@ -142,6 +144,7 @@ public class InterectionUi : MonoBehaviour
             Clcam.BackButtonClick();
             DogamIcon.sprite = GoDogam;
             isDogamScene = false;
+            DogamText.text = "도감";
         }
        
     }
