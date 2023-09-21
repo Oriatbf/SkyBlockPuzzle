@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
+  m_IndirectSpecularColor: {r: 0.37777323, g: 0.6873614, b: 0.87653464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -177,6 +177,10 @@ PrefabInstance:
     - target: {fileID: 3667299485362661075, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
       propertyPath: m_Name
       value: noTutorials
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667299486519398250, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 168a5fd61e099c34089760a74b37cc9e, type: 3}
@@ -600,6 +604,10 @@ PrefabInstance:
       propertyPath: EndText
       value: 
       objectReference: {fileID: 49063951}
+    - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
+      propertyPath: EndTurn
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: starPNG
       value: 

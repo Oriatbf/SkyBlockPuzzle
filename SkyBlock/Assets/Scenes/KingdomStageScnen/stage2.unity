@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.377773, g: 0.68736154, b: 0.8765346, a: 1}
+  m_IndirectSpecularColor: {r: 0.37777323, g: 0.6873614, b: 0.87653464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -657,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4796205361089684288, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4796205361089684300, guid: e3399a663a2b3074f9d21d239ca3f6a4, type: 3}
       propertyPath: m_Pivot.x
@@ -956,14 +956,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2035628501}
     - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
-      propertyPath: EndTurn
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
-      propertyPath: TurnPNG
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9028320668996377778, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: starPNG
       value: 
       objectReference: {fileID: 388206538}
@@ -986,10 +978,6 @@ PrefabInstance:
     - target: {fileID: 9028320668996377779, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 9028320668996377779, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9028320668996377781, guid: f5125abe1f9acad439967fc9dcfd0bd9, type: 3}
       propertyPath: changeEvent

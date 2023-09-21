@@ -2035,6 +2035,8 @@ MonoBehaviour:
   Goblin: []
   Spider: []
   changeEvent: {fileID: 0}
+  gameInSpider: 0
+  gameInGoblin: 0
 --- !u!114 &9028320668996377778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,7 +2049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd963da97c55af949b01ccf4fa521ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Particle_EnemyDestroy: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
   platform:
     serializedVersion: 2
     m_Bits: 512
@@ -2060,6 +2061,7 @@ MonoBehaviour:
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
+  box: {fileID: 882441115023466866, guid: 11dae4ffa98024e47a8cc7678f9f24f6, type: 3}
   FinishPNG: {fileID: 0}
   FinishSprite: {fileID: 21300000, guid: 84acd7f994136a149915fb2d87893e76, type: 3}
   starPNG: {fileID: 0}
@@ -2070,7 +2072,7 @@ MonoBehaviour:
   EndText: {fileID: 0}
   NextStageUI: {fileID: 0}
   StarCount: 0
-  EndTurn: 10
+  EndTurn: 4
   animator: {fileID: 9028320668996377782}
   hitPoint: {fileID: 9028320668219434246}
   hitPointSize: {x: 0.5, y: 0.6, z: 0.83}

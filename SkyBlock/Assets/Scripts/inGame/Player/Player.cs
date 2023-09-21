@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public LayerMask stopMoveBlock;
     public LayerMask PushBlocks;
     public LayerMask EnemyMask;
-
+    public GameObject box;
     private int currentPlayerStage;
 
     private RaycastHit PushBlockhit;
@@ -123,6 +123,7 @@ public class Player : MonoBehaviour
         PlayerController.DetectOff = true;
         animator.SetTrigger("Die");
         isWin = false;
+        //Instantiate(box,transform.position,box.transform.rotation);
         EndText.GetComponent<Text>().text = "GameOver";
         NextStageUI.GetComponent<Button>().interactable = false;
         StartCoroutine(EndScreenOn());

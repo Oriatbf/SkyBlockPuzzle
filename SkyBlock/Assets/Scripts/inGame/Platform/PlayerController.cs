@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(collider.transform.position, direction, out hit, 1.5f, EndBlock))
                 {
                     Vector3 direction2 = collider.transform.position - hit.transform.position;
-                    if (Physics.Raycast(hit.transform.position, direction2, out hit, 1.5f, MoveTile))
+                    if (Physics.Raycast(hit.transform.position, direction2, out hit, 1.7f, MoveTile))
                     {
                         MeshRenderer detectMeshRenderer = hit.collider.GetComponent<MeshRenderer>();
                         detectMeshRenderer.enabled = false;
