@@ -11,9 +11,8 @@ public class ChapterSelectCamera : MonoBehaviour
 
     [SerializeField] Quaternion[] chapterInCamRot;
 
-    [SerializeField] int curChapterNum;
 
-    [SerializeField] Vector3 defaultCamRot;
+    [SerializeField] Vector3 dictionaryChapterPos;
 
     [SerializeField] Vector3[] chapterCamPos;
     [SerializeField] Vector3[] chapterInCamPos;
@@ -32,6 +31,14 @@ public class ChapterSelectCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        ChapterSwipe();
+    }
+
+
+   
+    private void ChapterSwipe()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             touchDownTrans = Input.mousePosition;
@@ -45,13 +52,13 @@ public class ChapterSelectCamera : MonoBehaviour
                 Debug.Log("왼쪽으로 밀기");
                 touchDownTrans = Vector3.zero;
                 touchUpTrans = Vector3.zero;
-                if(curChapterNum < chapterCamPos.Length-1)
+                if (MapManager.Inst.curChapterNum < chapterCamPos.Length -1)
                 {
-                    curChapterNum++;
-                    transform.DOMoveX(chapterCamPos[curChapterNum].x, 1.5f);
+                    MapManager.Inst.curChapterNum++;
+                    transform.DOMoveX(chapterCamPos[MapManager.Inst.curChapterNum].x, 1.5f);
                 }
-                
-                
+
+
             }
 
             if (touchDownTrans.x < touchUpTrans.x && Mathf.Abs(touchDownTrans.x - touchUpTrans.x) > 300)
@@ -59,19 +66,24 @@ public class ChapterSelectCamera : MonoBehaviour
                 Debug.Log("오른쪽으로 밀기");
                 touchDownTrans = Vector3.zero;
                 touchUpTrans = Vector3.zero;
-                if(curChapterNum > 0)
+                if (MapManager.Inst.curChapterNum > 1)
                 {
-                    curChapterNum--;
-                    transform.DOMoveX(chapterCamPos[curChapterNum].x, 1.5f);
+                    MapManager.Inst.curChapterNum--;
+                    transform.DOMoveX(chapterCamPos[MapManager.Inst.curChapterNum].x, 1.5f);
                 }
-               
+
             }
         }
     }
 
     public void ChapterInCamMove()
     {
-        transform.DOMove(chapterInCamPos[curChapterNum], 1f);
-        transform.DORotateQuaternion(chapterInCamRot[curChapterNum], 1f);
+        transform.DOMove(chapterInCamPos[MapManager.Inst.curChapterNum], 1f);
+        transform.DORotateQuaternion(chapterInCamRot[MapManager.Inst.curChapterNum], 1f);
+    }
+
+    public void GoDictionaryMap()
+    {
+        transform.DOMove(dictionaryChapterPos, 1f);
     }
 }
