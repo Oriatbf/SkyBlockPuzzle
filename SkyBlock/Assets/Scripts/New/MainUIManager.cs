@@ -7,7 +7,7 @@ public class MainUIManager : MonoBehaviour
 {
     public static MainUIManager Inst;
 
-    public bool uiOpen = false;
+    public bool uiOpen,mapPlayerMoving;
 
     public GameObject optionCanvas, dictionaryCanvas;
 
@@ -15,17 +15,22 @@ public class MainUIManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        Inst= this;
+        uiOpen = false;
+        mapPlayerMoving = false;
     }
 
-    public void OptionCanvasOpen()
+    public void OptionCanvasOpen(bool open)
     {
-        optionCanvas.SetActive(true);
+        optionCanvas.SetActive(open);
+        uiOpen= open;
     }
 
-    public void DictionaryCanvasOpen()
+
+    public void DictionaryCanvasOpen(bool open)
     {
-        dictionaryCanvas.SetActive(true);
+        dictionaryCanvas.SetActive(open);
+        uiOpen= open;
     }
 
     public void EnterChapter()
@@ -33,6 +38,7 @@ public class MainUIManager : MonoBehaviour
         ChapterSelectCamera.Inst.ChapterInCamMove();
         chapterEnterButton.SetActive(false);
         stageEnterButton.SetActive(true);
+        mapPlayerMoving= true;
     }
 
     public void EnterDictionaryMap()

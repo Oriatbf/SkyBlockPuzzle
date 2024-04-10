@@ -38,7 +38,7 @@ public class MapSelectMove : MonoBehaviour
             {
                 for(int i = 0; i< Stages.Length; i++)
                 {
-                    if (StageManager.instance.clearStage >= i && Stages[i] == hit.collider.gameObject)
+                    if (StageManager.Inst.clearStage >= i && Stages[i] == hit.collider.gameObject)
                     {
                         targetNumber = i;                     
                     }

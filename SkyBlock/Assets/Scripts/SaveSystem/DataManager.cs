@@ -15,13 +15,13 @@ public class SaveData
 
 public class DataManager : MonoBehaviour
 {
-    public static DataManager instance;
+    public static DataManager Inst;
 
     string path;
 
     private void Awake()
     {
-        instance = this;
+        Inst = this;
     }
 
     void Start()
@@ -32,7 +32,7 @@ public class DataManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             JsonSave();
         }
@@ -44,10 +44,10 @@ public class DataManager : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            StageManager.instance.clearStage = 0;
-            StageManager.instance.clearStars1.Add(false);
-            StageManager.instance.clearStars2.Add(false);
-            StageManager.instance.clearStars3.Add(false);
+            StageManager.Inst.clearStage = 0;
+            StageManager.Inst.clearStars1.Add(false);
+            StageManager.Inst.clearStars2.Add(false);
+            StageManager.Inst.clearStars3.Add(false);
             JsonSave();
         }
         else
@@ -57,10 +57,10 @@ public class DataManager : MonoBehaviour
 
             if (saveData != null)
             {
-                StageManager.instance.clearStage = saveData.clearStage;
-                StageManager.instance.clearStars1 = saveData.clearStars1;
-                StageManager.instance.clearStars2 = saveData.clearStars2;
-                StageManager.instance.clearStars3 = saveData.clearStars3;
+                StageManager.Inst.clearStage = saveData.clearStage;
+                StageManager.Inst.clearStars1 = saveData.clearStars1;
+                StageManager.Inst.clearStars2 = saveData.clearStars2;
+                StageManager.Inst.clearStars3 = saveData.clearStars3;
             }
         }
     }
@@ -69,13 +69,15 @@ public class DataManager : MonoBehaviour
     {
         SaveData saveData = new SaveData();
 
-        saveData.clearStage = StageManager.instance.clearStage;
-        saveData.clearStars1 = StageManager.instance.clearStars1;
-        saveData.clearStars2 = StageManager.instance.clearStars2;
-        saveData.clearStars3 = StageManager.instance.clearStars3;
+        saveData.clearStage = StageManager.Inst.clearStage;
+        saveData.clearStars1 = StageManager.Inst.clearStars1;
+        saveData.clearStars2 = StageManager.Inst.clearStars2;
+        saveData.clearStars3 = StageManager.Inst.clearStars3;
 
         string json = JsonUtility.ToJson(saveData, true);
 
         File.WriteAllText(path, json);
     }
+
+   
 }

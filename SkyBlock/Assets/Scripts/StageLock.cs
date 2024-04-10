@@ -8,7 +8,7 @@ public class StageLock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0;i< StageManager.instance.clearStage; i++)
+        for(int i = 0;i< StageManager.Inst.clearStage; i++)
         {
             StageLocker[i].SetActive(false);
         }

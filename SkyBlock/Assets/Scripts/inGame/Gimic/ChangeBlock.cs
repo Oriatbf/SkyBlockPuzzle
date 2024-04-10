@@ -102,7 +102,7 @@ public class ChangeBlock : MonoBehaviour
                         if(hit.transform.position != Aobj.transform.position
                             && hit.transform.position != Bobj.transform.position)
                         {
-                            Aobj.GetComponent<Block>().DefaultMeterial();
+                            Aobj.GetComponent<Block>().UnClick();
                             time = 0.2f;
                             start = true;
                             pos1 = hit.collider.transform.position;
@@ -139,7 +139,7 @@ public class ChangeBlock : MonoBehaviour
                         {
                             if (hit.transform.position != Bobj.transform.position)
                             {
-                                Bobj.GetComponent<Block>().DefaultMeterial();
+                                Bobj.GetComponent<Block>().UnClick();
                                 time = 0.2f;
                                 start = true;
                                 pos2 = hit.collider.transform.position;
@@ -177,8 +177,8 @@ public class ChangeBlock : MonoBehaviour
         }
         if (isChange && SelectA && SelectB)
         {
-            Aobj.GetComponent<Block>().DefaultMeterial();
-            Bobj.GetComponent<Block>().DefaultMeterial();
+            Aobj.GetComponent<Block>().UnClick();
+            Bobj.GetComponent<Block>().UnClick();
             Aobj.transform.position = pos2;
             Bobj.transform.position = pos1;
 
@@ -231,9 +231,9 @@ public class ChangeBlock : MonoBehaviour
     public void Cancel()
     {
         if (Aobj != null)
-            Aobj.GetComponent<Block>().DefaultMeterial();
+            Aobj.GetComponent<Block>().UnClick();
         if (Bobj != null)
-            Bobj.GetComponent<Block>().DefaultMeterial();
+            Bobj.GetComponent<Block>().UnClick();
 
         if (SoundEffectManager.SFX != null)
             SoundEffectManager.PlaySoundEffect(6);

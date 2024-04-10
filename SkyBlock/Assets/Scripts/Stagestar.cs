@@ -18,21 +18,21 @@ public class Stagestar : MonoBehaviour
 
         Stage.text =( "1-" +(currentStage+1)).ToString();
 
-        if (StageManager.instance.clearStars1[currentStage])
+        if (StageManager.Inst.clearStars1[currentStage])
             Stars[0].sprite= yesStar;
         else
         {
             Stars[0].sprite = noStar;
         }
 
-        if (StageManager.instance.clearStars2[currentStage])
+        if (StageManager.Inst.clearStars2[currentStage])
             Stars[1].sprite = yesStar;
         else
         {
             Stars[1].sprite = noStar;
         }
 
-        if (StageManager.instance.clearStars3[currentStage])
+        if (StageManager.Inst.clearStars3[currentStage])
             Stars[2].sprite = yesStar;
         else
         {

@@ -13,7 +13,7 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] float playerSpeed;
 
-    [SerializeField] GameObject[] chapter1Stages;
+    [SerializeField] GameObject[] chapter1Stages, chpater1Locks;
 
     public bool isMoving;
 
@@ -24,31 +24,45 @@ public class MapManager : MonoBehaviour
 
 
     }
+
+    private void Start()
+    {
+        for(int i = 1; i <= StageManager.Inst.clearStage; i++)
+        {
+            chpater1Locks[i].SetActive(false);
+        }
+    }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) &&MainUIManager.Inst.mapPlayerMoving)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mapStage))
             {
+                Debug.Log("ss");
                 preStageNum = curStageNum;
                 for(int i = 1; i < chapter1Stages.Length; i++)
                 {
                     if (hit.transform == chapter1Stages[i].transform)
                     {
-                        curStageNum = i;
+                        if(i <= StageManager.Inst.clearStage+1)     //1스테이지를 클리어 했으니 clearStage : 1 + 1 헤서 2스테이지에 갈 수 있다
+                        {
+                            curStageNum = i;
+                            if (curStageNum > preStageNum)
+                                target = chapter1Stages[preStageNum + 1].transform;
+                            else if (curStageNum < preStageNum)
+                                target = chapter1Stages[preStageNum - 1].transform;
+
+                            Vector3 direction = target.position - player.transform.position;
+                            player.transform.rotation = Quaternion.LookRotation(direction);
+
+                            isMoving = true;
+                        }
+                            
                     }
                 }
-                if(curStageNum > preStageNum)
-                    target = chapter1Stages[preStageNum+1].transform;
-                else if(curStageNum < preStageNum)
-                    target = chapter1Stages[preStageNum - 1].transform;
-
-                Vector3 direction = target.position - player.transform.position;
-                player.transform.rotation = Quaternion.LookRotation(direction);
-
-                isMoving = true;
+               
               
             }
         }

@@ -40,9 +40,11 @@ public class Block : MonoBehaviour
         renderer.materials = materials;
     }
 
-    public void DefaultMeterial()
+    public void UnClick()
     {
         renderer.materials = realDefault;
         SelectArrow.SetActive(false);
     }
+
+
 }

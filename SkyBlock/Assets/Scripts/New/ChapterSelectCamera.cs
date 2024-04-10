@@ -44,7 +44,7 @@ public class ChapterSelectCamera : MonoBehaviour
             touchDownTrans = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !MainUIManager.Inst.uiOpen)
         {
             touchUpTrans = Input.mousePosition;
             if (touchDownTrans.x > touchUpTrans.x && Mathf.Abs(touchDownTrans.x - touchUpTrans.x) > 300)

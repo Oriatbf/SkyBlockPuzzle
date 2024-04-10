@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public static StageManager instance;
+    public static StageManager Inst;
 
     
     public int lastClearStage;
@@ -17,7 +17,7 @@ public class StageManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        Inst = this;
         
     }
 
@@ -27,6 +27,22 @@ public class StageManager : MonoBehaviour
         {
             StageClear(1,false, false, false);
         }
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            DataReset();
+        }
+    }
+
+    public void DataReset()
+    {
+        clearStage= 0;
+        lastClearStage= 0;
+        clearStars1.Clear();
+        clearStars2.Clear();
+        clearStars3.Clear();
+        DataManager.Inst.JsonSave();
+
     }
 
     public void StageClear(int takeLastClearStage, bool star1, bool star2, bool star3)
@@ -48,7 +64,7 @@ public class StageManager : MonoBehaviour
             clearStars2.Add(star2);
             clearStars3.Add(star3);
         }
-        DataManager.instance.JsonSave();
+        DataManager.Inst.JsonSave();
     }
 
  
