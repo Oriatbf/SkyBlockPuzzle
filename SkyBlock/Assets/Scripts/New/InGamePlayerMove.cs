@@ -61,17 +61,17 @@ public class InGamePlayerMove : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTile))
-        {
-            if (nextPosition != null)
-            {
-                UndoManager.Inst.SaveChangeBlock(Vector3.zero, Vector3.zero, null, null);
-                UndoManager.Inst.SavePlayerPos(nextPosition);
-            }
-                
-            InGameManager.Inst.curTurn++;
+        {       
+            
             MeshRenderer hitRenderer = hit.transform.GetComponent<MeshRenderer>();
             if (hitRenderer != null && hitRenderer.enabled)
             {
+                InGameManager.Inst.curTurn++;
+                if (nextPosition != null)
+                {
+                    UndoManager.Inst.SaveChangeBlock(Vector3.zero, Vector3.zero, null, null);
+                    UndoManager.Inst.SavePlayerPos(nextPosition);
+                }
                 if (SoundEffectManager.SFX != null)
                     SoundEffectManager.PlaySoundEffect(0);
 

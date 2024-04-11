@@ -20,6 +20,7 @@ public class UndoManager : MonoBehaviour
     private void Start()
     {
         playerPos = new List<Vector3>();
+        firstChangeBlock = new List<GameObject> ();
     }
 
     private void Update()
@@ -39,17 +40,16 @@ public class UndoManager : MonoBehaviour
 
     public void UndoPlayerPos()
     {
-        if(playerPos.Count > 0)
+        if (playerPos.Count > 0)
         {
             int last = playerPos.Count - 1;
             Debug.Log(last);
             if (playerPos[last] != Vector3.zero)
             {
                 InGamePlayerMove.Inst.UndoPos(playerPos[last]);
-            }            
-            playerPos.Remove(playerPos[last]);
+            }
+            playerPos.RemoveAt(last);
         }
-        
     }
 
     public void SaveChangeBlock(Vector3 Fpos,Vector3 Spos, GameObject Fblock,GameObject Sblock)
@@ -64,20 +64,21 @@ public class UndoManager : MonoBehaviour
     {
         if (firstChangeBlockPos.Count > 0)
         {
-            int last = firstChangeBlockPos.Count - 1;
+            int last = firstChangeBlock.Count - 1;
             Debug.Log(last);
-            if (firstChangeBlockPos[last] != Vector3.zero)
+            if (firstChangeBlock[last] != null)
             {
                 var Fpos = firstChangeBlockPos[last];
                 var Spos = secondChangeBlockPos[last];
                 firstChangeBlock[last].transform.position = Fpos;
                 secondChangeBlock[last].transform.position = Spos;
             }
-
-            firstChangeBlockPos.Remove(firstChangeBlockPos[last]);
-            secondChangeBlockPos.Remove(secondChangeBlockPos[last]);
-            firstChangeBlock.Remove(firstChangeBlock[last]);
-            secondChangeBlock.Remove(secondChangeBlock[last]);
+            Debug.Log(last);
+            Debug.Log(firstChangeBlock[last]); 
+            firstChangeBlock.RemoveAt(last);
+            secondChangeBlock.RemoveAt(last);
+            firstChangeBlockPos.RemoveAt(last);
+            secondChangeBlockPos.RemoveAt(last);
         }
 
     }
