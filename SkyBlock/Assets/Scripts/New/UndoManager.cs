@@ -11,6 +11,8 @@ public class UndoManager : MonoBehaviour
     public List<GameObject> firstChangeBlock= new List<GameObject>();
     public List<GameObject> secondChangeBlock= new List<GameObject>();
 
+    public bool isUndo;
+
     private void Awake()
     {
         Inst= this;
@@ -25,7 +27,7 @@ public class UndoManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.U))
+        if(Input.GetKeyDown(KeyCode.U) && !isUndo)
         {
             UndoPlayerPos();
             UndoChangeBlock();
@@ -47,6 +49,8 @@ public class UndoManager : MonoBehaviour
             if (playerPos[last] != Vector3.zero)
             {
                 InGamePlayerMove.Inst.UndoPos(playerPos[last]);
+                InGameManager.Inst.curTurn--;
+                isUndo = true;
             }
             playerPos.RemoveAt(last);
         }

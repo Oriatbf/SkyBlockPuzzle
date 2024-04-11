@@ -43,10 +43,13 @@ public class InGamePlayerMove : MonoBehaviour
           
         if (isMoving)
         {
+           
             transform.position = Vector3.MoveTowards(transform.position,nextPosition,3f*Time.deltaTime);
             animator.SetBool("Walk", true);
             if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.1f)
             {
+                if (UndoManager.Inst.isUndo)
+                    UndoManager.Inst.isUndo = false;
                 transform.position = nextPosition;  
                 ActiveThings();
                 InGameUIManager.Inst.ChangeCoolDown();
