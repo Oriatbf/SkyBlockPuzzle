@@ -29,6 +29,7 @@ public class InGameUIManager : MonoBehaviour
     [Header("클리어 캔버스 관련")]
     [SerializeField] Text endCanvasCurTurn;
     [SerializeField] Text endCanvasGoalTurn;
+    [SerializeField] Text endCanvasGoalTurnTxt;
 
     private void Awake()
     {
@@ -191,6 +192,7 @@ public class InGameUIManager : MonoBehaviour
         endCanvas.SetActive(true);
         endCanvasCurTurn.text = InGameManager.Inst.curTurn.ToString();
         endCanvasGoalTurn.text = InGameManager.Inst.endTurn.ToString();
+        endCanvasGoalTurnTxt.text = InGameManager.Inst.endTurn.ToString();
     }
 
 

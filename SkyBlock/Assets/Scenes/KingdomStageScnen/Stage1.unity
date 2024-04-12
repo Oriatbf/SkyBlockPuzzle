@@ -3468,6 +3468,7 @@ MonoBehaviour:
   curTurn: {fileID: 352690111604171160}
   endCanvasCurTurn: {fileID: 1362410357}
   endCanvasGoalTurn: {fileID: 4796205361668229169}
+  endCanvasGoalTurnTxt: {fileID: 4953190324238486874}
 --- !u!4 &1167877071
 Transform:
   m_ObjectHideFlags: 0
@@ -6679,6 +6680,7 @@ MonoBehaviour:
   secondChangeBlockPos: []
   firstChangeBlock: []
   secondChangeBlock: []
+  isUndo: 0
 --- !u!1 &2054709999
 GameObject:
   m_ObjectHideFlags: 0

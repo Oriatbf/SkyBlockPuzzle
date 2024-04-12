@@ -158,8 +158,8 @@ public class Player : MonoBehaviour
                 TurnImageText.color = new Color(255 / 255.0f, 192 / 255.0f, 25 / 255.0f, 1.0f);
             }
 
-            StageManager.Inst.StageClear(1, true, takeStar, turnClear);
-            StageManager.Inst.StageClear(1, false, false, false);
+           // StageManager.Inst.StageClear(1, true, takeStar, turnClear);
+           // StageManager.Inst.StageClear(1, false, false, false);
             StarCount = 0;
         }
       
