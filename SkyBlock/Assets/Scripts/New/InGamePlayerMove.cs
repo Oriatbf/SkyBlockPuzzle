@@ -42,19 +42,29 @@ public class InGamePlayerMove : MonoBehaviour
         }
           
         if (isMoving)
-        {
-           
+        {   
             transform.position = Vector3.MoveTowards(transform.position,nextPosition,3f*Time.deltaTime);
             animator.SetBool("Walk", true);
             if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.1f)
             {
                 if (UndoManager.Inst.isUndo)
-                    UndoManager.Inst.isUndo = false;
+                {
+                    
+                        UndoManager.Inst.isUndo = false;
+                   
+                }
+                else
+                {
+                    InGameManager.Inst.GoblinsMove();
+                    InGameUIManager.Inst.ChangeCoolDown();
+                }
+                   
                 transform.position = nextPosition;  
                 ActiveThings();
-                InGameUIManager.Inst.ChangeCoolDown();
+                
                 isMoving= false;
                 animator.SetBool("Walk", false);
+                
             }
         }
     }
@@ -72,8 +82,7 @@ public class InGamePlayerMove : MonoBehaviour
                 InGameManager.Inst.curTurn++;
                 if (nextPosition != null)
                 {
-                    UndoManager.Inst.SaveChangeBlock(Vector3.zero, Vector3.zero, null, null);
-                    UndoManager.Inst.SavePlayerPos(nextPosition);
+                    Save();
                 }
                 if (SoundEffectManager.SFX != null)
                     SoundEffectManager.PlaySoundEffect(0);
@@ -86,6 +95,19 @@ public class InGamePlayerMove : MonoBehaviour
             }
         }
 
+    }
+
+    private void Save()
+    {
+        UndoManager.Inst.SaveChangeBlock(Vector3.zero, Vector3.zero, null, null);
+        UndoManager.Inst.SaveChangeBlockCool(InGameUIManager.Inst.changeCool);
+        UndoManager.Inst.SavePlayerPos(nextPosition);
+        if (UndoManager.Inst.isPushBlock)
+        {
+            GameObject[] pushBlock = GameObject.FindGameObjectsWithTag("PushBlock");
+            foreach (GameObject box in pushBlock)
+                box.GetComponent<PushBlock>().Save(false);
+        }
     }
 
     private void DisableMoveTile()
@@ -119,7 +141,7 @@ public class InGamePlayerMove : MonoBehaviour
             tile.GetComponent<MeshRenderer>().enabled = false;
         }
 
-        Collider[] moveTiles = Physics.OverlapBox(transform.position, new Vector3(2.5f, 2.5f, 2.5f),Quaternion.identity,MoveTile);
+        Collider[] moveTiles = Physics.OverlapBox(transform.position, new Vector3(2.5f, 1f, 2.5f),Quaternion.identity,MoveTile);
         foreach(Collider activeTiles in moveTiles)
         {
             Vector3 direction = transform.position - activeTiles.transform.position;
@@ -152,11 +174,15 @@ public class InGamePlayerMove : MonoBehaviour
             if (Physics.Raycast(pushBlock.transform.position, direction, out endBlockHit, 1.5f, EndBlock))
             {
                 pushBlock.GetComponent<PushBlock>().ClickPoint.SetActive(false);
+                
 
             }
             else
             {
-                pushBlock.GetComponent<PushBlock>().ClickPoint.SetActive(true);
+                if(Physics.Raycast(pushBlock.transform.position, -direction, out endBlockHit, 1.5f, EndBlock) || pushBlock.GetComponent<PushBlock>().onFloor)
+                    pushBlock.GetComponent<PushBlock>().ClickPoint.gameObject.SetActive(false);
+                else
+                    pushBlock.GetComponent<PushBlock>().ClickPoint.gameObject.SetActive(true);
 
             }
         }
@@ -185,7 +211,7 @@ public class InGamePlayerMove : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position,new Vector3(5,5,5));
+        Gizmos.DrawWireCube(transform.position,new Vector3(5,2,5));
     }
 
     public void UndoPos(Vector3 undoPos)
@@ -193,6 +219,18 @@ public class InGamePlayerMove : MonoBehaviour
         nextPosition= undoPos;
         isMoving = true;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Goal"))
+        {
+            InGameManager.Inst.playerGoal();
+        }
+    }
+
+   
+
+    
 
 
 }

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2721712498449661228}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.8900006, y: 1.54, z: 0.04}
-  m_LocalScale: {x: 1.6879452, y: 2.9522164, z: 0.15504}
+  m_LocalScale: {x: 1.9227383, y: 2.9522164, z: 0.15504}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2472421657609637051}
@@ -124,7 +124,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2955521106087138817}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.0000005, y: 1, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -271,6 +271,10 @@ PrefabInstance:
     - target: {fileID: 7666618147071762372, guid: 48a3d37a267ccb84aa8e4fdc8f72b001, type: 3}
       propertyPath: m_Name
       value: newTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666618147071762372, guid: 48a3d37a267ccb84aa8e4fdc8f72b001, type: 3}
+      propertyPath: m_TagString
+      value: Tile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48a3d37a267ccb84aa8e4fdc8f72b001, type: 3}

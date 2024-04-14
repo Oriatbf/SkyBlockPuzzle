@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4663088016542182010}
-  m_LocalRotation: {x: 0.03997144, y: -0, z: 0.9992009, w: 0}
+  m_LocalRotation: {x: 0.039974716, y: 0, z: 0.9992007, w: -0}
   m_LocalPosition: {x: 15.122929, y: 50.03241, z: -34.437748}
   m_LocalScale: {x: 15, y: 15, z: 7}
   m_ConstrainProportionsScale: 0
@@ -108,11 +108,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4663088016542182010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1db7657c8672cf4689463d0a7b01248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Particle_GetStar: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
-  player: {fileID: 0}
-  playerStarCount: 0

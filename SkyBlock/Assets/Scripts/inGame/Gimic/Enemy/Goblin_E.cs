@@ -6,162 +6,156 @@ public class Goblin_E : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
-    [SerializeField] private float AttackNum;
+    [SerializeField] private float attackTurn;
 
-    private bool attackON = true;
+    public bool attackON = false;
     public LayerMask blockEnd;
     public LayerMask platForm;
     public LayerMask playerMask;
-    public bool backTurn;
-    [Space]
-    [Header("가로로 이동시 체크")]
-    public bool isWidth; //가로인가
-    private Vector3 nPosition;
-    public bool Move = false;
+
+    private Vector3 nextPosition;
+    private Vector3 prePos;
+    public bool isMove = false;
     [SerializeField]
     private bool isWall =false;
+    private bool isUndo;
 
 
     Animator animator;
-    private int TurnStac;
 
     void Start()
     {
+        nextPosition= transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
         animator= GetComponent<Animator>(); 
-        TurnStac = player.GetComponent<Player>().TurnStac;
     }
     void Update()
     {
+       
 
-
-        if (TurnStac % AttackNum == 0 && TurnStac != 0 && attackON)
-        {
-            Attack();
-        }
-        
-        if (TurnStac % AttackNum == AttackNum - 1 && TurnStac != 0 && !isWall)
-        {
+        if (InGameManager.Inst.curTurn % attackTurn == 0 && !isWall)
             attackON = true;
-        }
-      
+        else
+            attackON = false;
 
-        if (Move)
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, blockEnd))
         {
-            transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
-            animator.SetBool("isWalk",true);
-            StartCoroutine(moveFalse());
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, blockEnd))
-            {
-                isWall = true;
-            }
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask) && !isWall)
-            {
-                Attack();
-            }
+            isWall = true;
         }
         else
         {
-            animator.SetBool("isWalk", false);
+            isWall= false;
         }
-           
+
+
+       
+
+        if (isMove)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nextPosition, 3f * Time.deltaTime);
+            animator.SetBool("isWalk",true);
+            if (SoundEffectManager.SFX != null)
+                SoundEffectManager.PlaySoundEffect(0);
+            if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.1f)
+            {
+                if (isUndo)
+                {
+                    isUndo = false;
+                }
+                else
+                {
+                    Save();
+                }
+                if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask) && attackON)
+                {
+                    Attack();
+
+                }
+
+                animator.SetBool("isWalk", false);
+                isMove = false;
+                transform.position= nextPosition;
+            }      
+        }      
+    }
+
+    private void Save()
+    {
+        UndoManager.Inst.SaveGoblinPos(prePos, transform.rotation,true);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward * 2);
-        Gizmos.DrawRay(transform.position + transform.forward *2 + Vector3.up*1.2f, -transform.up * 2);
+        Gizmos.DrawRay(transform.position + transform.forward *2 + Vector3.up*0.8f, -transform.up * 1);
     }
 
     private void Attack()
     {
-        PlayerController.timer = 2f;
         animator.applyRootMotion = true;
         animator.SetTrigger("isAttack");
-        StartCoroutine(playerDie());
+        InGameManager.Inst.playerLose();
     }
    
 
     public void GoblinMove()
     {
+        prePos = nextPosition;
+       
         RaycastHit hitInfo;
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, out hitInfo, 2))
+        if (Physics.Raycast(transform.position + transform.forward * 2 + Vector3.up * 0.8f, -transform.up , out hitInfo,1f,platForm))
         {
-            
-            if (hitInfo.transform.CompareTag("Player"))
+            Debug.Log(hitInfo.collider);
+        }
+        else
+        {
+            isWall = true;
+        }
+
+        if (isWall)
+        {
+            Turn();
+        }
+        else
+        {
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask) && attackON)
             {
                 Attack();
+
+            }
+            else
+            {
+                nextPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+                isMove = true;
             }
                 
         }
-        if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.3f,transform.position.z) , transform.forward, 2, blockEnd) 
-            || !Physics.Raycast(transform.position + transform.forward * 2 + Vector3.up * 1.2f, -transform.up, 2, platForm))
+    }
+
+    public void UndoPos(Vector3 pos,Quaternion rot)
+    {
+        nextPosition= pos;
+        transform.rotation= rot;
+        isMove = true;
+        isUndo= true;
+    }
+
+    private void Turn()
+    {
+        if (transform.eulerAngles.y == 0)
         {
-            isWall= true;
-            if (!isWidth)
-            {
-                if (backTurn)
-                {
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-                    backTurn = false;
-                }
-                else
-                {
-                    transform.eulerAngles = new Vector3(0, 180, 0);
-                    backTurn = true;
-                }
-            }
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
 
-            if (isWidth)
-            {
-
-                if (backTurn)
-                {
-                    transform.eulerAngles = new Vector3(0, 90, 0);
-                    backTurn = false;
-                }
-                else
-                {
-                    transform.eulerAngles = new Vector3(0, -90, 0);
-                    backTurn = true;
-                }
-            }
+        Save();
+    }
 
     
-        }
-        else if (hitInfo.transform == null || !hitInfo.transform.CompareTag("Player"))
-        {
-            if (SoundEffectManager.SFX != null)
-                SoundEffectManager.PlaySoundEffect(0);
 
-            PlayerController.timer = 1f;
-            isWall = false;
-            nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-            StartCoroutine(WaitPlayerMove());
-        }
-       
-        
-    }
-
-    IEnumerator WaitPlayerMove()
-    {
-        Move = false;
-        yield return new WaitForSeconds(0.3f);
-        Move = true;
-    }
-
-    IEnumerator moveFalse()
-    {
-        yield return new WaitForSeconds(0.7f);
-        Move = false;
-    }
-
-    IEnumerator playerDie()
-    {
-        yield return new WaitForSeconds(1);
-        player.GetComponent<Player>().Lose();
-        yield return new WaitForSeconds(5f);
-        player.gameObject.SetActive(false);
-    }
+   
 }

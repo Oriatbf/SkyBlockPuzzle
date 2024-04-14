@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] GameObject changeCancle;
     [SerializeField] Image changeCoolImage;
     [SerializeField] Text changeCoolText;
-    int changeCool;
+    public int changeCool;
     GameObject firstBlock, secondBlock;
     public LayerMask blockLayer;
 
@@ -29,7 +30,9 @@ public class InGameUIManager : MonoBehaviour
     [Header("클리어 캔버스 관련")]
     [SerializeField] Text endCanvasCurTurn;
     [SerializeField] Text endCanvasGoalTurn;
-    [SerializeField] Text endCanvasGoalTurnTxt;
+    [SerializeField] Text onGoalTurnTxt,outGoalTurnText,titleTxt;
+    [SerializeField] GameObject getStarImage, noStarImage,onTurnImage,outTurnImage,onClearImage,nonClearImage,nextStageBtn;
+
 
     private void Awake()
     {
@@ -55,7 +58,6 @@ public class InGameUIManager : MonoBehaviour
         {
             ClickBlock();
         }
-
     }
 
     private void UiUpdate()
@@ -127,6 +129,20 @@ public class InGameUIManager : MonoBehaviour
         changeCoolText.text = changeCool.ToString();
     }
 
+    public void UndoChangeCoolDown()
+    {
+        if (changeCool > 0)
+        {
+            changeCoolImage.fillAmount = (float)changeCool / 3;
+            changeCoolText.text = changeCool.ToString();
+        }
+        else if (changeCool == 0)
+        {    
+            changeCoolImage.fillAmount = 0;
+            changeCoolText.text = "";
+        }
+    }
+
     public void ChangeCoolDown()
     {
         if(changeCool > 1)
@@ -148,8 +164,7 @@ public class InGameUIManager : MonoBehaviour
     {
         Vector3 firstPos = firstBlock.transform.position;
         Vector3 secPos = secondBlock.transform.position;
-        UndoManager.Inst.SaveChangeBlock(firstPos, secPos,firstBlock, secondBlock);
-        UndoManager.Inst.SavePlayerPos(Vector3.zero);
+        Save(firstPos, secPos);
         firstBlock.transform.position = secPos;
         secondBlock.transform.position = firstPos;
         firstBlock.GetComponent<Block>().UnClick();
@@ -157,6 +172,26 @@ public class InGameUIManager : MonoBehaviour
         firstBlock = null;
         secondBlock = null;
         InGamePlayerMove.Inst.ActiveThings();
+    }
+
+    private void Save(Vector3 firstPos, Vector3 secPos)
+    {
+        UndoManager.Inst.SaveChangeBlock(firstPos, secPos, firstBlock, secondBlock);
+        UndoManager.Inst.SavePlayerPos(Vector3.zero);
+        UndoManager.Inst.SaveGoblinPos(Vector3.zero,UndoManager.Inst.goblin.transform.rotation,false);
+        if (UndoManager.Inst.isPushBlock)
+        {
+            GameObject[] pushBlock = GameObject.FindGameObjectsWithTag("PushBlock");
+            foreach (GameObject box in pushBlock)
+                box.GetComponent<PushBlock>().Save(false);
+        }
+        SaveChangeCool();
+
+    }
+
+    public void SaveChangeCool()
+    {
+        UndoManager.Inst.SaveChangeBlockCool(changeCool);
     }
 
     public void ClickChangeCancle()
@@ -187,12 +222,56 @@ public class InGameUIManager : MonoBehaviour
         isUIOpen = uiOpen;
     }
 
-    public void OpenEndCanvas()
+    public void OpenEndCanvas(bool isPlayerAlive)
     {
         endCanvas.SetActive(true);
         endCanvasCurTurn.text = InGameManager.Inst.curTurn.ToString();
         endCanvasGoalTurn.text = InGameManager.Inst.endTurn.ToString();
-        endCanvasGoalTurnTxt.text = InGameManager.Inst.endTurn.ToString();
+        onGoalTurnTxt.text = InGameManager.Inst.endTurn.ToString();
+        outGoalTurnText.text = InGameManager.Inst.endTurn.ToString();
+
+        getStarImage.SetActive(InGameManager.Inst.getStar);
+        noStarImage.SetActive(!InGameManager.Inst.getStar);
+        onTurnImage.SetActive(InGameManager.Inst.isPlayerOnTurn);
+        outTurnImage.SetActive(!InGameManager.Inst.isPlayerOnTurn);
+        onClearImage.SetActive(true);
+        nonClearImage.SetActive(false);
+
+        if (!isPlayerAlive)
+        {
+            onTurnImage.SetActive(false);
+            outTurnImage.SetActive(true);
+            getStarImage.SetActive(false);
+            noStarImage.SetActive(true);
+            onClearImage.SetActive(false);
+            nonClearImage.SetActive(true);
+            nextStageBtn.SetActive(false);
+        }
+        else
+        {
+            InGameManager.Inst.SaveStageData();
+        }
+
+        titleTxt.text = "1 - " + (SceneManager.GetActiveScene().buildIndex - 1).ToString() + " 스테이지";
+
+        
+    }
+
+    public void RestartScene()
+    {
+        int a = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(a);
+    }
+
+    public void NextScene()
+    {
+        int a = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(a+1);
+    }
+
+    public void MapSelectScene()
+    {
+        SceneManager.LoadScene("NewChapterSelect");
     }
 
 

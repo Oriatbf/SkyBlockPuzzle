@@ -17,8 +17,6 @@ public class CameraManager : MonoBehaviour
     int slideNum;
     // ---
 
-    [SerializeField] GameObject OptionCanvas;
-    [SerializeField] GameObject HintCanvas;
 
     void Start()
     {
@@ -34,13 +32,13 @@ public class CameraManager : MonoBehaviour
 
         //--------------------------------(�������� ����)
 
-        if (Input.GetMouseButtonDown(0) && OptionCanvas.activeSelf != true && HintCanvas.activeSelf != true || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
+        if (Input.GetMouseButtonDown(0) && !InGameUIManager.Inst.isUIOpen || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             SlideWait = true;
             firstPos = Input.GetMouseButtonDown(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position;
         }
 
-        if (Input.GetMouseButton(0) && OptionCanvas.activeSelf != true && HintCanvas.activeSelf != true || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved))
+        if (Input.GetMouseButton(0) && !InGameUIManager.Inst.isUIOpen || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved))
         {
             gap = (Input.GetMouseButton(0) ? Input.mousePosition : (Vector3)Input.GetTouch(0).position) - firstPos;
             if (gap.magnitude < 100) return;
