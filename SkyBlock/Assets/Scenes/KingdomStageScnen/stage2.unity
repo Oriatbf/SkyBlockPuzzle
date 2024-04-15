@@ -1289,6 +1289,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8398793642339891943, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: endTurn
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398793642339891943, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: curStageNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398793642487022151, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: isGoblin
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8398793642487022151, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
       propertyPath: isPushBlock
       value: 1

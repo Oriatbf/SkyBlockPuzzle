@@ -135,29 +135,37 @@ public class InGamePlayerMove : MonoBehaviour
 
     private void ActiveMoveTile()
     {
+        
         GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
         foreach (GameObject tile in tiles)
         {
             tile.GetComponent<MeshRenderer>().enabled = false;
         }
+        List<Collider> allMoveTile = new List<Collider>();
 
-        Collider[] moveTiles = Physics.OverlapBox(transform.position, new Vector3(2.5f, 1f, 2.5f),Quaternion.identity,MoveTile);
-        foreach(Collider activeTiles in moveTiles)
+        Collider[] widthMoveTiles = Physics.OverlapBox(transform.position, new Vector3(0.9f, 1f, 2.5f),Quaternion.identity,MoveTile);
+        Collider[] heightMoveTiles = Physics.OverlapBox(transform.position, new Vector3(2.5f, 1f, 0.9f), Quaternion.identity, MoveTile);
+        foreach (Collider activeTiles in widthMoveTiles)
+            allMoveTile.Add(activeTiles);
+        foreach (Collider activeTiles in heightMoveTiles)
+            allMoveTile.Add(activeTiles);
+
+        foreach (Collider activeAllTiles in allMoveTile)
         {
-            Vector3 direction = transform.position - activeTiles.transform.position;
+            Vector3 direction = transform.position - activeAllTiles.transform.position;
             RaycastHit endBlockHit;
-            if (Physics.Raycast(activeTiles.transform.position, direction, out endBlockHit, 1.5f, EndBlock))
+            if (Physics.Raycast(activeAllTiles.transform.position, direction, out endBlockHit, 1.5f, EndBlock))
             {
-                activeTiles.GetComponent<MeshRenderer>().enabled = false;
+                activeAllTiles.GetComponent<MeshRenderer>().enabled = false;
 
             }
             else
             {
                 RaycastHit hit;
-                if (Physics.Raycast(activeTiles.transform.position, Vector3.up, out hit, 5f, tileDisableLayer))
-                    activeTiles.GetComponent<MeshRenderer>().enabled = false;
+                if (Physics.Raycast(activeAllTiles.transform.position, Vector3.up, out hit, 5f, tileDisableLayer))
+                    activeAllTiles.GetComponent<MeshRenderer>().enabled = false;
                 else
-                    activeTiles.GetComponent<MeshRenderer>().enabled = true;
+                    activeAllTiles.GetComponent<MeshRenderer>().enabled = true;
             }
         }
 
@@ -166,6 +174,7 @@ public class InGamePlayerMove : MonoBehaviour
 
     private void ActivePushBlock()
     {
+
         Collider[] pushBlocks = Physics.OverlapBox(transform.position, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, PushBlockLayer);
         foreach(Collider pushBlock in pushBlocks)
         {
@@ -211,7 +220,8 @@ public class InGamePlayerMove : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position,new Vector3(5,2,5));
+        Gizmos.DrawWireCube(transform.position,new Vector3(1.8f,2,5));
+        Gizmos.DrawWireCube(transform.position, new Vector3(5f, 2, 1.8f));
     }
 
     public void UndoPos(Vector3 undoPos)
