@@ -48,6 +48,6 @@ public class NoMoveEnemy : MonoBehaviour
 
     public void AttackAnim()
     {
-        playerObject.GetComponent<Player>().Lose();
+        InGameManager.Inst.playerLose();
     }
 }

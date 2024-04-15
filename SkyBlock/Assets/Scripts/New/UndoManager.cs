@@ -15,10 +15,15 @@ public class UndoManager : MonoBehaviour
 
     public List<Vector3> goblinPos = new List<Vector3>();   
     public List<Quaternion> goblinRot= new List<Quaternion>();
+    public List<bool> goblinAlive= new List<bool>();
+
+    public List<bool> bearAlive = new List<bool>();
 
     public List<GameObject> pushBlockCount = new List<GameObject>();
 
     public GameObject goblin;
+
+    public GameObject bear;
 
 
 
@@ -28,7 +33,7 @@ public class UndoManager : MonoBehaviour
     public bool isUndo;
     public bool isPushBlock;
     public bool isGoblin;
-    
+    public bool isBear;
 
     private void Awake()
     {
@@ -64,6 +69,11 @@ public class UndoManager : MonoBehaviour
             goblin = GameObject.FindGameObjectWithTag("Goblin");
         }
 
+        if (isBear)
+        {
+            bear = GameObject.FindGameObjectWithTag("Bear");
+        }
+
     }
 
     private void Update()
@@ -75,8 +85,30 @@ public class UndoManager : MonoBehaviour
             UndoPushBlock();
             UndoChangeBlockCool();
             UndoGoblinPos();
+            UndoBearAlive();
             InGamePlayerMove.Inst.ActiveThings();
         }
+    }
+
+    public void SaveBearAlive()
+    {
+
+        bearAlive.Add(bear.activeSelf);
+    }
+
+    public void UndoBearAlive()
+    {
+        if (isBear)
+        {
+            int last = bearAlive.Count - 1;
+            if (bearAlive.Count > 0)
+            {
+                bear.SetActive(bearAlive[last]);
+                bearAlive.RemoveAt(last);
+            }
+
+        }
+       
     }
 
     public void SaveChangeBlockCool(int cool)

@@ -178,6 +178,8 @@ public class InGameUIManager : MonoBehaviour
     {
         UndoManager.Inst.SaveChangeBlock(firstPos, secPos, firstBlock, secondBlock);
         UndoManager.Inst.SavePlayerPos(Vector3.zero);
+        UndoManager.Inst.SaveBearAlive();
+
         if(UndoManager.Inst.isGoblin)
             UndoManager.Inst.SaveGoblinPos(Vector3.zero,UndoManager.Inst.goblin.transform.rotation,false);
         if (UndoManager.Inst.isPushBlock)

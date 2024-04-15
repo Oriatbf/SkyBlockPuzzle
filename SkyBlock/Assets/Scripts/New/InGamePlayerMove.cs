@@ -9,7 +9,7 @@ public class InGamePlayerMove : MonoBehaviour
 
     public bool isMoving;
 
-    public LayerMask MoveTile, EndBlock, tileDisableLayer,PushBlockLayer,EnemyLayer;
+    public LayerMask MoveTile, EndBlock, tileDisableLayer,PushBlockLayer,EnemyLayer,attackPointLayer;
 
     private Vector3 nextPosition;
 
@@ -36,15 +36,30 @@ public class InGamePlayerMove : MonoBehaviour
             ClickMoveTile();
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (!isMoving)
         {
-            ActiveThings();
+            if(Input.GetMouseButtonDown(0)) 
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit attackPointHit;
+
+                if (Physics.Raycast(ray, out attackPointHit, Mathf.Infinity, attackPointLayer))
+                {
+                    Vector3 dir =  transform.position-attackPointHit.transform.position;
+                    transform.LookAt(new Vector3(attackPointHit.transform.position.x, transform.position.y, attackPointHit.transform.position.z));
+                    attackPointHit.transform.parent.gameObject.SetActive(false);
+                    animator.SetTrigger("Attack");
+                    
+                }
+            }
+           
         }
           
         if (isMoving)
         {   
             transform.position = Vector3.MoveTowards(transform.position,nextPosition,3f*Time.deltaTime);
             animator.SetBool("Walk", true);
+            EnableClickPoint();
             if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.1f)
             {
                 if (UndoManager.Inst.isUndo)
@@ -67,6 +82,31 @@ public class InGamePlayerMove : MonoBehaviour
                 
             }
         }
+    }
+
+    public void PlayerAttack()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + new Vector3(0f, 0.5f, 0f), transform.forward,out hit, 3f, EnemyLayer))
+        {
+            StartCoroutine(AttackDelay(hit.transform));
+        }
+    }
+
+    IEnumerator AttackDelay(Transform target)
+    {
+        Debug.Log("실핼");
+        Save();
+        yield return new WaitForSeconds(0.3f);
+
+        if (SoundEffectManager.SFX != null)
+            SoundEffectManager.PlaySoundEffect(4);
+
+        if (ParticleManager.Particles != null)
+            Instantiate(ParticleManager.Particles[2], target.transform.position + Vector3.up * 0.5f, ParticleManager.Particles[2].transform.rotation);
+
+        target.gameObject.SetActive(false);
+        ActiveThings();
     }
 
     private void ClickMoveTile()
@@ -102,6 +142,7 @@ public class InGamePlayerMove : MonoBehaviour
         UndoManager.Inst.SaveChangeBlock(Vector3.zero, Vector3.zero, null, null);
         UndoManager.Inst.SaveChangeBlockCool(InGameUIManager.Inst.changeCool);
         UndoManager.Inst.SavePlayerPos(nextPosition);
+        UndoManager.Inst.SaveBearAlive();
         if (UndoManager.Inst.isPushBlock)
         {
             GameObject[] pushBlock = GameObject.FindGameObjectsWithTag("PushBlock");
@@ -199,6 +240,7 @@ public class InGamePlayerMove : MonoBehaviour
 
     private void ActiveEnemy()
     {
+        EnableClickPoint();
         Collider[] enemies = Physics.OverlapBox(transform.position, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, EnemyLayer);
         foreach (Collider enemy in enemies)
         {
@@ -207,14 +249,23 @@ public class InGamePlayerMove : MonoBehaviour
             if (Physics.Raycast(enemy.transform.position, direction, out endBlockHit, 1.5f, EndBlock))
             {
                 enemy.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
+                Debug.Log("false");
 
             }
             else
             {
                 enemy.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(true);
-
+                Debug.Log("true");
             }
         }
+    }
+
+    private void EnableClickPoint()
+    {
+        if (UndoManager.Inst.isGoblin)
+            UndoManager.Inst.goblin.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
+        if (UndoManager.Inst.isBear)
+            UndoManager.Inst.bear.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
     }
 
     private void OnDrawGizmos()
@@ -222,6 +273,9 @@ public class InGamePlayerMove : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position,new Vector3(1.8f,2,5));
         Gizmos.DrawWireCube(transform.position, new Vector3(5f, 2, 1.8f));
+        Gizmos.DrawRay(transform.position + new Vector3(0f, 0.5f, 0f), transform.forward * 3f);
+
+     
     }
 
     public void UndoPos(Vector3 undoPos)
