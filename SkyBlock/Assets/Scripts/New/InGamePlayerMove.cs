@@ -62,12 +62,12 @@ public class InGamePlayerMove : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position,nextPosition,3f*Time.deltaTime);
             animator.SetBool("Walk", true);
             EnableClickPoint();
-            if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.1f)
+            if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.15f)
             {
                 if (UndoManager.Inst.isUndo)
                 {
                     
-                        UndoManager.Inst.isUndo = false;
+                    UndoManager.Inst.isUndo = false;
                    
                 }
                 else
@@ -187,8 +187,8 @@ public class InGamePlayerMove : MonoBehaviour
         }
         List<Collider> allMoveTile = new List<Collider>();
 
-        Collider[] widthMoveTiles = Physics.OverlapBox(transform.position, new Vector3(0.9f, 1f, 2.5f),Quaternion.identity,MoveTile);
-        Collider[] heightMoveTiles = Physics.OverlapBox(transform.position, new Vector3(2.5f, 1f, 0.9f), Quaternion.identity, MoveTile);
+        Collider[] widthMoveTiles = Physics.OverlapBox(transform.position + new Vector3(0, 0.5f, 0), new Vector3(0.9f, 0.75f, 2.5f),Quaternion.identity,MoveTile);
+        Collider[] heightMoveTiles = Physics.OverlapBox(transform.position + new Vector3(0, 0.5f, 0), new Vector3(2.5f, 0.75f, 0.9f), Quaternion.identity, MoveTile);
         foreach (Collider activeTiles in widthMoveTiles)
             allMoveTile.Add(activeTiles);
         foreach (Collider activeTiles in heightMoveTiles)
@@ -274,8 +274,8 @@ public class InGamePlayerMove : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position,new Vector3(1.8f,2,5));
-        Gizmos.DrawWireCube(transform.position, new Vector3(5f, 2, 1.8f));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0,0.5f,0),new Vector3(1.8f,1.5f,5));
+        Gizmos.DrawWireCube(transform.position + new Vector3(0, 0.5f, 0), new Vector3(5f, 1.5f, 1.8f));
         Gizmos.DrawRay(transform.position + new Vector3(0f, 0.5f, 0f), transform.forward * 3f);
 
      

@@ -652,6 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   attackTurn: 1
+  isWidth: 1
   attackON: 0
   blockEnd:
     serializedVersion: 2
@@ -756,7 +757,7 @@ GameObject:
   - component: {fileID: 6614452940604832563}
   - component: {fileID: 6614452940604832573}
   - component: {fileID: 6614452940604832562}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: ClickPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1222,7 +1223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173327431688468542, guid: 90e9bc62327a20449af0c6b4737c8b05, type: 3}
       propertyPath: m_Layer
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7550029583730041476, guid: 90e9bc62327a20449af0c6b4737c8b05, type: 3}
       propertyPath: m_RootOrder

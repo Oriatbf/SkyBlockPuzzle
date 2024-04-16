@@ -761,6 +761,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8398793642339891943, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: endTurn
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398793642339891943, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: curStageNum
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398793642487022151, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: isBear
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398793642487022151, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: isGoblin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398793642487022151, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
+      propertyPath: isPushBlock
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8398793643205147941, guid: b83848c88f89be043acda6fdd2579efc, type: 3}
       propertyPath: m_Name
       value: GameManagers
@@ -818,6 +838,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5291847174340023164, guid: 049d37e23ddb92c42bbae48f4a01c458, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5291847174340023164, guid: 049d37e23ddb92c42bbae48f4a01c458, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8559715821546520222, guid: 049d37e23ddb92c42bbae48f4a01c458, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1236,18 +1264,6 @@ PrefabInstance:
     - target: {fileID: 5119123366786799050, guid: 85769d509eb5ba545ae581e08ab7d29b, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5119123366786799050, guid: 85769d509eb5ba545ae581e08ab7d29b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100.00011
-      objectReference: {fileID: 0}
-    - target: {fileID: 5119123366786799050, guid: 85769d509eb5ba545ae581e08ab7d29b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100.000084
-      objectReference: {fileID: 0}
-    - target: {fileID: 5119123366786799050, guid: 85769d509eb5ba545ae581e08ab7d29b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100.000084
       objectReference: {fileID: 0}
     - target: {fileID: 5119123366786799050, guid: 85769d509eb5ba545ae581e08ab7d29b, type: 3}
       propertyPath: m_LocalPosition.x

@@ -7,6 +7,8 @@ public class Goblin_E : MonoBehaviour
     [SerializeField] private GameObject player;
 
     [SerializeField] private float attackTurn;
+    [Tooltip("고블린 처음 y축 회전이 90 혹은 -90일때 켜주세요")]
+    public bool isWidth;
 
     public bool attackON = false;
     public LayerMask blockEnd;
@@ -22,6 +24,11 @@ public class Goblin_E : MonoBehaviour
 
 
     Animator animator;
+
+    private void Awake()
+    {
+       
+    }
 
     void Start()
     {
@@ -146,14 +153,25 @@ public class Goblin_E : MonoBehaviour
 
     private void Turn()
     {
-        if (transform.eulerAngles.y == 0)
+        if (isWidth)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            if(transform.eulerAngles.y == -90)
+                transform.eulerAngles = new Vector3(0, 90, 0);
+            else
+                transform.eulerAngles = new Vector3(0, -90, 0);
         }
         else
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            if (transform.eulerAngles.y == 0)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
         }
+       
         InGamePlayerMove.Inst.ActiveThings();
         Save();
     }
