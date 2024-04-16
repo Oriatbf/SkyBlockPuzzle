@@ -58,19 +58,22 @@ public class Goblin_E : MonoBehaviour
                 SoundEffectManager.PlaySoundEffect(0);
             if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.1f)
             {
-                if (isUndo)
-                {
-                    isUndo = false;
-                }
-                else
-                {
-                    Save();
-                }
                 if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask) && attackON)
                 {
                     Attack();
 
                 }
+                else if (isUndo)
+                {
+                    isUndo = false;
+                    InGamePlayerMove.Inst.ActiveThings();
+                }
+                else
+                {
+                    Save();
+                    InGamePlayerMove.Inst.ActiveThings();
+                }
+               
 
                 animator.SetBool("isWalk", false);
                 isMove = false;
@@ -151,7 +154,7 @@ public class Goblin_E : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-
+        InGamePlayerMove.Inst.ActiveThings();
         Save();
     }
 

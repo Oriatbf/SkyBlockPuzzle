@@ -6,6 +6,7 @@ public class UndoManager : MonoBehaviour
 {
     public static UndoManager Inst;
     public List<Vector3> playerPos = new List<Vector3>();
+    public List<Vector3> playerRot = new List<Vector3>();
     public List<Vector3> firstChangeBlockPos = new List<Vector3>();
     public List<Vector3> secondChangeBlockPos = new List<Vector3>();
     public List<GameObject> firstChangeBlock= new List<GameObject>();
@@ -24,6 +25,8 @@ public class UndoManager : MonoBehaviour
     public GameObject goblin;
 
     public GameObject bear;
+
+    public GameObject player;
 
 
 
@@ -61,8 +64,7 @@ public class UndoManager : MonoBehaviour
 
     private void Start()
     {
-        playerPos = new List<Vector3>();
-        firstChangeBlock = new List<GameObject> ();
+        player = GameObject.FindGameObjectWithTag("Player");
 
         if (isGoblin)
         {
@@ -92,8 +94,8 @@ public class UndoManager : MonoBehaviour
 
     public void SaveBearAlive()
     {
-
-        bearAlive.Add(bear.activeSelf);
+        if(isBear)
+            bearAlive.Add(bear.activeSelf);
     }
 
     public void UndoBearAlive()
@@ -132,6 +134,7 @@ public class UndoManager : MonoBehaviour
     public void SavePlayerPos(Vector3 pos)
     {
         playerPos.Add(pos);
+        playerRot.Add(InGamePlayerMove.Inst.lookVector);
         
     }
 
@@ -148,6 +151,7 @@ public class UndoManager : MonoBehaviour
                 isUndo = true;
             }
             playerPos.RemoveAt(last);
+            playerRot.RemoveAt(last);
         }
     }
 

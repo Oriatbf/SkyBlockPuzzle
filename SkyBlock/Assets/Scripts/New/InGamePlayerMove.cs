@@ -12,6 +12,7 @@ public class InGamePlayerMove : MonoBehaviour
     public LayerMask MoveTile, EndBlock, tileDisableLayer,PushBlockLayer,EnemyLayer,attackPointLayer;
 
     private Vector3 nextPosition;
+    public Vector3 lookVector;
 
     Animator animator;
 
@@ -26,6 +27,7 @@ public class InGamePlayerMove : MonoBehaviour
     {
         ActiveThings();
         nextPosition= transform.position;
+        lookVector = transform.position;
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class InGamePlayerMove : MonoBehaviour
 
                 if (Physics.Raycast(ray, out attackPointHit, Mathf.Infinity, attackPointLayer))
                 {
-                    Vector3 dir =  transform.position-attackPointHit.transform.position;
+                    
                     transform.LookAt(new Vector3(attackPointHit.transform.position.x, transform.position.y, attackPointHit.transform.position.z));
                     attackPointHit.transform.parent.gameObject.SetActive(false);
                     animator.SetTrigger("Attack");
@@ -75,7 +77,8 @@ public class InGamePlayerMove : MonoBehaviour
                 }
                    
                 transform.position = nextPosition;  
-                ActiveThings();
+                if(!UndoManager.Inst.isGoblin)
+                    ActiveThings();
                 
                 isMoving= false;
                 animator.SetBool("Walk", false);
@@ -128,8 +131,8 @@ public class InGamePlayerMove : MonoBehaviour
                     SoundEffectManager.PlaySoundEffect(0);
 
                 nextPosition = hit.transform.position;
-                
-                transform.LookAt(new Vector3(nextPosition.x, transform.position.y, nextPosition.z));
+                lookVector = new Vector3(nextPosition.x, transform.position.y, nextPosition.z);
+                transform.LookAt(lookVector);
                 isMoving = true;
                 DisableMoveTile();
             }
@@ -282,6 +285,7 @@ public class InGamePlayerMove : MonoBehaviour
     {
         nextPosition= undoPos;
         isMoving = true;
+
     }
 
     private void OnTriggerEnter(Collider other)
