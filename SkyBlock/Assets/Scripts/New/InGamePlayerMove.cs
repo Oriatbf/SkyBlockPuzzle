@@ -16,6 +16,7 @@ public class InGamePlayerMove : MonoBehaviour
 
     Animator animator;
 
+
     private void Awake()
     {
         animator= GetComponent<Animator>();
@@ -61,7 +62,8 @@ public class InGamePlayerMove : MonoBehaviour
         {   
             transform.position = Vector3.MoveTowards(transform.position,nextPosition,3f*Time.deltaTime);
             animator.SetBool("Walk", true);
-            EnableClickPoint();
+            DisableAttackClickPoint();
+            DisablePushBlockClickPoint();
             if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.15f)
             {
                 if (UndoManager.Inst.isUndo)
@@ -154,7 +156,7 @@ public class InGamePlayerMove : MonoBehaviour
         }
     }
 
-    private void DisableMoveTile()
+    public void DisableMoveTile()
     {
         GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
         foreach (GameObject tile in tiles)
@@ -187,8 +189,8 @@ public class InGamePlayerMove : MonoBehaviour
         }
         List<Collider> allMoveTile = new List<Collider>();
 
-        Collider[] widthMoveTiles = Physics.OverlapBox(transform.position + new Vector3(0, 0.5f, 0), new Vector3(0.9f, 0.75f, 2.5f),Quaternion.identity,MoveTile);
-        Collider[] heightMoveTiles = Physics.OverlapBox(transform.position + new Vector3(0, 0.5f, 0), new Vector3(2.5f, 0.75f, 0.9f), Quaternion.identity, MoveTile);
+        Collider[] widthMoveTiles = Physics.OverlapBox(transform.position , new Vector3(0.9f, 1f, 2.5f),Quaternion.identity,MoveTile);
+        Collider[] heightMoveTiles = Physics.OverlapBox(transform.position , new Vector3(2.5f, 1f, 0.9f), Quaternion.identity, MoveTile);
         foreach (Collider activeTiles in widthMoveTiles)
             allMoveTile.Add(activeTiles);
         foreach (Collider activeTiles in heightMoveTiles)
@@ -218,6 +220,7 @@ public class InGamePlayerMove : MonoBehaviour
 
     private void ActivePushBlock()
     {
+       
 
         Collider[] pushBlocks = Physics.OverlapBox(transform.position, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, PushBlockLayer);
         foreach(Collider pushBlock in pushBlocks)
@@ -243,7 +246,7 @@ public class InGamePlayerMove : MonoBehaviour
 
     private void ActiveEnemy()
     {
-        EnableClickPoint();
+        DisableAttackClickPoint();
         Collider[] enemies = Physics.OverlapBox(transform.position, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, EnemyLayer);
         foreach (Collider enemy in enemies)
         {
@@ -263,19 +266,30 @@ public class InGamePlayerMove : MonoBehaviour
         }
     }
 
-    private void EnableClickPoint()
+    private void DisablePushBlockClickPoint()
+    {
+        if (UndoManager.Inst.isPushBlock)
+        {
+            for (int i = 0; i < UndoManager.Inst.pushBlockCount.Count; i++)
+                UndoManager.Inst.pushBlockCount[i].GetComponent<PushBlock>().ClickPoint.SetActive(false);
+        }
+    }
+
+    private void DisableAttackClickPoint()
     {
         if (UndoManager.Inst.isGoblin)
             UndoManager.Inst.goblin.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
         if (UndoManager.Inst.isBear)
             UndoManager.Inst.bear.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
+
+      
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position + new Vector3(0,0.5f,0),new Vector3(1.8f,1.5f,5));
-        Gizmos.DrawWireCube(transform.position + new Vector3(0, 0.5f, 0), new Vector3(5f, 1.5f, 1.8f));
+        Gizmos.DrawWireCube(transform.position ,new Vector3(1.8f,2f,5));
+        Gizmos.DrawWireCube(transform.position , new Vector3(5f, 2f, 1.8f));
         Gizmos.DrawRay(transform.position + new Vector3(0f, 0.5f, 0f), transform.forward * 3f);
 
      

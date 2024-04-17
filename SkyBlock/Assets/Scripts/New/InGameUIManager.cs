@@ -108,6 +108,7 @@ public class InGameUIManager : MonoBehaviour
             isChanging = true;
             changeCancle.SetActive(true);
             isUIOpen = true;
+            InGamePlayerMove.Inst.DisableMoveTile();
         }
         else if(changeCool ==0 && firstBlock != null && secondBlock!= null)
         {
@@ -181,7 +182,7 @@ public class InGameUIManager : MonoBehaviour
         UndoManager.Inst.SaveBearAlive();
 
         if(UndoManager.Inst.isGoblin)
-            UndoManager.Inst.SaveGoblinPos(Vector3.zero,UndoManager.Inst.goblin.transform.rotation,false);
+            UndoManager.Inst.SaveGoblinPos(null,Vector3.zero,UndoManager.Inst.goblin.transform.rotation,false);
         if (UndoManager.Inst.isPushBlock)
         {
             GameObject[] pushBlock = GameObject.FindGameObjectsWithTag("PushBlock");

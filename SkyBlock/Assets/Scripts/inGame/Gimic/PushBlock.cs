@@ -87,7 +87,7 @@ public class PushBlock : MonoBehaviour
             UndoManager.Inst.SaveChangeBlockCool(InGameUIManager.Inst.changeCool);
             UndoManager.Inst.SaveBearAlive();
             if (UndoManager.Inst.isGoblin)
-                UndoManager.Inst.SaveGoblinPos(Vector3.zero,UndoManager.Inst.goblin.transform.rotation, false);
+                UndoManager.Inst.SaveGoblinPos(null,Vector3.zero,UndoManager.Inst.goblin.transform.rotation, false);
         }
       
     }

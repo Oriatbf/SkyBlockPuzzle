@@ -27,7 +27,10 @@ public class Goblin_E : MonoBehaviour
 
     private void Awake()
     {
-       
+        if (transform.eulerAngles.y == 90 || transform.eulerAngles.y == 270)
+            isWidth = true;
+        else
+            isWidth = false;
     }
 
     void Start()
@@ -91,7 +94,7 @@ public class Goblin_E : MonoBehaviour
 
     private void Save()
     {
-        UndoManager.Inst.SaveGoblinPos(prePos, transform.rotation,true);
+        UndoManager.Inst.SaveGoblinPos(transform.gameObject,prePos, transform.rotation,true);
     }
 
     private void OnDrawGizmos()
@@ -155,10 +158,10 @@ public class Goblin_E : MonoBehaviour
     {
         if (isWidth)
         {
-            if(transform.eulerAngles.y == -90)
-                transform.eulerAngles = new Vector3(0, 90, 0);
+            if(transform.eulerAngles.y == 90)
+                transform.eulerAngles = new Vector3(0, 270, 0);
             else
-                transform.eulerAngles = new Vector3(0, -90, 0);
+                transform.eulerAngles = new Vector3(0, 90, 0);
         }
         else
         {

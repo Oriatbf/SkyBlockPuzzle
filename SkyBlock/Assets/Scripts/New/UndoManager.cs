@@ -14,13 +14,14 @@ public class UndoManager : MonoBehaviour
 
     public List<int> changeBlockCool = new List<int>();
 
-    public List<Vector3> goblinPos = new List<Vector3>();   
-    public List<Quaternion> goblinRot= new List<Quaternion>();
-    public List<bool> goblinAlive= new List<bool>();
+    public List<Vector3>[] goblinPos;  
+    public List<Quaternion>[] goblinRot;
+    public List<bool>[] goblinAlive;
 
     public List<bool> bearAlive = new List<bool>();
 
     public List<GameObject> pushBlockCount = new List<GameObject>();
+    public List<GameObject> goblinCount = new List<GameObject>();
 
     public GameObject goblin;
 
@@ -33,6 +34,7 @@ public class UndoManager : MonoBehaviour
     [SerializeField]
     private List<Vector3>[] pushBlockPos;
 
+
     public bool isUndo;
     public bool isPushBlock;
     public bool isGoblin;
@@ -43,6 +45,30 @@ public class UndoManager : MonoBehaviour
        
         Inst = this;
         FindPushBlock();
+        FindGoblin();
+    }
+
+    private void FindGoblin()
+    {
+        if (isGoblin)
+        {
+            GameObject[] goblins = GameObject.FindGameObjectsWithTag("Goblin");
+            for(int i = 0; i < goblins.Length; i++)
+            {
+                goblinCount.Add(goblins[i]);
+            }
+            goblinPos = new List<Vector3>[goblinCount.Count];
+            goblinRot = new List<Quaternion>[goblinCount.Count];
+            goblinAlive = new List<bool>[goblinCount.Count];
+
+            for(int i = 0; i < goblinCount.Count; i++)
+            {
+                goblinPos[i] = new List<Vector3>();
+                goblinRot[i] = new List<Quaternion>();
+                goblinAlive[i] = new List<bool>();
+            }
+
+        }
     }
 
     private void FindPushBlock()
@@ -54,6 +80,7 @@ public class UndoManager : MonoBehaviour
             {
                 pushBlockCount.Add(pushBlock[i]);
             }
+
             pushBlockPos = new List<Vector3>[pushBlockCount.Count];
             for (int i = 0; i < pushBlockCount.Count; i++)
             {
@@ -232,16 +259,42 @@ public class UndoManager : MonoBehaviour
         }
     }
 
-    public void SaveGoblinPos(Vector3 pos,Quaternion rot,bool isChange)
+    public void SaveGoblinPos(GameObject goblin, Vector3 pos,Quaternion rot,bool isChange)
     {
         if(isGoblin)
         {
             if (isChange)
-                goblinPos.Add(pos);
+            {
+                for(int i = 0; i < goblinCount.Count; i++)
+                {
+                    if (goblinCount[i] == goblin)
+                        goblinPos[i].Add(pos);
+                }
+            }
             else
-                goblinPos.Add(Vector3.zero);
-
-            goblinRot.Add(rot);
+            {
+                for (int i = 0; i < goblinCount.Count; i++)
+                {
+                    
+                     goblinPos[i].Add(Vector3.zero);
+                }
+            } 
+            
+            for(int i = 0; i < goblinCount.Count; i++)
+            {
+                if(goblin != null)
+                {
+                    if (goblinCount[i] == goblin)
+                        goblinRot[i].Add(rot);
+                }
+                else
+                {
+                    goblinRot[i].Add(goblinCount[i].transform.rotation);
+                }
+               
+                
+            }
+            
         }
       
     }
@@ -250,18 +303,20 @@ public class UndoManager : MonoBehaviour
     {
         if (isGoblin)
         {
-            if (goblinPos.Count > 0)
+            if (goblinPos[0].Count > 0)
             {
-                int last = goblinPos.Count - 1;
-                Debug.Log(last);
-                if (goblinPos[last] != Vector3.zero)
+                int last = goblinPos[0].Count - 1;
+                for(int i = 0; i < goblinCount.Count; i++)
                 {
-                    goblin.GetComponent<Goblin_E>().UndoPos(goblinPos[last], goblinRot[last]);
-                    
-
+                    if (goblinPos[i][last] != Vector3.zero)
+                    {
+                        goblinCount[i].GetComponent<Goblin_E>().UndoPos(goblinPos[i][last], goblinRot[i][last]);
+                        goblinPos[i].RemoveAt(last);
+                        goblinRot[i].RemoveAt(last);
+                    }
                 }
-                goblinPos.RemoveAt(last);
-                goblinRot.RemoveAt(last);
+               
+               
             }
         }
       
