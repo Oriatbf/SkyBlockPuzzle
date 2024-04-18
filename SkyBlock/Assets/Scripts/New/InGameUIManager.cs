@@ -216,8 +216,8 @@ public class InGameUIManager : MonoBehaviour
             secondBlock.GetComponent<Block>().UnClick();
             secondBlock = null;
         }
-        
-    
+        InGamePlayerMove.Inst.ActiveThings();
+
     }
 
     public void OpenHint(bool uiOpen)

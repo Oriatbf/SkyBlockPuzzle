@@ -94,7 +94,9 @@ public class PushBlock : MonoBehaviour
 
     public void Undo(Vector3 pos)
     {
+        moveTile.transform.parent = transform;
         transform.position = pos;
+        moveTile.transform.parent = null;
     }
 
     IEnumerator BlockMoveCool()

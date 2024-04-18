@@ -156,6 +156,7 @@ public class Goblin_E : MonoBehaviour
 
     private void Turn()
     {
+        Save();
         if (isWidth)
         {
             if(transform.eulerAngles.y == 90)
@@ -176,7 +177,7 @@ public class Goblin_E : MonoBehaviour
         }
        
         InGamePlayerMove.Inst.ActiveThings();
-        Save();
+        
     }
 
     
