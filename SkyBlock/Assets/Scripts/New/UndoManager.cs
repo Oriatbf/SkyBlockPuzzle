@@ -291,33 +291,30 @@ public class UndoManager : MonoBehaviour
                 {
                     goblinRot[i].Add(goblinCount[i].transform.rotation);
                 }
-               
-                
-            }
-            
+
+                goblinAlive[i].Add(goblinCount[i].activeSelf);   
+            }        
         }
       
     }
 
     public void UndoGoblinPos()
     {
-        if (isGoblin)
-        {
-            if (goblinPos[0].Count > 0)
+        if (isGoblin && goblinPos[0].Count > 0)
+        {  
+            int last = goblinPos[0].Count - 1;
+            for(int i = 0; i < goblinCount.Count; i++)
             {
-                int last = goblinPos[0].Count - 1;
-                for(int i = 0; i < goblinCount.Count; i++)
+                if (goblinPos[i][last] != Vector3.zero)
                 {
-                    if (goblinPos[i][last] != Vector3.zero)
-                    {
-                        goblinCount[i].GetComponent<Goblin_E>().UndoPos(goblinPos[i][last], goblinRot[i][last]);
-                        goblinPos[i].RemoveAt(last);
-                        goblinRot[i].RemoveAt(last);
-                    }
+                    goblinCount[i].GetComponent<Goblin_E>().UndoPos(goblinPos[i][last], goblinRot[i][last]);
+                    goblinPos[i].RemoveAt(last);
+                    goblinRot[i].RemoveAt(last);
+                    goblinCount[i].SetActive(goblinAlive[i][last]);
+                    goblinAlive[i].RemoveAt(last);
                 }
-               
-               
-            }
+            }            
+            
         }
       
     }
