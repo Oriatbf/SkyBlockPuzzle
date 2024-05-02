@@ -75,6 +75,7 @@ public class InGamePlayerMove : MonoBehaviour
                 else
                 {
                     InGameManager.Inst.GoblinsMove();
+                    InGameManager.Inst.ArrowTowerTurn();
                     InGameUIManager.Inst.ChangeCoolDown();
                 }
                    
@@ -304,15 +305,36 @@ public class InGamePlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Goal"))
+        switch(other.tag)
         {
-            InGameManager.Inst.playerGoal();
+            case "Goal":
+                InGameManager.Inst.playerGoal();
+                return;
+
+            case "DamageObj":
+                InGameManager.Inst.playerLose();
+                Destroy(other.gameObject);
+                return;
+        }
+       
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.collider.tag)
+        {
+          
+
+            case "DamageObj":
+                InGameManager.Inst.playerLose();
+                Destroy(collision.collider.gameObject);
+                return;
         }
     }
 
-   
 
-    
+
+
 
 
 }

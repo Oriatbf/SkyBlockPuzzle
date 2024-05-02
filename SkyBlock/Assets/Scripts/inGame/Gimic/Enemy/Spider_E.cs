@@ -1,122 +1,109 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR;
-
 
 public class Spider_E : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    public LayerMask obstacleMask,playerMask;
+    Vector3 nextPos;
+    bool isMove;
+    bool emptyBlock;
 
-    [SerializeField] private float AttackNum;
+    Vector3 upPos = new Vector3(0, 0.3f, 0);
 
-    private bool attackON = true;
-    public LayerMask blockEnd;
-    public LayerMask playerMask;
-    public bool backTurn;
-    [Space]
-    [Header("¡¬»∏¿¸¿∏∑Œ ¿ÃµøΩ√ √º≈©")]
-    public bool isRightTurn;
-    private Vector3 nPosition;
-    public bool Move = false;
-    [SerializeField]
-    private bool isWall = false;
-    private int TurnStac;
-
-    void Start()
+    private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        TurnStac = player.GetComponent<Player>().TurnStac;
+        nextPos= transform.position;
     }
-    void Update()
+
+    private void Update()
     {
-
-
-        if (TurnStac % AttackNum == 0 && TurnStac != 0 && attackON)
+        if (isMove)
         {
-            Attack();
-        }
+            transform.position = Vector3.MoveTowards(transform.position, nextPos, 3f * Time.deltaTime);
 
-        if (TurnStac % AttackNum == AttackNum - 1 && TurnStac != 0 && !isWall)
-        {
-            attackON = true;
-        }
-
-
-        if (Move)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, nPosition, 3f * Time.deltaTime);
-            StartCoroutine(moveFalse());
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
+            if (Mathf.Abs(Vector3.Distance(transform.position, nextPos)) < 0.1f)
             {
-                Attack();
+                if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
+                {
+
+
+                }
+                else
+                {
+
+                    InGamePlayerMove.Inst.ActiveThings();
+                }
+
+
+
+                isMove = false;
+                transform.position = nextPos;
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.U))
+            Move();
     }
+
+    void Move()
+    {
+       if(Physics.Raycast(transform.position + upPos, transform.forward, 1.5f, obstacleMask) || FindEmptyBlock(transform.forward) == true)
+        {
+            if(Physics.Raycast(transform.position + upPos, transform.right, 1.5f, obstacleMask) || FindEmptyBlock(transform.right) == true)
+            {
+                if (Physics.Raycast(transform.position + upPos, -transform.right, 1.5f, obstacleMask) || FindEmptyBlock(-transform.right) == true)
+                {
+                    Debug.Log("Îí§Î°úÏù¥Îèô");
+                    nextPos = transform.position + transform.TransformDirection(Vector3.back) * 2f;
+                    Debug.Log(nextPos);
+                    transform.LookAt(nextPos);
+
+                }
+                else
+                {
+                    Debug.Log("ÏôºÎ°úÏù¥Îèô");
+                    nextPos = transform.position + transform.TransformDirection(Vector3.left) * 2f;
+                    transform.LookAt(nextPos);
+                }
+            }
+            else
+            {
+                Debug.Log("Ïò§Î•∏Ï™ΩÎ°úÏù¥Îèô");
+                nextPos = transform.position + transform.TransformDirection(Vector3.right) * 2f;
+                transform.LookAt(nextPos);
+            }
+        }
+        else
+        {
+            nextPos = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
+            isMove= true;
+        }
+    }
+
+    bool FindEmptyBlock(Vector3 dir)
+    {
+        if(!Physics.Raycast(transform.position + dir * 2 + Vector3.up * 0.8f,Vector3.down, 1.5f))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }     
+    }
+
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward * 2);
-    }
-
-    private void Attack()
-    {
-        PlayerController.timer = 2f;
-        StartCoroutine(playerDie());
-    }
-
-
-    public void SpiderMove()
-    {
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
-        {
-            Attack();
-        }
-        else if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, blockEnd))
-        {
-            isWall = true;
-            if (isRightTurn)
-            {
-                transform.eulerAngles += new Vector3(0, 90, 0);
-            }
-            else
-            {
-                transform.eulerAngles += new Vector3(0, -90, 0);
-            }
-
-
-        }
-        else
-        {
-            PlayerController.timer = 1f;
-            isWall = false;
-            nPosition = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-            StartCoroutine(WaitPlayerMove());
-        }
-
-
-    }
-
-    IEnumerator WaitPlayerMove()
-    {
-        Move = false;
-        yield return new WaitForSeconds(0.3f);
-        Move = true;
-    }
-
-    IEnumerator moveFalse()
-    {
-        yield return new WaitForSeconds(0.6f);
-        Move = false;
-    }
-
-    IEnumerator playerDie()
-    {
-        yield return new WaitForSeconds(1);
-        player.GetComponent<Player>().Lose();
-        yield return new WaitForSeconds(0.1f);
-        player.gameObject.SetActive(false);
+        Gizmos.DrawRay(transform.position + upPos, transform.forward*1.5f);
+        Gizmos.DrawRay(transform.position + upPos, transform.forward * -1.5f);
+        Gizmos.DrawRay(transform.position + upPos, transform.right * 1.5f);
+        Gizmos.DrawRay(transform.position + upPos, transform.right * -1.5f);
+        Gizmos.DrawRay(transform.position + transform.forward * 2 + Vector3.up * 0.8f, Vector3.down * 1.5f);
     }
 }

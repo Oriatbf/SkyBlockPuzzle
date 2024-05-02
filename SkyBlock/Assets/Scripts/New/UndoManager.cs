@@ -39,6 +39,7 @@ public class UndoManager : MonoBehaviour
     public bool isPushBlock;
     public bool isGoblin;
     public bool isBear;
+    public bool isArrowTower;
 
     private void Awake()
     {

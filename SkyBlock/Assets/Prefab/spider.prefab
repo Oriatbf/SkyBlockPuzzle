@@ -157,7 +157,6 @@ GameObject:
   m_Component:
   - component: {fileID: 488723995134796425}
   - component: {fileID: 1674894567}
-  - component: {fileID: 1674894566}
   - component: {fileID: 1674894569}
   m_Layer: 6
   m_Name: spider
@@ -197,30 +196,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.85582566, z: 1}
   m_Center: {x: 0, y: 0.46414864, z: 0}
---- !u!114 &1674894566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 973792706998859827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 701d4e28e05fba74f89d125244403427, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  AttackNum: 1
-  blockEnd:
-    serializedVersion: 2
-    m_Bits: 6144
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  backTurn: 0
-  isRightTurn: 0
-  Move: 0
-  isWall: 0
 --- !u!114 &1674894569
 MonoBehaviour:
   m_ObjectHideFlags: 0

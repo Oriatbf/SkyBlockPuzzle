@@ -12,9 +12,11 @@ public class InGameManager : MonoBehaviour
 
     public bool getStar,isPlayerOnTurn;
 
+    private GameObject player;
+
     private void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -47,6 +49,18 @@ public class InGameManager : MonoBehaviour
         }
     }
 
+    public void ArrowTowerTurn()
+    {
+        if(UndoManager.Inst.isArrowTower)
+        {
+            GameObject[] arrowTowers = GameObject.FindGameObjectsWithTag("ArrowTower");
+            foreach (GameObject towers in arrowTowers)
+            {
+                towers.GetComponent<ArrowTower>().Action();
+            }
+        }
+    }
+
     public void playerGoal()
     {
         StartCoroutine(GoalDelay());
@@ -71,7 +85,8 @@ public class InGameManager : MonoBehaviour
 
     IEnumerator playerDie()
     {
-        yield return new WaitForSeconds(1);
+        player.GetComponent<Animator>().SetTrigger("Die");
+        yield return new WaitForSeconds(2);
         InGameUIManager.Inst.OpenEndCanvas(false);
         yield return new WaitForSeconds(5f);
        

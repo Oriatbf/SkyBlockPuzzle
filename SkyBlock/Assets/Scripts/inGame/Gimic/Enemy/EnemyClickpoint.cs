@@ -20,13 +20,13 @@ public class EnemyClickpoint : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, Enemy))
             {
-                player.GetComponent<PlayerController>().AllMeshFalse();
+                
                 Vector3 lookDirection = transform.position - player.transform.position;
                 lookDirection.y = 0f;
                 player.transform.rotation = Quaternion.LookRotation(lookDirection);
-                player.GetComponent<Player>().Attack();
+                
                 hit.transform.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
-                PlayerController.timer = 1f;
+
             }
         }
     }
