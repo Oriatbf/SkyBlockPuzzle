@@ -23,7 +23,7 @@ public class UndoManager : MonoBehaviour
     public List<GameObject> pushBlockCount = new List<GameObject>();
     public List<GameObject> goblinCount = new List<GameObject>();
 
-    public GameObject goblin;
+
 
     public GameObject bear;
 
@@ -38,6 +38,7 @@ public class UndoManager : MonoBehaviour
     public bool isUndo;
     public bool isPushBlock;
     public bool isGoblin;
+    public bool isSpider;
     public bool isBear;
     public bool isArrowTower;
 
@@ -94,10 +95,6 @@ public class UndoManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if (isGoblin)
-        {
-            goblin = GameObject.FindGameObjectWithTag("Goblin");
-        }
 
         if (isBear)
         {

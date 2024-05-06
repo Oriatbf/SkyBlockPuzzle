@@ -753,7 +753,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a58b7317d20e770428455f91f64e4dbf, type: 3}
   m_PrefabInstance: {fileID: 867171048}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &375483445
+--- !u!114 &375483448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,10 +762,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 375483444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9d6ce5bc164a7046b2e4fddf65c5dc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f58593222309ed4fa6e17cb4b53644b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeObj: {fileID: 50410050}
 --- !u!1 &406393965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,7 +1022,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519012639}
   - component: {fileID: 519012638}
-  - component: {fileID: 519012640}
   - component: {fileID: 519012637}
   - component: {fileID: 519012641}
   m_Layer: 0
@@ -1075,20 +1073,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519012640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519012636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d230c1f47afc71b4d858fc952bec932f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &519012641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2419,7 +2405,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1166959442
 GameObject:
@@ -3156,6 +3142,7 @@ GameObject:
   - component: {fileID: 1443761899}
   - component: {fileID: 1443761898}
   - component: {fileID: 1443761897}
+  - component: {fileID: 1443761901}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3242,13 +3229,26 @@ RectTransform:
   - {fileID: 1635507621}
   - {fileID: 50410051}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1443761901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443761896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b05e34e3dc11a48937ad876df536c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: {fileID: 1274553857}
 --- !u!4 &1489124279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1717184020634995545, guid: 48d6ae367a35ee749983f03b8e1cf7db, type: 3}
@@ -3670,9 +3670,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 375483445}
-        m_TargetAssemblyTypeName: playerMove, Assembly-CSharp
-        m_MethodName: Onclick
+      - m_Target: {fileID: 1443761901}
+        m_TargetAssemblyTypeName: MainScene_UI, Assembly-CSharp
+        m_MethodName: goMapSelectScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

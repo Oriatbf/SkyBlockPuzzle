@@ -29,12 +29,24 @@ public class InGameManager : MonoBehaviour
 
     public void SaveStageData()
     {
-        //StageManager.Inst.StageClear(curStageNum,true,getStar,isPlayerOnTurn);
+        StageManager.Inst.StageClear(curStageNum,true,getStar,isPlayerOnTurn);
     }
 
     private void Awake()
     {
         Inst = this;
+    }
+
+    public void SpidersMove()
+    {
+        if (UndoManager.Inst.isSpider)
+        {
+            GameObject[] spiders = GameObject.FindGameObjectsWithTag("Spider");
+            foreach (GameObject spider in spiders)
+            {
+                spider.GetComponent<Spider_E>().Move();
+            }
+        }
     }
 
     public void GoblinsMove()

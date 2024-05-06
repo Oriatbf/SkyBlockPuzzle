@@ -50,6 +50,7 @@ public class StageManager : MonoBehaviour
         lastClearStage = takeLastClearStage;
         if (clearStage >= lastClearStage)
         {
+            Debug.Log("ss");
             if(!clearStars1[lastClearStage])
                 clearStars1[lastClearStage] = star1;
             if (!clearStars2[lastClearStage])
@@ -59,6 +60,7 @@ public class StageManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("yy");
             clearStage = lastClearStage;
             clearStars1.Add(star1);
             clearStars2.Add(star2);

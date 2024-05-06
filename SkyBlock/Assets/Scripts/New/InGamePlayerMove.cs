@@ -75,6 +75,7 @@ public class InGamePlayerMove : MonoBehaviour
                 else
                 {
                     InGameManager.Inst.GoblinsMove();
+                    InGameManager.Inst.SpidersMove();
                     InGameManager.Inst.ArrowTowerTurn();
                     InGameUIManager.Inst.ChangeCoolDown();
                 }
@@ -192,10 +193,8 @@ public class InGamePlayerMove : MonoBehaviour
 
         Collider[] widthMoveTiles = Physics.OverlapBox(transform.position , new Vector3(0.9f, 1f, 2.5f),Quaternion.identity,MoveTile);
         Collider[] heightMoveTiles = Physics.OverlapBox(transform.position , new Vector3(2.5f, 1f, 0.9f), Quaternion.identity, MoveTile);
-        foreach (Collider activeTiles in widthMoveTiles)
-            allMoveTile.Add(activeTiles);
-        foreach (Collider activeTiles in heightMoveTiles)
-            allMoveTile.Add(activeTiles);
+        allMoveTile.AddRange(widthMoveTiles);
+        allMoveTile.AddRange(heightMoveTiles);
 
         foreach (Collider activeAllTiles in allMoveTile)
         {
@@ -248,7 +247,13 @@ public class InGamePlayerMove : MonoBehaviour
     private void ActiveEnemy()
     {
         DisableAttackClickPoint();
-        Collider[] enemies = Physics.OverlapBox(transform.position, new Vector3(2.5f, 2.5f, 2.5f), Quaternion.identity, EnemyLayer);
+        List<Collider> enemies = new List<Collider>();
+
+        Collider[] widthEnemies = Physics.OverlapBox(transform.position, new Vector3(0.9f, 1f, 2.5f), Quaternion.identity, EnemyLayer);
+        Collider[] heightEnemies = Physics.OverlapBox(transform.position, new Vector3(2.5f, 1f, 0.9f), Quaternion.identity, EnemyLayer);
+        enemies.AddRange(widthEnemies);
+        enemies.AddRange(heightEnemies);
+        
         foreach (Collider enemy in enemies)
         {
             RaycastHit endBlockHit;
@@ -279,7 +284,12 @@ public class InGamePlayerMove : MonoBehaviour
     private void DisableAttackClickPoint()
     {
         if (UndoManager.Inst.isGoblin)
-            UndoManager.Inst.goblin.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
+        {
+            foreach (GameObject goblin in UndoManager.Inst.goblinCount)
+            {
+                goblin.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
+            }
+        }
         if (UndoManager.Inst.isBear)
             UndoManager.Inst.bear.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
 

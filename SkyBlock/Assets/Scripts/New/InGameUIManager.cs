@@ -181,8 +181,14 @@ public class InGameUIManager : MonoBehaviour
         UndoManager.Inst.SavePlayerPos(Vector3.zero);
         UndoManager.Inst.SaveBearAlive();
 
-        if(UndoManager.Inst.isGoblin)
-            UndoManager.Inst.SaveGoblinPos(null,Vector3.zero,UndoManager.Inst.goblin.transform.rotation,false);
+        if (UndoManager.Inst.isGoblin)
+        {
+            foreach (GameObject goblin in UndoManager.Inst.goblinCount)
+            {
+                UndoManager.Inst.SaveGoblinPos(null, Vector3.zero, goblin.transform.rotation, false);
+            }
+        }
+            
         if (UndoManager.Inst.isPushBlock)
         {
             GameObject[] pushBlock = GameObject.FindGameObjectsWithTag("PushBlock");

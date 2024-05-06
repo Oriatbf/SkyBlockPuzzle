@@ -38,8 +38,7 @@ public class PushBlock : MonoBehaviour
             onFloor= true;
         }
        
-        if (Input.GetKeyDown(KeyCode.O))
-            blockMove();
+     
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -87,7 +86,13 @@ public class PushBlock : MonoBehaviour
             UndoManager.Inst.SaveChangeBlockCool(InGameUIManager.Inst.changeCool);
             UndoManager.Inst.SaveBearAlive();
             if (UndoManager.Inst.isGoblin)
-                UndoManager.Inst.SaveGoblinPos(null,Vector3.zero,UndoManager.Inst.goblin.transform.rotation, false);
+            {
+                foreach(GameObject goblin in UndoManager.Inst.goblinCount)
+                {
+                    UndoManager.Inst.SaveGoblinPos(null, Vector3.zero, goblin.transform.rotation, false);
+                }
+            }
+                
         }
       
     }
@@ -97,6 +102,16 @@ public class PushBlock : MonoBehaviour
         moveTile.transform.parent = transform;
         transform.position = pos;
         moveTile.transform.parent = null;
+        RaycastHit pushBlockFloorHit;
+        if (Physics.Raycast(transform.position, Vector3.down, out pushBlockFloorHit, 1.5f, PushBlockFloor))
+        {
+            ClickPoint.gameObject.SetActive(false);
+            onFloor = true;
+        }
+        else
+        {
+            onFloor= false;
+        }
     }
 
     IEnumerator BlockMoveCool()

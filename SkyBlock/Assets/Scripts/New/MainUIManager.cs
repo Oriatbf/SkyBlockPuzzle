@@ -20,6 +20,14 @@ public class MainUIManager : MonoBehaviour
         mapPlayerMoving = false;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+    }
+
     public void OptionCanvasOpen(bool open)
     {
         optionCanvas.SetActive(open);
@@ -49,7 +57,10 @@ public class MainUIManager : MonoBehaviour
     public void PressStageStart()
     {
         SceneManager.LoadScene(MapManager.Inst.curChapterNum + MapManager.Inst.curStageNum);
+       
     }
+
+   
 
 
 

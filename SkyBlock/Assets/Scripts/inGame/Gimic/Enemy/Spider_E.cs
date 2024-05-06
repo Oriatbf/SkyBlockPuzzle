@@ -49,13 +49,13 @@ public class Spider_E : MonoBehaviour
             Move();
     }
 
-    void Move()
+    public void Move()
     {
-       if(Physics.Raycast(transform.position + upPos, transform.forward, 1.5f, obstacleMask) || FindEmptyBlock(transform.forward) == true)
+       if(Physics.Raycast(transform.position + upPos, transform.forward, 1.7f, obstacleMask) || FindEmptyBlock(transform.forward) == true)
         {
-            if(Physics.Raycast(transform.position + upPos, transform.right, 1.5f, obstacleMask) || FindEmptyBlock(transform.right) == true)
+            if(Physics.Raycast(transform.position + upPos, transform.right, 1.7f, obstacleMask) || FindEmptyBlock(transform.right) == true)
             {
-                if (Physics.Raycast(transform.position + upPos, -transform.right, 1.5f, obstacleMask) || FindEmptyBlock(-transform.right) == true)
+                if (Physics.Raycast(transform.position + upPos, -transform.right, 1.7f, obstacleMask) || FindEmptyBlock(-transform.right) == true)
                 {
                     Debug.Log("뒤로이동");
                     nextPos = transform.position + transform.TransformDirection(Vector3.back) * 2f;
