@@ -81,7 +81,7 @@ public class InGamePlayerMove : MonoBehaviour
                 }
                    
                 transform.position = nextPosition;  
-                if(!UndoManager.Inst.isGoblin)
+                if(!UndoManager.Inst.isGoblin || !UndoManager.Inst.isSpider)
                     ActiveThings();
                 
                 isMoving= false;
@@ -175,7 +175,7 @@ public class InGamePlayerMove : MonoBehaviour
     IEnumerator waitActiveThings()
     {
         DisableMoveTile();
-        yield return new WaitForSeconds(0.03f);
+        yield return new WaitForSeconds(0.06f);
         ActiveMoveTile();
         ActivePushBlock();
         ActiveEnemy();
@@ -270,6 +270,7 @@ public class InGamePlayerMove : MonoBehaviour
                 Debug.Log("true");
             }
         }
+        ActiveMoveTile();
     }
 
     private void DisablePushBlockClickPoint()

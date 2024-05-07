@@ -15,6 +15,7 @@ public class EnemyClickpoint : MonoBehaviour
     }
     void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(0) && ClickPoint.gameObject.activeSelf)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -29,5 +30,6 @@ public class EnemyClickpoint : MonoBehaviour
 
             }
         }
+        */
     }
 }

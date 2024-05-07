@@ -11,12 +11,14 @@ public class Spider_E : MonoBehaviour
     Vector3 nextPos;
     bool isMove;
     bool emptyBlock;
+    InGamePlayerMove playerMove;
 
     Vector3 upPos = new Vector3(0, 0.3f, 0);
 
     private void Start()
     {
         nextPos= transform.position;
+        playerMove = InGamePlayerMove.Inst;
     }
 
     private void Update()
@@ -29,13 +31,14 @@ public class Spider_E : MonoBehaviour
             {
                 if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
                 {
-
+                    playerMove.ActiveThings();
+                    InGameManager.Inst.playerLose();
 
                 }
                 else
                 {
 
-                    InGamePlayerMove.Inst.ActiveThings();
+                    playerMove.ActiveThings();
                 }
 
 
