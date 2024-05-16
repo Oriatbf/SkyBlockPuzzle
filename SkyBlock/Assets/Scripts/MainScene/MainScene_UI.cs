@@ -23,6 +23,11 @@ public class MainScene_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetMouseButton(0))
+        {
+            goMapSelectScene();
+        }
+
         if (isFade)
         {
             timer += Time.deltaTime;

@@ -34,6 +34,8 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] GameObject getStarImage, noStarImage,onTurnImage,outTurnImage,onClearImage,nonClearImage,nextStageBtn;
 
 
+
+
     private void Awake()
     {
         Inst = this;
@@ -262,7 +264,12 @@ public class InGameUIManager : MonoBehaviour
             InGameManager.Inst.SaveStageData();
         }
 
-        titleTxt.text = "1 - " + (SceneManager.GetActiveScene().buildIndex - 1).ToString() + " 스테이지";
+        string stageNum = "";
+        if (MapManager.Inst.curChapterNum > 1)
+            stageNum = (MapManager.Inst.curStageNum - 12).ToString();
+        else
+            stageNum = (MapManager.Inst.curStageNum).ToString();
+        titleTxt.text = MapManager.Inst.curChapterNum.ToString() + " - " + stageNum + " 스테이지";
 
         
     }

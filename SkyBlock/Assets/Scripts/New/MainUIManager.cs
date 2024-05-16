@@ -44,6 +44,7 @@ public class MainUIManager : MonoBehaviour
     public void EnterChapter()
     {
         ChapterSelectCamera.Inst.ChapterInCamMove();
+        MapManager.Inst.isInChapter= true;
         chapterEnterButton.SetActive(false);
         stageEnterButton.SetActive(true);
         mapPlayerMoving= true;
@@ -56,8 +57,13 @@ public class MainUIManager : MonoBehaviour
 
     public void PressStageStart()
     {
-        SceneManager.LoadScene(MapManager.Inst.curChapterNum + MapManager.Inst.curStageNum);
+        SceneManager.LoadScene( ++MapManager.Inst.curStageNum);
        
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
    

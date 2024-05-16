@@ -32,6 +32,11 @@ public class StageManager : MonoBehaviour
         {
             DataReset();
         }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            stageClear(15);
+        }
     }
 
     public void DataReset()
@@ -43,6 +48,13 @@ public class StageManager : MonoBehaviour
         clearStars3.Clear();
         DataManager.Inst.JsonSave();
 
+    }
+
+    public void stageClear(int num)
+    {
+        clearStage = num;
+        lastClearStage = num;
+        DataManager.Inst.JsonSave();
     }
 
     public void StageClear(int takeLastClearStage, bool star1, bool star2, bool star3)

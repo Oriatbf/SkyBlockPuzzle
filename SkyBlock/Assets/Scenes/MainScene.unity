@@ -753,18 +753,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a58b7317d20e770428455f91f64e4dbf, type: 3}
   m_PrefabInstance: {fileID: 867171048}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &375483448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375483444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f58593222309ed4fa6e17cb4b53644b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &406393965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,6 +3237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fade: {fileID: 1274553857}
+  player: {fileID: 375483444}
 --- !u!4 &1489124279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1717184020634995545, guid: 48d6ae367a35ee749983f03b8e1cf7db, type: 3}

@@ -1,28 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
     public static MapManager Inst;
     public int curChapterNum, curStageNum,preStageNum;
-    public GameObject player;
+    public GameObject cp1Player,cp2Player,curPlayer;
     Transform target;
 
     [SerializeField] float playerSpeed;
 
     [SerializeField] GameObject[] chapter1Stages, chpater1Locks;
 
-    public bool isMoving;
+    public bool isMoving,isInChapter;
 
     public LayerMask mapStage;
     private void Awake()
     {
         Inst = this;
-
-
+        curPlayer = cp1Player;
+        cp2Player.SetActive(false);
+        ChangeChapterPlayer();
     }
 
     private void Start()
@@ -34,7 +34,7 @@ public class MapManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) &&MainUIManager.Inst.mapPlayerMoving)
+        if(Input.GetMouseButtonDown(0) &&MainUIManager.Inst.mapPlayerMoving && isInChapter)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -54,8 +54,8 @@ public class MapManager : MonoBehaviour
                             else if (curStageNum < preStageNum)
                                 target = chapter1Stages[preStageNum - 1].transform;
 
-                            Vector3 direction = target.position - player.transform.position;
-                            player.transform.rotation = Quaternion.LookRotation(direction);
+                            Vector3 direction = target.position - curPlayer.transform.position;
+                            curPlayer.transform.rotation = Quaternion.LookRotation(direction);
 
                             isMoving = true;
                         }
@@ -73,8 +73,12 @@ public class MapManager : MonoBehaviour
                 FrontMove();
             else if (curStageNum < preStageNum)
                 BackMove();
+            curPlayer.GetComponent<Animator>().SetBool("Walk", true);
             
-
+        }
+        else
+        {
+            curPlayer.GetComponent<Animator>().SetBool("Walk", false);
         }
 
 
@@ -84,9 +88,9 @@ public class MapManager : MonoBehaviour
     private void BackMove()
     {
         
-            player.transform.position = Vector3.MoveTowards(player.transform.position, target.position, playerSpeed * Time.deltaTime);
+            curPlayer.transform.position = Vector3.MoveTowards(curPlayer.transform.position, target.position, playerSpeed * Time.deltaTime);
 
-            if (Mathf.Abs(Vector3.Distance(player.transform.position, target.position)) < 3f)
+            if (Mathf.Abs(Vector3.Distance(curPlayer.transform.position, target.position)) < 3f)
             {
 
                 preStageNum--;
@@ -96,8 +100,8 @@ public class MapManager : MonoBehaviour
                 {
 
                     target = chapter1Stages[preStageNum-1].transform;
-                    Vector3 direction = target.position - player.transform.position;
-                    player.transform.rotation = Quaternion.LookRotation(direction);
+                    Vector3 direction = target.position - curPlayer.transform.position;
+                    curPlayer.transform.rotation = Quaternion.LookRotation(direction);
                 }
 
             }
@@ -107,8 +111,8 @@ public class MapManager : MonoBehaviour
     private void FrontMove()
     {
         
-            player.transform.position = Vector3.MoveTowards(player.transform.position, target.position, playerSpeed * Time.deltaTime);
-            if (Mathf.Abs(Vector3.Distance(player.transform.position, target.position)) < 3f)
+            curPlayer.transform.position = Vector3.MoveTowards(curPlayer.transform.position, target.position, playerSpeed * Time.deltaTime);
+            if (Mathf.Abs(Vector3.Distance(curPlayer.transform.position, target.position)) < 3f)
             {
                 preStageNum++;
                 if (preStageNum == curStageNum)
@@ -117,11 +121,34 @@ public class MapManager : MonoBehaviour
                 {
                     
                     target = chapter1Stages[preStageNum+1].transform;
-                    Vector3 direction = target.position - player.transform.position;
-                    player.transform.rotation = Quaternion.LookRotation(direction);
+                    Vector3 direction = target.position - curPlayer.transform.position;
+                    curPlayer.transform.rotation = Quaternion.LookRotation(direction);
                 }
 
             }
         
+    }
+    
+    public void ChangeChapterPlayer()
+    {
+        switch (curChapterNum)
+        {
+            case 1:
+                cp1Player.SetActive(true);
+                cp2Player.SetActive(false);
+                curPlayer = cp1Player;
+                curStageNum = 1;
+                break;
+            case 2:
+                if(StageManager.Inst.clearStage >= 11)
+                {
+                    cp1Player.SetActive(false);
+                    cp2Player.SetActive(true);
+                    curPlayer = cp2Player;
+                    curStageNum = 12;
+                }
+               
+                break;
+        }
     }
 }

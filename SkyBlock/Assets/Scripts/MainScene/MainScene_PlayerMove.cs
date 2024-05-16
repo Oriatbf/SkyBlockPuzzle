@@ -13,6 +13,10 @@ public class MainScene_PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }
+
     }
 }

@@ -44,7 +44,7 @@ public class ChapterSelectCamera : MonoBehaviour
             touchDownTrans = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonUp(0) && !MainUIManager.Inst.uiOpen)
+        if (Input.GetMouseButtonUp(0) && !MainUIManager.Inst.uiOpen && !MapManager.Inst.isInChapter)
         {
             touchUpTrans = Input.mousePosition;
             if (touchDownTrans.x > touchUpTrans.x && Mathf.Abs(touchDownTrans.x - touchUpTrans.x) > 300)
@@ -56,6 +56,7 @@ public class ChapterSelectCamera : MonoBehaviour
                 {
                     MapManager.Inst.curChapterNum++;
                     transform.DOMoveX(chapterCamPos[MapManager.Inst.curChapterNum].x, 1.5f);
+                    MapManager.Inst.ChangeChapterPlayer();
                 }
 
 
@@ -70,6 +71,7 @@ public class ChapterSelectCamera : MonoBehaviour
                 {
                     MapManager.Inst.curChapterNum--;
                     transform.DOMoveX(chapterCamPos[MapManager.Inst.curChapterNum].x, 1.5f);
+                    MapManager.Inst.ChangeChapterPlayer();
                 }
 
             }
@@ -80,6 +82,13 @@ public class ChapterSelectCamera : MonoBehaviour
     {
         transform.DOMove(chapterInCamPos[MapManager.Inst.curChapterNum], 1f);
         transform.DORotateQuaternion(chapterInCamRot[MapManager.Inst.curChapterNum], 1f);
+    }
+
+    public void ChapterCamOut()
+    {
+        transform.DOMove(chapterCamPos[MapManager.Inst.curChapterNum], 1f);
+        transform.DORotateQuaternion(chapterInCamRot[0], 1f);
+        MapManager.Inst.isInChapter= false;
     }
 
     public void GoDictionaryMap()
