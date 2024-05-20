@@ -10,16 +10,21 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Transform[] tutorialPos;
     [SerializeField] private GameObject[] tutorials;
     [SerializeField] private int tutorialCount;
-
+    public bool isTutoriual;
 
     void Awake()
     {
         instance = this;
     }
+    private void Start()
+    {
+        if(isTutoriual)
+            TutorialPlay();
+    }
 
     public void TutorialPlayPos(Vector3 playerPos)
     {
-        if(tutorialCount < tutorials.Length)
+        if(tutorialCount < tutorialPos.Length)
         {
             if (Vector3.Distance(tutorialPos[tutorialCount].position, playerPos) < 0.3f)
             {
@@ -36,5 +41,10 @@ public class Tutorial : MonoBehaviour
             tutorials[tutorialCount].SetActive(true);
             tutorialCount++;
         }
+    }
+
+    public void PlusTutoNum()
+    {
+        tutorialCount++;
     }
 }

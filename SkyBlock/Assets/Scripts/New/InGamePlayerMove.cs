@@ -86,6 +86,7 @@ public class InGamePlayerMove : MonoBehaviour
                 
                 isMoving= false;
                 animator.SetBool("Walk", false);
+                Tutorial.instance.TutorialPlayPos(transform.position);
                 
             }
         }
