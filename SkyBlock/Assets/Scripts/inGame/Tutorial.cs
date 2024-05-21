@@ -10,7 +10,6 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Transform[] tutorialPos;
     [SerializeField] private GameObject[] tutorials;
     [SerializeField] private int tutorialCount;
-    public bool isTutoriual;
 
     void Awake()
     {
@@ -18,7 +17,7 @@ public class Tutorial : MonoBehaviour
     }
     private void Start()
     {
-        if(isTutoriual)
+        if(InGameManager.Inst.isTutorial)
             TutorialPlay();
     }
 

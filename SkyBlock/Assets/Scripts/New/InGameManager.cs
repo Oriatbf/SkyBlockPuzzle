@@ -10,7 +10,7 @@ public class InGameManager : MonoBehaviour
 
     public int endTurn,curTurn;
 
-    public bool getStar,isPlayerOnTurn;
+    public bool getStar,isPlayerOnTurn,isTutorial;
 
     private GameObject player;
 

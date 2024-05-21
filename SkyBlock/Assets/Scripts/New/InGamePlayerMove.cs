@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class InGamePlayerMove : MonoBehaviour
@@ -36,7 +37,15 @@ public class InGamePlayerMove : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && !InGameUIManager.Inst.isChanging)
         {
-            ClickMoveTile();
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            else
+            {
+                ClickMoveTile();
+            }
+           
         }
 
         if (!isMoving)
@@ -86,7 +95,8 @@ public class InGamePlayerMove : MonoBehaviour
                 
                 isMoving= false;
                 animator.SetBool("Walk", false);
-                Tutorial.instance.TutorialPlayPos(transform.position);
+                if(InGameManager.Inst.isTutorial)
+                    Tutorial.instance.TutorialPlayPos(transform.position);
                 
             }
         }
