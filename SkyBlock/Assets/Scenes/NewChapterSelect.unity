@@ -7759,7 +7759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &325863556
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13874,7 +13874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &567388053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31467,7 +31467,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.283
@@ -46646,7 +46646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &2029235385
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46838,6 +46838,7 @@ MonoBehaviour:
   - {fileID: 38569887}
   - {fileID: 503684230}
   isMoving: 0
+  isInChapter: 0
   mapStage:
     serializedVersion: 2
     m_Bits: 512
