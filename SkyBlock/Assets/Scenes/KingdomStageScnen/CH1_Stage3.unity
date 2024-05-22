@@ -2966,7 +2966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8100713044184964810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8340,7 +8340,7 @@ MonoBehaviour:
   bear: {fileID: 0}
   player: {fileID: 0}
   isUndo: 0
-  isPushBlock: 0
+  isPushBlock: 1
   isGoblin: 1
   isSpider: 0
   isBear: 0
@@ -8911,6 +8911,7 @@ MonoBehaviour:
   getStar: 0
   isPlayerOnTurn: 0
   isTutorial: 1
+  gameEnd: 0
 --- !u!114 &8398793643632308568
 MonoBehaviour:
   m_ObjectHideFlags: 0

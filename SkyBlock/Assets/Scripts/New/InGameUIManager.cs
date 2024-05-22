@@ -165,8 +165,11 @@ public class InGameUIManager : MonoBehaviour
 
     private void ChangeBlock()
     {
+        SoundEffectManager.PlaySoundEffect(7);
         Vector3 firstPos = firstBlock.transform.position;
         Vector3 secPos = secondBlock.transform.position;
+        Instantiate(ParticleManager.Particles[0], firstPos + new Vector3(0,1,0), Quaternion.identity);
+        Instantiate(ParticleManager.Particles[0], secPos + new Vector3(0, 1, 0), Quaternion.identity);
         Save(firstPos, secPos);
         firstBlock.transform.position = secPos;
         secondBlock.transform.position = firstPos;
@@ -208,7 +211,8 @@ public class InGameUIManager : MonoBehaviour
 
     public void ClickChangeCancle()
     {
-        isChanging= false;
+        SoundEffectManager.PlaySoundEffect(6);
+        isChanging = false;
         isUIOpen= false;
         changeCancle.SetActive(false);
         changeCoolImage.fillAmount = 0;

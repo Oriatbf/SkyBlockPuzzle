@@ -35,7 +35,7 @@ public class PushBlock : MonoBehaviour
         if(Physics.Raycast(transform.position, Vector3.down, out pushBlockFloorHit, 1.5f, PushBlockFloor))
         {
             ClickPoint.gameObject.SetActive(false);
-            onFloor= true;
+            onFloor = true;
         }
        
      
@@ -51,6 +51,8 @@ public class PushBlock : MonoBehaviour
                 Debug.Log(lookDirection);
                 lookDirection.y = 0f;
                 player.transform.rotation = Quaternion.LookRotation(lookDirection);
+
+                SoundEffectManager.PlaySoundEffect(2);
 
                 blockMove();
             }

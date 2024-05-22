@@ -25,7 +25,7 @@ public class UndoManager : MonoBehaviour
 
 
 
-    public GameObject bear;
+    public GameObject bear,spider;
 
     public GameObject player;
 
@@ -101,6 +101,10 @@ public class UndoManager : MonoBehaviour
             bear = GameObject.FindGameObjectWithTag("Bear");
         }
 
+        if (isSpider)
+        {
+            spider = GameObject.FindGameObjectWithTag("Spider");
+        }
     }
 
     private void Update()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
@@ -57,9 +58,11 @@ public class InGamePlayerMove : MonoBehaviour
 
                 if (Physics.Raycast(ray, out attackPointHit, Mathf.Infinity, attackPointLayer))
                 {
-                    
+                    DisableMoveTile();
+                    Debug.Log("sss");
                     transform.LookAt(new Vector3(attackPointHit.transform.position.x, transform.position.y, attackPointHit.transform.position.z));
-                    attackPointHit.transform.parent.gameObject.SetActive(false);
+                    //attackPointHit.transform.parent.gameObject.SetActive(false);
+                    SoundEffectManager.PlaySoundEffect(4);
                     animator.SetTrigger("Attack");
                     
                 }
@@ -90,8 +93,12 @@ public class InGamePlayerMove : MonoBehaviour
                 }
                    
                 transform.position = nextPosition;  
-                if(!UndoManager.Inst.isGoblin || !UndoManager.Inst.isSpider)
+                if(!UndoManager.Inst.isGoblin && !UndoManager.Inst.isSpider)
+                {
                     ActiveThings();
+                    Debug.Log("고블린 없음");
+                }
+                    
                 
                 isMoving= false;
                 animator.SetBool("Walk", false);
@@ -104,10 +111,12 @@ public class InGamePlayerMove : MonoBehaviour
 
     public void PlayerAttack()
     {
+        Debug.Log("때림22");
         RaycastHit hit;
         if (Physics.Raycast(transform.position + new Vector3(0f, 0.5f, 0f), transform.forward,out hit, 3f, EnemyLayer))
         {
             StartCoroutine(AttackDelay(hit.transform));
+            
         }
     }
 
@@ -124,6 +133,7 @@ public class InGamePlayerMove : MonoBehaviour
             Instantiate(ParticleManager.Particles[2], target.transform.position + Vector3.up * 0.5f, ParticleManager.Particles[2].transform.rotation);
 
         target.gameObject.SetActive(false);
+        Debug.Log("때림");
         ActiveThings();
     }
 
@@ -131,7 +141,7 @@ public class InGamePlayerMove : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTile))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, MoveTile) && !InGameManager.Inst.gameEnd)
         {       
             
             MeshRenderer hitRenderer = hit.transform.GetComponent<MeshRenderer>();
@@ -246,10 +256,18 @@ public class InGamePlayerMove : MonoBehaviour
             }
             else
             {
-                if(Physics.Raycast(pushBlock.transform.position, -direction, out endBlockHit, 1.5f, EndBlock) || pushBlock.GetComponent<PushBlock>().onFloor)
+                if(Physics.Raycast(pushBlock.transform.position, -direction, out endBlockHit, 1.5f, EndBlock) || pushBlock.GetComponent<PushBlock>().onFloor )
+                {
                     pushBlock.GetComponent<PushBlock>().ClickPoint.gameObject.SetActive(false);
+                }
                 else
-                    pushBlock.GetComponent<PushBlock>().ClickPoint.gameObject.SetActive(true);
+                {
+                    if(!Physics.Raycast(transform.position,  Vector3.down, out endBlockHit, 1.5f, PushBlockLayer))
+                    {
+                        pushBlock.GetComponent<PushBlock>().ClickPoint.gameObject.SetActive(true);
+                    }
+                }
+                    
 
             }
         }
@@ -305,7 +323,9 @@ public class InGamePlayerMove : MonoBehaviour
         if (UndoManager.Inst.isBear)
             UndoManager.Inst.bear.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
 
-      
+        if(UndoManager.Inst.isSpider)
+            UndoManager.Inst.spider.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
+
     }
 
     private void OnDrawGizmos()
@@ -331,6 +351,7 @@ public class InGamePlayerMove : MonoBehaviour
         {
             case "Goal":
                 InGameManager.Inst.playerGoal();
+                InGameManager.Inst.gameEnd = true;
                 return;
 
             case "DamageObj":

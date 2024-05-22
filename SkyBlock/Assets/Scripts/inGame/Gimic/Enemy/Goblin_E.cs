@@ -94,7 +94,7 @@ public class Goblin_E : MonoBehaviour
 
     private void Save()
     {
-        UndoManager.Inst.SaveGoblinPos(transform.gameObject,prePos, transform.rotation,true);
+       // UndoManager.Inst.SaveGoblinPos(transform.gameObject,prePos, transform.rotation,true);
     }
 
     private void OnDrawGizmos()
@@ -180,7 +180,23 @@ public class Goblin_E : MonoBehaviour
         
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+      
+    }
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PushBlock"))
+        {
+            if (ParticleManager.Particles != null)
+                Instantiate(ParticleManager.Particles[2], transform.position + Vector3.up * 0.5f, ParticleManager.Particles[2].transform.rotation);
+            gameObject.SetActive(false);
+            
+        }
+    }
+
+
+
+
 }

@@ -86,6 +86,7 @@ public class ChapterSelectCamera : MonoBehaviour
 
     public void ChapterCamOut()
     {
+        MainUIManager.Inst.mapPlayerMoving= false;
         transform.DOMove(chapterCamPos[MapManager.Inst.curChapterNum], 1f);
         transform.DORotateQuaternion(chapterInCamRot[0], 1f);
         MapManager.Inst.isInChapter= false;

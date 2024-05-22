@@ -10,7 +10,7 @@ public class InGameManager : MonoBehaviour
 
     public int endTurn,curTurn;
 
-    public bool getStar,isPlayerOnTurn,isTutorial;
+    public bool getStar,isPlayerOnTurn,isTutorial,gameEnd;
 
     private GameObject player;
 
@@ -39,14 +39,27 @@ public class InGameManager : MonoBehaviour
 
     public void SpidersMove()
     {
-        if (UndoManager.Inst.isSpider)
+        if (UndoManager.Inst.isSpider )
         {
+
             GameObject[] spiders = GameObject.FindGameObjectsWithTag("Spider");
-            foreach (GameObject spider in spiders)
+            if (spiders.Length > 0)
             {
-                spider.GetComponent<Spider_E>().Move();
+                foreach (GameObject spider in spiders)
+                {
+                    spider.GetComponent<Spider_E>().Move();
+                }
             }
+            else
+            {
+
+                InGamePlayerMove.Inst.ActiveThings();
+                UndoManager.Inst.isSpider = false;
+            }
+          
         }
+      
+        
     }
 
     public void GoblinsMove()
@@ -54,10 +67,19 @@ public class InGameManager : MonoBehaviour
         if (UndoManager.Inst.isGoblin)
         {
             GameObject[] goblins = GameObject.FindGameObjectsWithTag("Goblin");
-            foreach(GameObject goblin in goblins) 
+            if(goblins.Length > 0)
             {
-                goblin.GetComponent<Goblin_E>().GoblinMove();
+                foreach (GameObject goblin in goblins)
+                {
+                    goblin.GetComponent<Goblin_E>().GoblinMove();
+                }
             }
+            else
+            {
+                UndoManager.Inst.isGoblin= false;
+                InGamePlayerMove.Inst.ActiveThings();
+            }
+           
         }
     }
 

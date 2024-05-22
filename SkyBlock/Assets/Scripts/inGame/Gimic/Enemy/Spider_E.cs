@@ -31,7 +31,7 @@ public class Spider_E : MonoBehaviour
             {
                 if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask))
                 {
-                    playerMove.ActiveThings();
+                    Debug.Log("맞음");
                     InGameManager.Inst.playerLose();
 
                 }
@@ -41,6 +41,8 @@ public class Spider_E : MonoBehaviour
                     playerMove.ActiveThings();
                 }
 
+               
+
 
 
                 isMove = false;
@@ -48,8 +50,7 @@ public class Spider_E : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
-            Move();
+       
     }
 
     public void Move()
@@ -83,8 +84,10 @@ public class Spider_E : MonoBehaviour
         else
         {
             nextPos = transform.position + transform.TransformDirection(Vector3.forward) * 2f;
-            isMove= true;
+            
         }
+
+        isMove = true;
     }
 
     bool FindEmptyBlock(Vector3 dir)
