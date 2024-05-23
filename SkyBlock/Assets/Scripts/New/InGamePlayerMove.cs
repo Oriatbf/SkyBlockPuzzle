@@ -69,10 +69,16 @@ public class InGamePlayerMove : MonoBehaviour
             }
            
         }
-          
+
+        Move();
+    }
+
+    void Move()
+    {
         if (isMoving)
-        {   
-            transform.position = Vector3.MoveTowards(transform.position,nextPosition,3f*Time.deltaTime);
+        {
+            InGameUIManager.Inst.changeClickAllow = false;
+            transform.position = Vector3.MoveTowards(transform.position, nextPosition, 3f * Time.deltaTime);
             animator.SetBool("Walk", true);
             DisableAttackClickPoint();
             DisablePushBlockClickPoint();
@@ -80,9 +86,9 @@ public class InGamePlayerMove : MonoBehaviour
             {
                 if (UndoManager.Inst.isUndo)
                 {
-                    
+
                     UndoManager.Inst.isUndo = false;
-                   
+
                 }
                 else
                 {
@@ -91,20 +97,20 @@ public class InGamePlayerMove : MonoBehaviour
                     InGameManager.Inst.ArrowTowerTurn();
                     InGameUIManager.Inst.ChangeCoolDown();
                 }
-                   
-                transform.position = nextPosition;  
-                if(!UndoManager.Inst.isGoblin && !UndoManager.Inst.isSpider)
+
+                transform.position = nextPosition;
+                if (!UndoManager.Inst.isGoblin && !UndoManager.Inst.isSpider)
                 {
                     ActiveThings();
                     Debug.Log("고블린 없음");
                 }
-                    
-                
-                isMoving= false;
+
+                InGameUIManager.Inst.changeClickAllow = true;
+                isMoving = false;
                 animator.SetBool("Walk", false);
-                if(InGameManager.Inst.isTutorial)
+                if (InGameManager.Inst.isTutorial)
                     Tutorial.instance.TutorialPlayPos(transform.position);
-                
+
             }
         }
     }
@@ -217,6 +223,8 @@ public class InGamePlayerMove : MonoBehaviour
         allMoveTile.AddRange(widthMoveTiles);
         allMoveTile.AddRange(heightMoveTiles);
 
+       
+
         foreach (Collider activeAllTiles in allMoveTile)
         {
             Vector3 direction = transform.position - activeAllTiles.transform.position;
@@ -278,8 +286,8 @@ public class InGamePlayerMove : MonoBehaviour
         DisableAttackClickPoint();
         List<Collider> enemies = new List<Collider>();
 
-        Collider[] widthEnemies = Physics.OverlapBox(transform.position, new Vector3(0.9f, 1f, 2.5f), Quaternion.identity, EnemyLayer);
-        Collider[] heightEnemies = Physics.OverlapBox(transform.position, new Vector3(2.5f, 1f, 0.9f), Quaternion.identity, EnemyLayer);
+        Collider[] widthEnemies = Physics.OverlapBox(transform.position + Vector3.up * 0.5f, new Vector3(0.9f, .5f, 2.5f), Quaternion.identity, EnemyLayer);
+        Collider[] heightEnemies = Physics.OverlapBox(transform.position + Vector3.up * 0.5f, new Vector3(2.5f, .5f, 0.9f), Quaternion.identity, EnemyLayer);
         enemies.AddRange(widthEnemies);
         enemies.AddRange(heightEnemies);
         
@@ -287,6 +295,7 @@ public class InGamePlayerMove : MonoBehaviour
         {
             RaycastHit endBlockHit;
             Vector3 direction = transform.position - enemy.transform.position;
+            
             if (Physics.Raycast(enemy.transform.position, direction, out endBlockHit, 1.5f, EndBlock))
             {
                 enemy.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
@@ -331,8 +340,8 @@ public class InGamePlayerMove : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position ,new Vector3(1.8f,2f,5));
-        Gizmos.DrawWireCube(transform.position , new Vector3(5f, 2f, 1.8f));
+        Gizmos.DrawWireCube(transform.position+Vector3.up*0.5f ,new Vector3(1.8f,1f,5));
+        Gizmos.DrawWireCube(transform.position + Vector3.up * 0.5f, new Vector3(5f, 1f, 1.8f));
         Gizmos.DrawRay(transform.position + new Vector3(0f, 0.5f, 0f), transform.forward * 3f);
 
      

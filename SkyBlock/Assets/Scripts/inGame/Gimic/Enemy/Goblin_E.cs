@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Goblin_E : MonoBehaviour
@@ -62,13 +63,14 @@ public class Goblin_E : MonoBehaviour
 
         if (isMove)
         {
+            InGameUIManager.Inst.changeClickAllow = false;
             transform.position = Vector3.MoveTowards(transform.position, nextPosition, 3f * Time.deltaTime);
             animator.SetBool("isWalk",true);
             if (SoundEffectManager.SFX != null)
                 SoundEffectManager.PlaySoundEffect(0);
             if (Mathf.Abs(Vector3.Distance(transform.position, nextPosition)) < 0.1f)
             {
-                if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask) && attackON)
+                if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward, 2, playerMask) && attackON && !InGameManager.Inst.gameEnd)
                 {
                     Attack();
 
@@ -83,8 +85,8 @@ public class Goblin_E : MonoBehaviour
                     Save();
                     InGamePlayerMove.Inst.ActiveThings();
                 }
-               
 
+                InGameUIManager.Inst.changeClickAllow = true;
                 animator.SetBool("isWalk", false);
                 isMove = false;
                 transform.position= nextPosition;
@@ -102,6 +104,9 @@ public class Goblin_E : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.forward * 2);
         Gizmos.DrawRay(transform.position + transform.forward *2 + Vector3.up*0.8f, -transform.up * 1);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 a = player.transform.position - transform.position;
+        Gizmos.DrawRay(transform.position,a*5);
     }
 
     private void Attack()
@@ -175,10 +180,12 @@ public class Goblin_E : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, 0, 0);
             }
         }
-       
+
         InGamePlayerMove.Inst.ActiveThings();
-        
+
     }
+
+  
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -195,6 +202,7 @@ public class Goblin_E : MonoBehaviour
             
         }
     }
+
 
 
 

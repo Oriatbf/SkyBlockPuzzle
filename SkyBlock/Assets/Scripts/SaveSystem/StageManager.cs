@@ -43,7 +43,7 @@ public class StageManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            stageClear(15);
+            stageClear(11);
         }
     }
 
@@ -62,6 +62,13 @@ public class StageManager : MonoBehaviour
     {
         clearStage = num;
         lastClearStage = num;
+        for(int i = 0; i < num; i++)
+        {
+            clearStars1.Add(true);
+            clearStars2.Add(true);
+            clearStars3.Add(true);
+        }
+        
         DataManager.Inst.JsonSave();
     }
 

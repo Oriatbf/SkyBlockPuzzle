@@ -33,7 +33,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] Text onGoalTurnTxt,outGoalTurnText,titleTxt;
     [SerializeField] GameObject getStarImage, noStarImage,onTurnImage,outTurnImage,onClearImage,nonClearImage,nextStageBtn;
 
-
+    public bool changeClickAllow=true;
 
 
     private void Awake()
@@ -74,7 +74,7 @@ public class InGameUIManager : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, blockLayer))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, blockLayer) && !hit.transform.CompareTag("SlopePlatform"))
             {
                 if (firstBlock == null && secondBlock != hit.transform.gameObject)
                 {
@@ -105,7 +105,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void ClickChangeButton()
     {
-        if (!isChanging && changeCool ==0)
+        if (!isChanging && changeCool ==0 && changeClickAllow)
         {
             isChanging = true;
             changeCancle.SetActive(true);
@@ -269,10 +269,8 @@ public class InGameUIManager : MonoBehaviour
         }
 
         string stageNum = "";
-        if (MapManager.Inst.curChapterNum > 1)
-            stageNum = (MapManager.Inst.curStageNum - 12).ToString();
-        else
-            stageNum = (MapManager.Inst.curStageNum).ToString();
+         
+        stageNum = (InGameManager.Inst.curStageNum).ToString();
         titleTxt.text = MapManager.Inst.curChapterNum.ToString() + " - " + stageNum + " 스테이지";
 
         
