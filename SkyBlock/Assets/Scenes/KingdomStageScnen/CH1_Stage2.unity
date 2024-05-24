@@ -7477,6 +7477,7 @@ MonoBehaviour:
   pushBlockCount: []
   goblinCount: []
   bear: {fileID: 0}
+  spider: {fileID: 0}
   player: {fileID: 0}
   isUndo: 0
   isPushBlock: 1
@@ -9256,6 +9257,7 @@ MonoBehaviour:
   onClearImage: {fileID: 8398793641928802813}
   nonClearImage: {fileID: 2836210478585732333}
   nextStageBtn: {fileID: 8398793643517137194}
+  changeClickAllow: 1
 --- !u!4 &8398793643561565613
 Transform:
   m_ObjectHideFlags: 0

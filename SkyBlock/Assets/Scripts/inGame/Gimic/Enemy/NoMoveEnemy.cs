@@ -35,6 +35,7 @@ public class NoMoveEnemy : MonoBehaviour
         {
             count++;
             animator.SetTrigger("Attack");
+            InGameManager.Inst.gameEnd = true;
             
         }
         

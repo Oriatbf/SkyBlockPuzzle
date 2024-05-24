@@ -296,7 +296,7 @@ public class InGamePlayerMove : MonoBehaviour
             RaycastHit endBlockHit;
             Vector3 direction = transform.position - enemy.transform.position;
             
-            if (Physics.Raycast(enemy.transform.position, direction, out endBlockHit, 1.5f, EndBlock))
+            if (Physics.Raycast(enemy.transform.position+new Vector3(0,0.2f,0), direction, out endBlockHit, 1.5f, EndBlock) || InGameManager.Inst.gameEnd)
             {
                 enemy.GetComponent<EnemyClickpoint>().ClickPoint.SetActive(false);
                 Debug.Log("false");

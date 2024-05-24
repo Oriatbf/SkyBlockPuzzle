@@ -106,7 +106,7 @@ public class Goblin_E : MonoBehaviour
         Gizmos.DrawRay(transform.position + transform.forward *2 + Vector3.up*0.8f, -transform.up * 1);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector3 a = player.transform.position - transform.position;
-        Gizmos.DrawRay(transform.position,a*5);
+        Gizmos.DrawRay(transform.position+new Vector3(0,0.2f,0),a*5);
     }
 
     private void Attack()
