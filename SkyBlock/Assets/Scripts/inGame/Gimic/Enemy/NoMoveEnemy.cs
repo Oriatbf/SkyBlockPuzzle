@@ -31,7 +31,7 @@ public class NoMoveEnemy : MonoBehaviour
             isWall= false;
         }
       
-        if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+1f,transform.position.z), transform.forward, 2f, player) && count ==0 && !isWall)
+        if (Physics.Raycast(new Vector3(transform.position.x,transform.position.y+0.5f,transform.position.z), transform.forward, 2f, player) && count ==0 && !isWall)
         {
             count++;
             animator.SetTrigger("Attack");
@@ -44,7 +44,7 @@ public class NoMoveEnemy : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), transform.forward * 2f);
+        Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), transform.forward * 2f);
     }
 
     public void AttackAnim()

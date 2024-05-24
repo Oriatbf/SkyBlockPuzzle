@@ -3311,7 +3311,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3473337487890977003}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9}
+  m_LocalPosition: {x: 0, y: 0, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3320,7 +3320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 52.9312, y: 84.037506}
+  m_AnchoredPosition: {x: 52.9312, y: 120}
   m_SizeDelta: {x: 59.333332, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3473337487890977003
@@ -6621,6 +6621,7 @@ MonoBehaviour:
   pushBlockCount: []
   goblinCount: []
   bear: {fileID: 0}
+  spider: {fileID: 0}
   player: {fileID: 0}
   isUndo: 0
   isPushBlock: 0
@@ -8440,6 +8441,7 @@ MonoBehaviour:
   onClearImage: {fileID: 8398793642988786628}
   nonClearImage: {fileID: 2836210477515263700}
   nextStageBtn: {fileID: 8398793642440639251}
+  changeClickAllow: 1
 --- !u!1 &8398793642492669846
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,10 @@ public class PushBlock : MonoBehaviour
     public Ease ease;
     public bool onFloor;
 
+    [SerializeField] GameObject[] changeColorObj;
+    public Material[] deafultMat;
+    public Material invisableMat;
+
     public Vector3 prePos;
 
     private void Awake()
@@ -113,6 +117,24 @@ public class PushBlock : MonoBehaviour
         else
         {
             onFloor= false;
+        }
+    }
+
+    public void ChangeColor(bool changeDefaultColor)
+    {
+        if (changeDefaultColor)
+        {
+            for(int i = 0; i < changeColorObj.Length; i++)
+            {
+                changeColorObj[i].GetComponent<MeshRenderer>().material = deafultMat[i];
+            }
+        }
+        else
+        {
+            foreach (GameObject obj in changeColorObj)
+            {
+                obj.GetComponent<MeshRenderer>().material = invisableMat;
+            }
         }
     }
 

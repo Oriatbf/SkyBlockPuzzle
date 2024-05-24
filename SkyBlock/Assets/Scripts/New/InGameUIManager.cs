@@ -107,6 +107,8 @@ public class InGameUIManager : MonoBehaviour
     {
         if (!isChanging && changeCool ==0 && changeClickAllow)
         {
+
+            ChangePushBoxColor(false);
             isChanging = true;
             changeCancle.SetActive(true);
             isUIOpen = true;
@@ -119,9 +121,19 @@ public class InGameUIManager : MonoBehaviour
 
     }
 
+    void ChangePushBoxColor(bool isChangeColor)
+    {
+        GameObject[] boxes = GameObject.FindGameObjectsWithTag("PushBlock");
+        foreach (GameObject box in boxes)
+        {
+            box.GetComponent<PushBlock>().ChangeColor(isChangeColor);
+        }
+    }
+
     private void ChangeFinsh()
     {
         ChangeBlock();
+        ChangePushBoxColor(true);
         changeCancle.SetActive(false);
         changeCoolImage.enabled = true;
         changeCoolText.enabled = true;
@@ -211,6 +223,7 @@ public class InGameUIManager : MonoBehaviour
 
     public void ClickChangeCancle()
     {
+        ChangePushBoxColor(true);
         SoundEffectManager.PlaySoundEffect(6);
         isChanging = false;
         isUIOpen= false;
