@@ -311,7 +311,7 @@ public class InGamePlayerMove : MonoBehaviour
         ActiveMoveTile();
     }
 
-    private void DisablePushBlockClickPoint()
+    public void DisablePushBlockClickPoint()
     {
         if (UndoManager.Inst.isPushBlock)
         {
@@ -320,7 +320,7 @@ public class InGamePlayerMove : MonoBehaviour
         }
     }
 
-    private void DisableAttackClickPoint()
+    public void DisableAttackClickPoint()
     {
         if (UndoManager.Inst.isGoblin)
         {

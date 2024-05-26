@@ -107,7 +107,7 @@ public class InGameUIManager : MonoBehaviour
     {
         if (!isChanging && changeCool ==0 && changeClickAllow)
         {
-
+            InGamePlayerMove.Inst.DisablePushBlockClickPoint();
             ChangePushBoxColor(false);
             isChanging = true;
             changeCancle.SetActive(true);
